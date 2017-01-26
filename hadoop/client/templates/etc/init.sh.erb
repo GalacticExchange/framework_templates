@@ -1,0 +1,25 @@
+rm /tmp/*.pid
+service ssh start
+
+while :
+do
+### sleep 30
+service hadoop-hdfs-datanode start
+service hadoop-yarn-nodemanager start
+service hue start
+service spark-worker start
+# ENTERPRISE service impala-server start
+# ENTERPRISE service solr-server start
+
+# ENTERPRISE sudo oozie-setup sharelib create -fs localhost:8020 -locallib /usr/lib/oozie/oozie-sharelib-yarn.tar.gz
+service flume-ng-agent start
+service spark-worker start
+
+#XXXX temporarily removed sudo -u spark hadoop fs -put /usr/lib/spark/lib/spark-assembly.jar /user/spark/share/lib/spark-assembly.jar
+
+sleep 60
+done
+
+
+
+

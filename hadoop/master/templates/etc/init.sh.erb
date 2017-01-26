@@ -1,10 +1,11 @@
 <%# elasticsearch:elasticsearch:0660 %>
 
 rm /tmp/*.pid
+
 service ssh start
 
-
 service hadoop-hdfs-namenode start
+
 hdfs dfsadmin -safemode leave
 
 service hadoop-yarn-resourcemanager start
@@ -86,7 +87,6 @@ sleep 100
 
 service sqoop2-server start
 
-./elasticsearch &
 
 # ENTERPRISE if [[ -v FIRST_RUN ]]
 # ENTERPRISE then
@@ -97,8 +97,4 @@ service sqoop2-server start
 
 # ENTERPRISE service oozie start
 
-while true
-do
-sleep 1000
-done
 
