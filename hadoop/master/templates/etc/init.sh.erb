@@ -1,0 +1,104 @@
+<%# elasticsearch:elasticsearch:0660 %>
+
+rm /tmp/*.pid
+service ssh start
+
+
+service hadoop-hdfs-namenode start
+hdfs dfsadmin -safemode leave
+
+service hadoop-yarn-resourcemanager start
+sudo -u hdfs hadoop fs -ls /user/hdfs
+
+if [ $? -eq 1 ]
+then
+hadoop fs -mkdir -p /user/hdfs
+sudo -u hdfs hadoop fs -mkdir -p /user/hdfs
+sudo -u hdfs hadoop fs -chown hdfs /user/hdfs
+sudo -u hdfs hadoop fs -mkdir -p /tmp/hadoop-yarn/staging/history/done_intermediate
+sudo -u hdfs hadoop fs -chown -R mapred:mapred /tmp/hadoop-yarn/staging
+sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
+sudo -u hdfs hadoop fs -mkdir -p /var/log/hadoop-yarn
+sudo -u hdfs hadoop fs -chown yarn:mapred /var/log/hadoop-yarn
+sudo -u hdfs hadoop fs -mkdir -p /user/root
+
+# init spark history server
+sudo -u hdfs hadoop fs -mkdir /user/spark
+sudo -u hdfs hadoop fs -mkdir /user/spark/applicationHistory
+sudo -u hdfs hadoop fs -chown -R spark:spark /user/spark
+sudo -u hdfs hadoop fs -chmod 1777 /user/spark/applicationHistory
+sudo -u spark hadoop fs -mkdir -p /user/spark/share/lib
+
+sudo -u hdfs hadoop fs -mkdir -p /user/hive/warehouse
+sudo -u hdfs hadoop fs -chmod 1777 /user/hive/warehouse
+sudo -u hdfs hadoop fs -chown hive:hadoop /user/hive/warehouse
+
+# ENTERPRISE sudo -u hdfs hadoop fs -mkdir /user/oozie
+# ENTERPRISE sudo -u hdfs hadoop fs -chown oozie:oozie /user/oozie
+
+# ENTERPRISE  sudo -u hdfs hadoop fs -mkdir /user/oozie && \
+# ENTERPRISE  sudo -u hdfs hadoop fs -chown oozie:oozie /user/oozie
+
+sudo -u hdfs hadoop fs -mkdir /solr
+sudo -u hdfs hadoop fs -chown solr /solr
+
+sudo usermod -G hadoop hive
+
+export FIRST_RUN
+
+fi
+
+sleep 30
+
+service mysql start
+
+service hadoop-httpfs start
+
+service zookeeper-server start
+service spark-history-server start
+service spark-master start
+service spark-server start
+service kafka-server start
+
+sleep 30
+
+service hue start
+
+service hadoop-mapreduce-historyserver start
+service hadoop-yarn-proxyserver start
+service hadoop-yarn-resourcemanager start
+# ENTERPRISE service hbase-master start
+# ENTERPRISE service hbase-thrift start
+# ENTERPRISE service hbase-rest start
+service hive-metastore start
+export HIVE_PORT=10001
+service hive-server start
+
+sleep 100
+rm -rf  /var/lib/hive/metastore/metastore_db/*.lck
+service hive-server2 start
+service webhcat-server start
+# ENTERPRISE service impala-catalog start
+
+# ENTERPRISE service impala-state-store start
+
+sleep 100
+
+service sqoop2-server start
+
+./elasticsearch &
+
+# ENTERPRISE if [[ -v FIRST_RUN ]]
+# ENTERPRISE then
+# ENTERPRISE sudo oozie-setup sharelib create -fs hdfs://localhost:8020 -locallib /usr/lib/oozie/oozie-sharelib-yarn
+# ENTERPRISE fi
+
+
+
+# ENTERPRISE service oozie start
+
+while true
+do
+sleep 1000
+done
+
