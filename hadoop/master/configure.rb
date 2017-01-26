@@ -1,2 +1,2 @@
-`sudo mkdir -p /data/elasticsearch`
-`sudo chown elasticsearch:elasticsearch /data/elasticsearch`
+get_editor '/etc/init.sh'
+commit_edits '/etc/init.sh'
