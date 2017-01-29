@@ -11,7 +11,7 @@ cp /tmp/hadoop_rsa  /root/.ssh/
 chmod 600 /root/.ssh/hadoop_rsa
 chmod 600 /root/.ssh/authorized_keys
 echo export HADOOP_SSH_OPTS=\"-i /root/.ssh/hadoop_rsa -o StrictHostKeyChecking=no\"  >>  /root/.bashrc
-sudo -u hdfs  <%= @_hadoop_bin_dir %>/hadoop namenode -format -force
+sudo -u hdfs  <%= @_hadoop_bin_dir %>/hadoop namenode -format -force |true
 echo '#{spark_conf}' >> /etc/spark/conf/spark-env.sh
 
 set +x
