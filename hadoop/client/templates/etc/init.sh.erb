@@ -1,9 +1,9 @@
 rm /tmp/*.pid
 service ssh start
 
-INIT_STOP ="/INIT_LOCK"
+INIT_STOP="/INIT_LOCK"
 
-while : [ -f "$INIT_STOP" ]
+while : [ -f "$INIT_STOP" ];
 do
 sleep 0.1
 done

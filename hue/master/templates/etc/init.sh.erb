@@ -3,7 +3,7 @@
 
 INIT_LOCK="/INIT_LOCK"
 
-while : [ -f "$INIT_LOCK" ]
+while : ! [ -f "$INIT_LOCK" ]
 do
 sleep 0.1
 done
