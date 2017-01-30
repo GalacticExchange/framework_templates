@@ -1,8 +1,6 @@
-dexec "sudo -u hdfs hdfs namenode -format -force"
+dexec "sudo -u hdfs hdfs namenode -format --force"
 
 dexec "service hadoop-hdfs-namenode start"
-
-
 
 dexec "hdfs dfsadmin -safemode leave"
 
