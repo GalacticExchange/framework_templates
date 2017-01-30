@@ -9,19 +9,3 @@ set -e
 echo 'RUNNIN FIRST RUN!!!!'
 
 
-rm -f /etc/impala/conf/core-site.xml /etc/impala/conf/hdfs-site.xml /etc/impala/conf/hive-site.xml
-ln /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml
-ln /etc/hadoop/conf/hdfs-site.xml /etc/impala/conf/hdfs-site.xml
-ln /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml
-cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys
-cp /tmp/hadoop_rsa  /root/.ssh/
-chmod 600 /root/.ssh/hadoop_rsa
-chmod 600 /root/.ssh/authorized_keys
-echo export HADOOP_SSH_OPTS=\"-i /root/.ssh/hadoop_rsa -o StrictHostKeyChecking=no\"  >>  /root/.bashrc
-
-set +x
-set +e
-
-sudo -u hdfs  <%= @_hadoop_bin_dir %>/hadoop namenode -format -force |true
-echo '#{spark_conf}' >> /etc/spark/conf/spark-env.sh
-
