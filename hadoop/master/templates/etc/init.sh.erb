@@ -10,10 +10,11 @@ done
 
 
 
-rm /tmp/*.pid
+
 set +e
 
 
+rm /tmp/*.pid
 
 service ssh start
 
@@ -23,6 +24,15 @@ hdfs dfsadmin -safemode leave
 
 service hadoop-yarn-resourcemanager start
 sudo -u hdfs hadoop fs -ls /user/hdfs
+
+while  [ ! -f /INIT_LOCK ];
+do
+sleep 0.1
+done
+
+
+
+
 
 if [ $? -eq 1 ]
 then
