@@ -1,4 +1,8 @@
+texec "sudo -u hdfs hdfs namenode -format"
+
 texec "service hadoop-hdfs-namenode start"
+
+
 
 texec "hdfs dfsadmin -safemode leave"
 
