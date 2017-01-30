@@ -1,4 +1,4 @@
-dexec "sudo -u hdfs hdfs namenode -format"
+#dexec "sudo -u hdfs hdfs namenode -format"
 
 dexec "service hadoop-hdfs-namenode start"
 
