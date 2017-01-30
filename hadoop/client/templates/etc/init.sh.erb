@@ -1,6 +1,21 @@
 rm /tmp/*.pid
 service ssh start
 
+INIT_STOP ="/INIT_LOCK"
+
+while : [ -f "$INIT_STOP" ]
+do
+sleep 0.1
+done
+
+"
+if [ -f "$AFTER_CREATE" ]
+then
+source "${AFTER_CREATE}"
+rm "${AFTER_CREATE}"
+fi
+
+
 while :
 do
 ### sleep 30
