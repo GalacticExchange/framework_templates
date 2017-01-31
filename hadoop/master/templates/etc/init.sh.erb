@@ -26,23 +26,6 @@ service hadoop-yarn-resourcemanager start
 
 sudo -u hdfs hadoop fs -ls /user/hdfs
 
-while  [ ! -f /INIT_LOCK ];
-do
-sleep 0.1
-done
-
-
-
-
-
-if [ $? -eq 1 ]
-then
-
-
-export FIRST_RUN
-
-fi
-
 sleep 30
 
 service mysql start
