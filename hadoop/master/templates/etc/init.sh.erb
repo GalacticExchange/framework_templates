@@ -9,8 +9,6 @@ done
 
 
 
-
-
 set +e
 
 
@@ -23,6 +21,7 @@ service hadoop-hdfs-namenode start
 hdfs dfsadmin -safemode leave
 
 service hadoop-yarn-resourcemanager start
+
 sudo -u hdfs hadoop fs -ls /user/hdfs
 
 while  [ ! -f /INIT_LOCK ];
