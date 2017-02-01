@@ -784,7 +784,7 @@ cross_node_timeout: false
 #  - GossipingPropertyFileSnitch
 #    This should be your go-to snitch for production use.  The rack
 #    and datacenter for the local node are defined in
-#    cassandra-rackdc.properties and propagated to other nodes via
+#    cassandra-rackdc.properties.erb and propagated to other nodes via
 #    gossip.  If cassandra-topology.properties exists, it is used as a
 #    fallback, allowing migration from the PropertyFileSnitch.
 #  - PropertyFileSnitch:
