@@ -35,3 +35,5 @@ dexec "sudo -u hdfs hadoop fs -mkdir /solr"
 dexec "sudo -u hdfs hadoop fs -chown solr /solr"
 
 dexec "sudo usermod -G hadoop hive"
+
+dexec "rm /etc/cassandra/cassandra-topology.properties"
