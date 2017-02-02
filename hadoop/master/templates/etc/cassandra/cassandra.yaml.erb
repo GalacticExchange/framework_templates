@@ -176,11 +176,11 @@ data_file_directories:
 commitlog_directory: /var/lib/cassandra/commitlog
 
 # policy for data disk failures:
-# die: shut down gossip and client transports and kill the JVM for any fs errors or
+# die: shut down gossip and slave transports and kill the JVM for any fs errors or
 #      single-sstable errors, so the node can be replaced.
-# stop_paranoid: shut down gossip and client transports even for single-sstable errors,
+# stop_paranoid: shut down gossip and slave transports even for single-sstable errors,
 #                kill the JVM for errors during startup.
-# stop: shut down gossip and client transports, leaving the node effectively dead, but
+# stop: shut down gossip and slave transports, leaving the node effectively dead, but
 #       can still be inspected via JMX, kill the JVM for errors during startup.
 # best_effort: stop using the failed disk and respond to requests based on
 #              remaining available sstables.  This means you WILL see obsolete
@@ -502,7 +502,7 @@ native_transport_port: 9042
 # Enabling native transport encryption in client_encryption_options allows you to either use
 # encryption for the standard port or to use a dedicated, additional port along with the unencrypted
 # standard native_transport_port.
-# Enabling client encryption and keeping native_transport_port_ssl disabled will use encryption
+# Enabling slave encryption and keeping native_transport_port_ssl disabled will use encryption
 # for native_transport_port. Setting native_transport_port_ssl to a different value
 # from native_transport_port will use encryption for native_transport_port_ssl while
 # keeping native_transport_port unencrypted.
@@ -518,11 +518,11 @@ native_transport_port: 9042
 # you may want to adjust max_value_size_in_mb accordingly.
 # native_transport_max_frame_size_in_mb: 256
 
-# The maximum number of concurrent client connections.
+# The maximum number of concurrent slave connections.
 # The default is -1, which means unlimited.
 # native_transport_max_concurrent_connections: -1
 
-# The maximum number of concurrent client connections per source ip.
+# The maximum number of concurrent slave connections per source ip.
 # The default is -1, which means unlimited.
 # native_transport_max_concurrent_connections_per_ip: -1
 
@@ -593,7 +593,7 @@ rpc_server_type: sync
 #
 # The default is unlimited and thus provides no protection against clients overwhelming the server. You are
 # encouraged to set a maximum that makes sense for you in production, but do keep in mind that
-# rpc_max_threads represents the maximum number of client requests this server may execute concurrently.
+# rpc_max_threads represents the maximum number of slave requests this server may execute concurrently.
 #
 # rpc_min_threads: 16
 # rpc_max_threads: 2048
@@ -830,14 +830,14 @@ dynamic_snitch_reset_interval_in_ms: 600000
 dynamic_snitch_badness_threshold: 0.1
 
 # request_scheduler -- Set this to a class that implements
-# RequestScheduler, which will schedule incoming client requests
+# RequestScheduler, which will schedule incoming slave requests
 # according to the specific policy. This is useful for multi-tenancy
 # with a single Cassandra cluster.
-# NOTE: This is specifically for requests from the client and does
+# NOTE: This is specifically for requests from the slave and does
 # not affect inter node communication.
 # org.apache.cassandra.scheduler.NoScheduler - No scheduling takes place
 # org.apache.cassandra.scheduler.RoundRobinScheduler - Round robin of
-# client requests to a node with a separate queue for each
+# slave requests to a node with a separate queue for each
 # request_scheduler_id. The scheduler is further customized by
 # request_scheduler_options as described below.
 request_scheduler: org.apache.cassandra.scheduler.NoScheduler
@@ -846,7 +846,7 @@ request_scheduler: org.apache.cassandra.scheduler.NoScheduler
 # NoScheduler - Has no options
 # RoundRobin
 #  - throttle_limit -- The throttle_limit is the number of in-flight
-#                      requests per client.  Requests beyond
+#                      requests per slave.  Requests beyond
 #                      that limit are queued up until
 #                      running requests can complete.
 #                      The value of 80 here is twice the number of
@@ -897,7 +897,7 @@ server_encryption_options:
     # cipher_suites: [TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA]
     # require_client_auth: false
 
-# enable or disable client/server encryption.
+# enable or disable slave/server encryption.
 client_encryption_options:
     enabled: false
     # If enabled and optional is set to true encrypted and unencrypted connections are handled.
