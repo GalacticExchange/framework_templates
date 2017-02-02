@@ -37,3 +37,7 @@ dexec "sudo -u hdfs hadoop fs -chown solr /solr"
 dexec "sudo usermod -G hadoop hive"
 
 dexec "rm /etc/cassandra/cassandra-topology.properties"
+
+dcp "/tmp/core-site.xml", "/etc/impala/conf/core-site.xml"
+dcp "/tmp/hdfs-site.xml", "/etc/impala/conf/hdfs-site.xml"
+dcp "/tmp/hive-site.xml", "/etc/hive/conf/hive-site.xml"
