@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+
+INIT_LOCK="/INIT_LOCK"
+
+while  [  -f /INIT_LOCK ];
+do
+sleep 0.1
+done
+
+
+supervisord -c /etc/supervisor/supervisord.conf -n
