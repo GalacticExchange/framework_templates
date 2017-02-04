@@ -3,7 +3,11 @@ dexecs(
     "sudo -u hdfs hdfs namenode -format -force",
     "service hadoop-hdfs-namenode start",
 
+
+
     "hdfs dfsadmin -safemode leave",
+
+
 
     "hadoop fs -mkdir -p /user/hdfs",
     "sudo -u hdfs hadoop fs -mkdir -p /user/hdfs",
@@ -47,8 +51,6 @@ dexecs(
     "cp /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml",
 
     "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist",
-
-    "cp /usr/lib/hadoop/etc/hadoop/*.xml /usr/lib/hadoop/input"
 
 #COPY download/log4j.properties /etc/hadoop/conf/log4j.properties
 )
