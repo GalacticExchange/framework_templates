@@ -3,11 +3,7 @@ dexecs(
     "sudo -u hdfs hdfs namenode -format -force",
     "service hadoop-hdfs-namenode start",
 
-
-
     "hdfs dfsadmin -safemode leave",
-
-
 
     "hadoop fs -mkdir -p /user/hdfs",
     "sudo -u hdfs hadoop fs -mkdir -p /user/hdfs",
