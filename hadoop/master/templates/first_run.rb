@@ -1,6 +1,6 @@
 dexecs(
     "service zookeeper-server init --force",
-    "sudo -u hdfs hdfs namenode -format -force"
+    "sudo -u hdfs hdfs namenode -format -force",
     "service hadoop-hdfs-namenode start",
 
     "hdfs dfsadmin -safemode leave",
