@@ -1,5 +1,5 @@
 dexecs(
-    "service zookeeper-server init",
+    "service zookeeper-server init --force",
     "service hadoop-hdfs-namenode start",
 
     "hdfs dfsadmin -safemode leave",
