@@ -17,9 +17,12 @@ editor.insert_line_after_match (/^# end of pam-auth-update config.*$/, 'session 
 editor = get_editor '/etc/hadoop/conf/hadoop-env.sh'
 editor.insert_line_after_match (/^#.*$/, 'export HADOOP_PREFIX=/usr/lib/hadoop')
 editor.insert_line_after_match (/^#.*$/, 'export HADOOP_LIBEXEC_DIR=/usr/lib/hadoop/libexec')
-editor.insert_line_after_match (/^#.*$/, 'export PATH=$HADOOP_PREFIX/bin:$PATH')
+editor.insert_line_after_match (/^#.*$/, 'export PATH=$HADOOP_PREFIX/bin:/usr/local/bin:/usr/lib/zookeeper:/usr/sbin:/usr/bin:/sbin:/bin:$PATH')
 
 
+editor = get_editor '/etc/hadoop/conf/zookeeper-env.sh'
+editor.insert_line_after_match (/^#.*$/, 'export ZOOKEEPER_HOME=/usr/lib/zookeeper')
+editor.insert_line_after_match (/^#.*$/, 'export export PATH=\$ZOOKEEPER_HOME/bin:\$PATH')
 
 
 # ENTERPRISSE RUN \
