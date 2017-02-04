@@ -1,5 +1,12 @@
 dexecs(
-    "service zookeeper-server init --force",
+
+
+"cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys",
+"cp /tmp/hadoop_rsa /root/.ssh/",
+"chmod 600 /root/.ssh/hadoop_rsa",
+"chmod 600 /root/.ssh/authorized_keys",
+
+"service zookeeper-server init --force",
     "sudo -u hdfs hdfs namenode -format -force",
     "service hadoop-hdfs-namenode start",
 
