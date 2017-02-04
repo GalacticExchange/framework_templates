@@ -50,7 +50,7 @@
 # so that we can lock the heap in memory on startup to prevent any
 # of it from being swapped out.
 -Xms10M
--Xmx30M
+-Xmx50M
 
 # Young generation size is automatically calculated by cassandra-env
 # based on this formula: min(100 * num_cores, 1/4 * heap size)
@@ -72,8 +72,7 @@
 # the same value to avoid stop-the-world GC pauses during resize, and
 # so that we can lock the heap in memory on startup to prevent any
 # of it from being swapped out.
--Xms10M
--Xmx30M
+
 
 # Young generation size is automatically calculated by cassandra-env
 # based on this formula: min(100 * num_cores, 1/4 * heap size)
