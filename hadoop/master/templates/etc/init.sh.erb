@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
 
 
-set +x
-
-while  [  -f /INIT_LOCK ];
-do
-sleep 0.1
-done
-
-
-set +e
-
 
 rm /tmp/*.pid
 
