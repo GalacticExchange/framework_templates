@@ -45,11 +45,15 @@ echo "Elastic Search" >> /tmp/INIT_LOG
 
 service elasticsearch start
 
+rm -rf  /var/lib/hive/metastore/metastore_db/*.lck
+
+echo "hive metastore" >> /tmp/INIT_LOG
+
+service hive-metastore start
+
 echo "Kafka" >> /tmp/INIT_LOG
 
 service kafka-server start
-
-sleep 30
 
 echo "HTTPFS" >> /tmp/INIT_LOG
 
@@ -63,8 +67,6 @@ echo "spark-history" >> /tmp/INIT_LOG
 
 service spark-history-server start
 
-sleep 30
-
 echo "mr history" >> /tmp/INIT_LOG
 
 service hadoop-mapreduce-historyserver start
@@ -76,17 +78,16 @@ service hadoop-yarn-proxyserver start
 # ENTERPRISE service hbase-thrift start
 # ENTERPRISE service hbase-rest start
 
-echo "hive metastore" >> /tmp/INIT_LOG
 
-service hive-metastore start
+echo "sqoop2" >> /tmp/INIT_LOG
+
+service sqoop2-server start
+
+echo "hue" >> /tmp/INIT_LOG
+
+service hue start
+
 export HIVE_PORT=10001
-
-echo "hive server" >> /tmp/INIT_LOG
-
-service hive-server start
-
-sleep 100
-rm -rf  /var/lib/hive/metastore/metastore_db/*.lck
 
 echo "hive-server 2" >> /tmp/INIT_LOG
 
@@ -99,15 +100,6 @@ service webhcat-server start
 
 # ENTERPRISE service impala-state-store start
 
-
-
-echo "sqoop2" >> /tmp/INIT_LOG
-
-service sqoop2-server start
-
-echo "hue" >> /tmp/INIT_LOG
-
-service hue start
 
 
 
