@@ -20,14 +20,6 @@ editor = get_editor '/etc/pam.d/common-session'
 editor.insert_line_after_match(/^# end of pam-auth-update config.*$/, 'session required  pam_limits.so')
 
 
-
-editor = get_editor '/etc/hadoop/conf/zookeeper-env.sh'
-# noinspection RubyArgumentParentheses
-editor.insert_line_after_match(/^#.*$/, 'export ZOOKEEPER_HOME=/usr/lib/zookeeper')
-# noinspection RubyArgumentParentheses
-editor.insert_line_after_match(/^#.*$/, 'export export PATH=\$ZOOKEEPER_HOME/bin:\$PATH')
-
-
 # ENTERPRISSE RUN \
 #        echo "hbase -       nofile  32768" >> /etc/security/limits.conf && \
 #        echo "hbase -       nproc   2048" >> /etc/security/limits.conf && \
