@@ -14,6 +14,12 @@ editor.insert_line_after_match (/^#.*$/, 'hdfs  -       nproc   2048')
 editor = get_editor '/etc/pam.d/common-session'
 editor.insert_line_after_match (/^# end of pam-auth-update config.*$/, 'session required  pam_limits.so')
 
+editor = get_editor '/etc/hadoop/conf/hadoop-env.sh'
+editor.insert_line_after_match (/^#.*$/, 'export HADOOP_PREFIX=/usr/lib/hadoop')
+editor.insert_line_after_match (/^#.*$/, 'export HADOOP_LIBEXEC_DIR=/usr/lib/hadoop/libexec')
+editor.insert_line_after_match (/^#.*$/, 'export PATH=$HADOOP_PREFIX/bin:$PATH')
+
+
 
 
 # ENTERPRISSE RUN \
