@@ -47,7 +47,6 @@ service hadoop-yarn-resourcemanager start
 
 hdfs dfsadmin -safemode leave
 
-e
 rm -rf  /var/lib/hive/metastore/metastore_db/*.lck
 
 echo "hive metastore" >> /tmp/INIT_LOG
