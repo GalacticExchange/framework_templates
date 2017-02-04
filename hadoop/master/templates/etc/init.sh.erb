@@ -31,12 +31,6 @@ echo "NameNode" >> /tmp/INIT_LOG
 
 service hadoop-hdfs-namenode start
 
-echo "Resource Manager" >> /tmp/INIT_LOG
-
-service hadoop-yarn-resourcemanager start
-
-hdfs dfsadmin -safemode leave
-
 echo "Cassandra" >> /tmp/INIT_LOG
 
 service cassandra start
@@ -45,6 +39,15 @@ echo "Elastic Search" >> /tmp/INIT_LOG
 
 service elasticsearch start
 
+
+
+echo "Resource Manager" >> /tmp/INIT_LOG
+
+service hadoop-yarn-resourcemanager start
+
+hdfs dfsadmin -safemode leave
+
+e
 rm -rf  /var/lib/hive/metastore/metastore_db/*.lck
 
 echo "hive metastore" >> /tmp/INIT_LOG
@@ -99,7 +102,6 @@ service webhcat-server start
 # ENTERPRISE service impala-catalog start
 
 # ENTERPRISE service impala-state-store start
-
 
 
 
