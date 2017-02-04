@@ -48,9 +48,7 @@ dexecs(
 
     "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist",
 
-    "ln -s /usr/share/java/mysql-connector-java.jar /usr/lib/hive/lib/libmysql-java.jar",
-
-    "cp /usr/lib/hadoop/etc/hadoop/*.xml /usr/lib/hadoopinput"
+    "cp /usr/lib/hadoop/etc/hadoop/*.xml /usr/lib/hadoop/input"
 
 #COPY download/log4j.properties /etc/hadoop/conf/log4j.properties
 )
