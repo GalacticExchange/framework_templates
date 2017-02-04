@@ -22,7 +22,6 @@ hdfs dfsadmin -safemode leave
 
 service hadoop-yarn-resourcemanager start
 
-sudo -u hdfs hadoop fs -ls /user/hdfs
 
 sleep 30
 
@@ -35,6 +34,7 @@ service spark-history-server start
 service spark-master start
 service spark-server start
 service kafka-server start
+
 
 sleep 30
 
@@ -61,6 +61,9 @@ service webhcat-server start
 sleep 100
 
 service sqoop2-server start
+
+service cassandra start
+service elasticsearch start
 
 
 # ENTERPRISE if [[ -v FIRST_RUN ]]
