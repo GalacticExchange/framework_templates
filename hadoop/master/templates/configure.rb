@@ -19,13 +19,6 @@ editor = get_editor '/etc/pam.d/common-session'
 # noinspection RubyArgumentParentheses
 editor.insert_line_after_match(/^# end of pam-auth-update config.*$/, 'session required  pam_limits.so')
 
-editor = get_editor '/etc/hadoop/conf/hadoop-env.sh'
-# noinspection RubyArgumentParentheses
-editor.insert_line_after_match(/^#.*$/, 'export HADOOP_PREFIX=/usr/lib/hadoop')
-# noinspection RubyArgumentParentheses
-editor.insert_line_after_match(/^#.*$/, 'export HADOOP_LIBEXEC_DIR=/usr/lib/hadoop/libexec')
-# noinspection RubyArgumentParentheses
-editor.insert_line_after_match(/^#.*$/, 'export PATH=$HADOOP_PREFIX/bin:/usr/local/bin:/usr/lib/zookeeper:/usr/sbin:/usr/bin:/sbin:/bin:$PATH')
 
 
 editor = get_editor '/etc/hadoop/conf/zookeeper-env.sh'
