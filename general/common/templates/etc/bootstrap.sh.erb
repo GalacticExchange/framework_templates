@@ -4,19 +4,21 @@
 AFTER_CREATE="/after-create"
 FIRST_RUN="/etc/first_run.sh"
 
+echo "Executing after create"
+
 if [ -f "$AFTER_CREATE" ]
 then
 source "${AFTER_CREATE}"
 rm "${AFTER_CREATE}"
 fi
 
+echo "Executing first run"
+
 if [ -f "$FIRST_RUN" ]
 then
 source "${FIRST_RUN}"
 rm "${FIRST_RUN}"
 fi
-
-
 
 set +x
 
