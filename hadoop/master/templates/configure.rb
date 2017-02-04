@@ -1,5 +1,4 @@
 
-dexec "cp /usr/lib/hadoop/etc/hadoop/*.xml /usr/lib/hadoopinput"
 
 
 editor = get_editor '/etc/init.d/cassandra'
@@ -27,11 +26,6 @@ editor.insert_line_after_match (/^#.*$/, 'export PATH=$HADOOP_PREFIX/bin:/usr/lo
 editor = get_editor '/etc/hadoop/conf/zookeeper-env.sh'
 editor.insert_line_after_match (/^#.*$/, 'export ZOOKEEPER_HOME=/usr/lib/zookeeper')
 editor.insert_line_after_match (/^#.*$/, 'export export PATH=\$ZOOKEEPER_HOME/bin:\$PATH')
-
-
-ENV YARN_CONF_DIR /usr/lib/hadoop/etc/hadoop
-ENV PATH $PATH:$SPARK_HOME/bin:/usr/lib/hadoop/bin:$JAVA_HOME/bin:/usr/lib/spark/bin
-
 
 
 # ENTERPRISSE RUN \

@@ -1,5 +1,7 @@
 dexec "service zookeeper-server init"
 
+
+
 dexec "service hadoop-hdfs-namenode start"
 
 dexec "hdfs dfsadmin -safemode leave"
@@ -47,6 +49,8 @@ dexec "cp /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml"
 dexec "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist"
 
 dexec "ln -s /usr/share/java/mysql-connector-java.jar /usr/lib/hive/lib/libmysql-java.jar"
+
+dexec "cp /usr/lib/hadoop/etc/hadoop/*.xml /usr/lib/hadoopinput"
 
 #COPY download/log4j.properties /etc/hadoop/conf/log4j.properties
 
