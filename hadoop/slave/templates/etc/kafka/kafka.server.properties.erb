@@ -15,7 +15,7 @@
 # see kafka.server.KafkaConfig for additional details and defaults
 ############################# Server Basics #############################
 # The id of the broker. This must be set to a unique integer for each broker.
-<% if _node_id %>
+<% if @_node_id %>
 broker.id= <%= @_node_id %>
 <% else %>
 broker.id=0
@@ -29,8 +29,8 @@ port=9092
 # Hostname the broker will advertise to producers and consumers. If not set, it uses the
 # value for "host.name" if configured.  Otherwise, it will use the value returned from
 # java.net.InetAddress.getCanonicalHostName().
-<% unless @_hostname.nil? %>
-advertised.host.name= <%= @_hostname %>.gex
+<% unless @_node_name.nil? %>
+advertised.host.name= hadoop-<%= @_node_name %>.gex
 <% end %>
 
 # The port to publish to ZooKeeper for clients to use. If this is not set,
@@ -94,6 +94,6 @@ log.cleaner.enable=false
 # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002".
 # You can also append an optional chroot string to the urls to specify the
 # root directory for all kafka znodes.
-zookeeper.connect= <%= _hadoop_ipv4 %>:2181
+zookeeper.connect= <%= @_hadoop_ipv4 %>:2181
 # Timeout in ms for connecting to zookeeper
 zookeeper.connection.timeout.ms=6000
