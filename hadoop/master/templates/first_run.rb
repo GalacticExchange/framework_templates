@@ -22,6 +22,7 @@ dexecs(
 
     "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist",
 
+    "hdfs dfsadmin -safemode leave | true",
     "hdfs dfsadmin -safemode leave",
 
     "hadoop fs -mkdir -p /user/hdfs",
