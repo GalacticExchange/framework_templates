@@ -6,9 +6,10 @@ dexecs(
     "chmod 600 /root/.ssh/hadoop_rsa",
     "chmod 600 /root/.ssh/authorized_keys",
 
-    "service zookeeper-server init --force",
+
     "sudo -u hdfs hdfs namenode -format -force",
     "service hadoop-hdfs-namenode start",
+    "service zookeeper-server init --force",
 
     "sudo usermod -G hadoop hive",
 
