@@ -1,14 +1,26 @@
 dexecs(
 
 
-"cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys",
-"cp /tmp/hadoop_rsa /root/.ssh/",
-"chmod 600 /root/.ssh/hadoop_rsa",
-"chmod 600 /root/.ssh/authorized_keys",
+    "cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys",
+    "cp /tmp/hadoop_rsa /root/.ssh/",
+    "chmod 600 /root/.ssh/hadoop_rsa",
+    "chmod 600 /root/.ssh/authorized_keys",
 
-"service zookeeper-server init --force",
+    "service zookeeper-server init --force",
     "sudo -u hdfs hdfs namenode -format -force",
     "service hadoop-hdfs-namenode start",
+
+    "sudo usermod -G hadoop hive",
+
+    "rm /etc/cassandra/cassandra-topology.properties",
+
+    "cp /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml",
+
+    "cp etc/hadoop/conf/hdfs-site.xml /etc/impala/conf/hdfs-site.xml",
+
+    "cp /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml",
+
+    "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist",
 
     "hdfs dfsadmin -safemode leave",
 
@@ -43,17 +55,6 @@ dexecs(
     "sudo -u hdfs hadoop fs -mkdir /solr",
     "sudo -u hdfs hadoop fs -chown solr /solr",
 
-    "sudo usermod -G hadoop hive",
-
-    "rm /etc/cassandra/cassandra-topology.properties",
-
-    "cp /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml",
-
-    "cp etc/hadoop/conf/hdfs-site.xml /etc/impala/conf/hdfs-site.xml",
-
-    "cp /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml",
-
-    "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist",
 
 #COPY download/log4j.properties /etc/hadoop/conf/log4j.properties
 )
