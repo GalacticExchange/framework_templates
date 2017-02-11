@@ -39,7 +39,7 @@ set +e
 
 echo "INIT_SH" >> /tmp/INIT_LOG
 
-while ! [ /sbin/ifconfig eth1 ];
+while  [ ! "/sbin/ifconfig eth1" ];
 do
     sleep 0.1
     echo "waiting for the net..."
