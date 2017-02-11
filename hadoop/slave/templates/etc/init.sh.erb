@@ -1,3 +1,10 @@
+echo "Waiting for VPN" >> /tmp/INIT_LOG
+
+while  [ ! "/sbin/ifconfig tun0" ];
+do
+    sleep 0.1
+    echo "waiting for the net..."
+done
 
 echo "HDFS datanode" >> /tmp/INIT_LOG
 
