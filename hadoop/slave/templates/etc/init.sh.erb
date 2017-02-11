@@ -9,7 +9,7 @@ service hadoop-yarn-nodemanager start
 
 #echo "Kafka" >> /tmp/INIT_LOG
 
-#service kafka-server start
+service kafka-server start
 
 echo "Cassandra" >> /tmp/INIT_LOG
 
@@ -22,6 +22,8 @@ service elasticsearch start
 echo "Hue" >> /tmp/INIT_LOG
 
 service hue start
+
+
 
 echo "Spark worker" >> /tmp/INIT_LOG
 
