@@ -18,8 +18,8 @@ dexecs(
     "hadoop fs -mkdir -p /user/hdfs",
     "sudo -u hdfs hadoop fs -mkdir -p /user/hdfs " +
     "/tmp/hadoop-yarn/staging/history/done_intermediate " +
-    "/var/log/hadoop-yarn  /user/root  /user/spark /solr " +
-    "/user/spark/applicationHistory /user/spark/share/lib  /user/hive/warehouse" ,
+    "/var/log/hadoop-yarn  /user/root  /user/spark /solr ",
+    "sudo -u hdfs hadoop fs -mkdir -p /user/hdfs /user/spark/applicationHistory /user/spark/share/lib  /user/hive/warehouse" ,
     "sudo -u hdfs hadoop fs -chown hdfs /user/hdfs",
     "sudo -u hdfs hadoop fs -chown -R mapred:mapred /tmp/hadoop-yarn/staging",
     "sudo -u hdfs hadoop fs -chmod -R 1777 /tmp",
