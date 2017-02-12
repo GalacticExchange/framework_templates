@@ -9,9 +9,9 @@ dexecs(
     "service hadoop-hdfs-namenode start",
     "service zookeeper-server init --force",
     "sudo usermod -G hadoop hive",
-    "cp /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml",
-    "cp etc/hadoop/conf/hdfs-site.xml /etc/impala/conf/hdfs-site.xml",
-    "cp /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml",
+    "cp -f /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml",
+    "cp -f /etc/hadoop/conf/hdfs-site.xml /etc/impala/conf/hdfs-site.xml",
+    "cp -f /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml",
     "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist",
 
     "hdfs dfsadmin -safemode leave | true",
