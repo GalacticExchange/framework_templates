@@ -2,7 +2,7 @@ dexecs(
 
 
     "cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys",
-    "cp /tmp/hadoop_rsa /root/.ssh/",
+    "cp -f /tmp/hadoop_rsa /root/.ssh/",
     "chmod 600 /root/.ssh/hadoop_rsa",
     "chmod 600 /root/.ssh/authorized_keys",
     "sudo -u hdfs hdfs namenode -format -force",
