@@ -1,7 +1,7 @@
 <%# elasticsearch:elasticsearch:0660 %>
 
 cluster.name: <%= @_cluster_name %>
-node.name: master-<%= @_cluster_name %>
+node.name: <%= @_node_name %>
 node.attr.rack: slave
 
 node.master: false
@@ -15,7 +15,7 @@ path.data: /data/elasticsearch
 #
 #path.logs: /path/to/logs
 # Set the bind address to a specific IP (IPv4 or IPv6):
-network.host: <%= @_hadoop_ipv4 %>
+network.host: 0.0.0.0
 # Set a custom port for HTTP:
 #http.port: 9200
 # The default list of hosts is ["127.0.0.1", "[::1]"]
