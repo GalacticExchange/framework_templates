@@ -53,10 +53,11 @@ echo "hive metastore" >> /tmp/INIT_LOG
 
 service hive-metastore start
 
-#echo "Kafka" >> /tmp/INIT_LOG
-
 #service kafka-server start
 
+echo "Schema Registry Start" >> /tmp/INIT_LOG
+
+/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties.dpkg-new &
 
 
 echo "HTTPFS" >> /tmp/INIT_LOG
