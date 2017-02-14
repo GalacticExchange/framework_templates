@@ -57,7 +57,7 @@ service hive-metastore start
 
 echo "Schema Registry Start" >> /tmp/INIT_LOG
 
-/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties.dpkg-new &
+/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
 
 
 echo "HTTPFS" >> /tmp/INIT_LOG
