@@ -16,7 +16,9 @@ service hadoop-yarn-nodemanager start
 
 echo "Kafka" >> /tmp/INIT_LOG
 
-service kafka-server start
+#service kafka-server start Cloudera
+
+/usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
 
 echo "Cassandra" >> /tmp/INIT_LOG
 
