@@ -97,3 +97,11 @@ log.cleaner.enable=false
 zookeeper.connect= <%= @_hadoop_ipv4 %>:2181
 # Timeout in ms for connecting to zookeeper
 zookeeper.connection.timeout.ms=6000
+
+auto.create.topics.enable=true
+num.partitions=1
+log.retention.hours=24
+delete.topic.true
+default.replication.factor=2
+
+
