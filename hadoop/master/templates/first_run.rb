@@ -1,4 +1,4 @@
-dexecs(
+Common.dexecs(
 
 
     "cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys",
