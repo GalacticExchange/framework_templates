@@ -1,8 +1,8 @@
 SOLR_PORT=8983
 SOLR_ADMIN_PORT=8984
 SOLR_LOG=/var/log/solr
-SOLR_ZK_ENSEMBLE=<%= assert_nnil(@_hadoop_ipv4 ) %>:2181/solr
-SOLR_HDFS_HOME=hdfs://<%= assert_nnil(@_hadoop_ipv4 ) %>:8020/solr
+SOLR_ZK_ENSEMBLE=<%= assert_nnil(@_master_ip ) %>:2181/solr
+SOLR_HDFS_HOME=hdfs://<%= assert_nnil(@_master_ip ) %>:8020/solr
 SOLR_HDFS_CONFIG=/etc/hadoop/conf
 
 # Following properties are used to configure Solr with multiple authentication schemes e.g. kerberos & ldap etc.

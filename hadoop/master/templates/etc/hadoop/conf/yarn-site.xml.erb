@@ -23,23 +23,23 @@
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value><%=  assert_nnil(@_hadoop_ipv4 ) %>:8030</value>
+    <value><%=  assert_nnil(@_master_ip ) %>:8030</value>
   </property> 
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value><%=  assert_nnil(@_hadoop_ipv4 ) %>:8032</value>
+    <value><%=  assert_nnil(@_master_ip ) %>:8032</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
-    <value><%=  assert_nnil(@_hadoop_ipv4 ) %>:8088</value>
+    <value><%=  assert_nnil(@_master_ip ) %>:8088</value>
   </property>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value><%=  assert_nnil(@_hadoop_ipv4 ) %>:8031</value>
+    <value><%=  assert_nnil(@_master_ip ) %>:8031</value>
   </property>
   <property>
     <name>yarn.resourcemanager.admin.address</name>
-    <value><%=  assert_nnil(@_hadoop_ipv4 ) %>:8033</value>
+    <value><%=  assert_nnil(@_master_ip ) %>:8033</value>
   </property>
      <property>
          <name>mapreduce.application.classpath</name>
