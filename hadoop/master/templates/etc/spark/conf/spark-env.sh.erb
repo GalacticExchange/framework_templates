@@ -6,9 +6,9 @@
 export SPARK_DAEMON_MEMORY=100m
 
 
-export STANDALONE_SPARK_MASTER_HOST=<%= assert_nnil(@_master_ip ) %>
+export STANDALONE_SPARK_MASTER_HOST=<%= assert_nnil(@_hadoop_ipv4 ) %>
 
-export SPARK_MASTER_IP=$STANDALONE_SPARK_MASTER_HOST
+export SPARK_hadoop_ipv4=$STANDALONE_SPARK_MASTER_HOST
 
 ### Let's run everything with JVM runtime, instead of Scala
 export SPARK_LAUNCH_WITH_SCALA=0

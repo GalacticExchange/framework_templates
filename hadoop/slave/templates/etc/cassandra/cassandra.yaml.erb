@@ -340,7 +340,7 @@ seed_provider:
       parameters:
           # seeds is actually a comma-delimited list of addresses.
           # Ex: "<ip1>,<ip2>,<ip3>"
-          - seeds: <%= assert_nnil(@_master_ip ) %>
+          - seeds: <%= assert_nnil(@_hadoop_ipv4 ) %>
 
 # For workloads with more data than can fit in memory, Cassandra's
 # bottleneck will be reads that need to fetch data from

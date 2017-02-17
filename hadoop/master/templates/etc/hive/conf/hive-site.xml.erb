@@ -31,7 +31,7 @@
 <property>
   <name>hive.zookeeper.quorum</name>
   <description>Zookeeper quorum used by Hive's Table Lock Manager</description>
-  <value><%= assert_nnil(@_master_ip ) %>:</value>
+  <value><%= assert_nnil(@_hadoop_ipv4 ) %>:</value>
 </property>
 
 <property>
@@ -45,7 +45,7 @@
 
 <property>
   <name>hive.metastore.uris</name>
-  <value>thrift://<%= assert_nnil(@_master_ip ) %>:9083</value>
+  <value>thrift://<%= assert_nnil(@_hadoop_ipv4 ) %>:9083</value>
   <description>IP address (or fully-qualified domain name) and port of the metastore host</description>
 </property>
 
@@ -53,7 +53,7 @@
 <property>
   <name>hive.zookeeper.quorum</name>
   <description>Zookeeper quorum used by Hive's Table Lock Manager</description>
-  <value><%= assert_nnil(@_master_ip ) %></value>
+  <value><%= assert_nnil(@_hadoop_ipv4 ) %></value>
 </property>
 
 <property>
