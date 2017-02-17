@@ -583,7 +583,7 @@
 
     [[[default]]]
       # Enter the filesystem uri
-      fs_defaultfs=hdfs://<%= @_hadoop_ipv4 %>:8020
+      fs_defaultfs=hdfs://<%= assert_nnil(@_hadoop_ipv4) %>:8020
 
       # NameNode logical name.
       ## logical_name=
@@ -591,7 +591,7 @@
       # Use WebHdfs/HttpFs as the communication mechanism.
       # Domain should be the NameNode or HttpFs host.
       # Default port is 14000 for HttpFs.
-      webhdfs_url=http://<%= @_hadoop_ipv4 %>:50070/webhdfs/v1
+      webhdfs_url=http://<%= assert_nnil(@_hadoop_ipv4) %>:50070/webhdfs/v1
 
       # Change this if your HDFS cluster is Kerberos-secured
       ## security_enabled=false
@@ -605,7 +605,7 @@
 
     [[[default]]]
       # Enter the host on which you are running the ResourceManager
-      resourcemanager_host=<%= @_hadoop_ipv4 %>
+      resourcemanager_host=<%= assert_nnil(@_hadoop_ipv4) %>
 
       # The port where the ResourceManager IPC listens on
       ## resourcemanager_port=8032
@@ -620,13 +620,13 @@
       ## security_enabled=false
 
       # URL of the ResourceManager API
-      resourcemanager_api_url=http://<%= @_hadoop_ipv4 %>:8088
+      resourcemanager_api_url=http://<%= assert_nnil(@_hadoop_ipv4) %>:8088
 
       # URL of the ProxyServer API
-      proxy_api_url=http://<%= @_hadoop_ipv4 %>:8088
+      proxy_api_url=http://<%= assert_nnil(@_hadoop_ipv4) %>:8088
 
       # URL of the HistoryServer API
-      history_server_api_url=http://<%= @_hadoop_ipv4 %>:19888
+      history_server_api_url=http://<%= assert_nnil(@_hadoop_ipv4) %>:19888
 
     # HA support by specifying multiple clusters
     # e.g.
@@ -719,7 +719,7 @@
 
   # Host where HiveServer2 is running.
   # If Kerberos security is enabled, use fully-qualified domain name (FQDN).
-  hive_server_host=<%= @_hadoop_ipv4 %>
+  hive_server_host=<%= assert_nnil(@_hadoop_ipv4) %>
 
   # Port where HiveServer2 Thrift server runs on.
   ## hive_server_port=10000
@@ -783,7 +783,7 @@
   # For autocompletion, fill out the librdbms section.
 
   # Sqoop server URL
-  server_url=http://<%= @_hadoop_ipv4 %>:12000/sqoop
+  server_url=http://<%= assert_nnil(@_hadoop_ipv4) %>:12000/sqoop
 
 
 ###########################################################################
@@ -807,7 +807,7 @@
 
 [impala]
   # Host of the Impala Server (one of the Impalad)
-  server_host=<%= @_hadoop_ipv4 %>
+  server_host=<%= assert_nnil(@_hadoop_ipv4) %>
 
   # Port of the Impala Server
   ## server_port=21050
@@ -842,7 +842,7 @@
 [hbase]
   # Comma-separated list of HBase Thrift servers for clusters in the format of '(name|host:port)'.
   # Use full hostname with security.
-  hbase_clusters=(Cluster|<%=@_hadoop_ipv4%>:9090)
+  hbase_clusters=(Cluster|<%=assert_nnil(@_hadoop_ipv4)%>:9090)
 
   # HBase configuration directory, where hbase-site.xml is located.
   ## hbase_conf_dir=/etc/hbase/conf
@@ -863,7 +863,7 @@
 [search]
 
   # URL of the Solr Server
-  solr_url=http://<%= @_hadoop_ipv4 %>:8983/solr/
+  solr_url=http://<%= assert_nnil(@_hadoop_ipv4) %>:8983/solr/
 
   # Requires FQDN in solr_url if enabled
   ## security_enabled=false
@@ -938,7 +938,7 @@
 
 [spark]
   # URL of the REST Spark Job Server.
-  server_url=http://<%= @_hadoop_ipv4 %>:8090/
+  server_url=http://<%= assert_nnil(@_hadoop_ipv4) %>:8090/
 
 
 ###########################################################################

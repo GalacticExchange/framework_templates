@@ -6,7 +6,7 @@
 export SPARK_DAEMON_MEMORY=100m
 
 
-export STANDALONE_SPARK_MASTER_HOST=<%= @_hadoop_ipv4 %>
+export STANDALONE_SPARK_MASTER_HOST=<%= assert_nnil(@_hadoop_ipv4 %>
 
 export SPARK_MASTER_IP=$STANDALONE_SPARK_MASTER_HOST
 
