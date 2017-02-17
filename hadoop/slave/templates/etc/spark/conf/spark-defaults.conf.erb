@@ -25,10 +25,10 @@
 # spark.driver.memory              5g
 # spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"
 
-spark.master                      spark://<%= @_hadoop_ipv4  %>:7077
+spark.master                      spark://<%= assert_nnil(@_hadoop_ipv4)  %>:7077
 
 
 
-spark.driver.host <%= @_container_ip %>
+spark.driver.host <%= assert_nnil(@_container_ip) %>
 
 

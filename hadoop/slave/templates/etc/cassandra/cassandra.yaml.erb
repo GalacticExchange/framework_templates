@@ -471,7 +471,7 @@ ssl_storage_port: 7001
 # address will be used. If true the first ipv6 address will be used. Defaults to false preferring
 # ipv4. If there is only one address it will be selected regardless of ipv4/ipv6.
 
-listen_address:<%= assert_nnil(@_app_container_ip) %>
+listen_address:<%= assert_nnil(@_container_ip) %>
 
 # listen_interface: eth0
 # listen_interface_prefer_ipv6: false
