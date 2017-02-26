@@ -19,14 +19,14 @@ dexecs(
     "sudo -u hdfs hadoop fs -mkdir -p /user/hdfs " +
     "/tmp/hadoop-yarn/staging/history/done_intermediate " +
     "/var/log/hadoop-yarn  /user/root  /user/spark /solr ",
-    "sudo -u hdfs hadoop fs -mkdir -p /user/hdfs /user/spark/applicationHistory /user/spark/share/lib  /user/hive/warehouse" ,
+    "sudo -u hdfs hadoop fs -mkdir -p /user/spark/applicationHistory /user/spark/share/lib  /user/hive/warehouse"
+)
+
+dexecs_parallel(
     "sudo -u hdfs hadoop fs -chown hdfs /user/hdfs",
     "sudo -u hdfs hadoop fs -chown -R mapred:mapred /tmp/hadoop-yarn/staging",
     "sudo -u hdfs hadoop fs -chmod -R 1777 /tmp",
     "sudo -u hdfs hadoop fs -chown yarn:mapred /var/log/hadoop-yarn",
-
-    # init spark history server
-
     "sudo -u hdfs hadoop fs -chown -R spark:spark /user/spark",
     "sudo -u hdfs hadoop fs -chmod 1777 /user/spark/applicationHistory",
     "sudo -u hdfs hadoop fs -chmod 1777 /user/hive/warehouse",
@@ -38,7 +38,7 @@ dexecs(
     # ENTERPRISE  sudo -u hdfs hadoop fs -mkdir /user/oozie && \
     # ENTERPRISE  sudo -u hdfs hadoop fs -chown oozie:oozie /user/oozie
 
-    "sudo -u hdfs hadoop fs -chown solr /solr",
+    "sudo -u hdfs hadoop fs -chown solr /solr"
 
 
 #COPY download/log4j.properties /etc/hadoop/conf/log4j.properties
