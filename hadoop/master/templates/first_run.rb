@@ -1,7 +1,7 @@
 dexecs_parallel(
     "sudo -u hdfs hdfs namenode -format -force",
-    "'cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys'",
-    "'cp -f /tmp/hadoop_rsa /root/.ssh/ && chmod 600 /root/.ssh/hadoop_rsa'",
+    "bash -c 'cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys'",
+    "bash -c 'cp -f /tmp/hadoop_rsa /root/.ssh/ && chmod 600 /root/.ssh/hadoop_rsa'",
     "service zookeeper-server init --force",
     "sudo usermod -G hadoop hive",
     "cp -f /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml",
