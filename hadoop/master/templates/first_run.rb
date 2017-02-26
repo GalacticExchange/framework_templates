@@ -12,7 +12,7 @@ dexecs_parallel(
     "update-alternatives --set sqoop2-tomcat-conf /etc/sqoop2/tomcat-conf.dist",
 )
 
-dexec "hdfs dfsadmin -safemode leave | true"
+#dexec "hdfs dfsadmin -safemode leave | true"
 
 dexecs_parallel(
     "sudo -u hdfs hadoop fs -mkdir -p /user/hdfs " +
