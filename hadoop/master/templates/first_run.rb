@@ -11,6 +11,8 @@ dexecs_parallel(
 )
 dexec "service hadoop-hdfs-namenode start"
 
+is_port_open?("127.0.0.1", 8020, 10000)
+
 #dexec "hdfs dfsadmin -safemode leave | true"
 
 dexecs_parallel(
