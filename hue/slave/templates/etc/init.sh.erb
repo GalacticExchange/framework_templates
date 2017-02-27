@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 
 
+ip route add 51.128.0.0/16 via <%= @_openvpn_private_ip_address %>
+ip route add 192.168.0.0/16 via <%= @_openvpn_private_ip_address %>
+ip route add 172.16.0.0/16 via <%= @_openvpn_private_ip_address %>
+ip route add 10.0.0.0/8 via <%= @_openvpn_private_ip_address %>
+
+
+
 supervisord -c /etc/supervisor/supervisord.conf -n
