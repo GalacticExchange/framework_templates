@@ -25,5 +25,5 @@ RUN apt-get install -q -y oracle-java8-set-default
 # wget http://packages.confluent.io/archive/3.1/confluent-oss-3.1.2-2.11.tar.gz
 RUN wget -qO - http://packages.confluent.io/deb/3.1/archive.key | sudo apt-key add -
 RUN sudo add-apt-repository "deb [arch=amd64] http://packages.confluent.io/deb/3.1 stable main"
-RUN sudo apt-get update && sudo apt-get install confluent-platform-oss-2.11
+RUN sudo apt-get update && sudo apt-get install -y confluent-platform-oss-2.11
 
