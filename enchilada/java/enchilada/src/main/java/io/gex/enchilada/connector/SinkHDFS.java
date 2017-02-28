@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 public class SinkHDFS implements Sink {
 
     private final static Logger logger = LogManager.getLogger(SinkHDFS.class);
-    private final static String HDFS_TEMPLATE_FILENAME = Sink.TEMPLATE_PATH + "/template-hdfs.properties";
+    private final static String HDFS_TEMPLATE_FILENAME = Sink.TEMPLATE_PATH + "template-hdfs.properties";
 
     private String propertiesFilePath;
     private String topic;

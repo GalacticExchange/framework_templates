@@ -21,7 +21,7 @@ public class Connector {
     private final static Logger logger = LogManager.getLogger(Connector.class);
 
     private final static int DEFAULT_PORT = 8083;
-    private final static String SCHEMA_TEMPLATE_FILENAME = "/etc/enchilada/template/template-schema.properties";
+    private final static String SCHEMA_TEMPLATE_FILENAME = "/etc/enchilada/templates/template-schema.properties";
     private static int currentPort = DEFAULT_PORT;
 
     private String schemaPropertiesFilePath;

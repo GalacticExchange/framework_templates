@@ -11,7 +11,7 @@ RUN apt-get update
 RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano supervisor
 
 # todo: need this line ?
-RUN systemctl enable supervisor.service
+#RUN systemctl enable supervisor.service
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
