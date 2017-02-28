@@ -1,0 +1,5 @@
+- if @setting.errors.present?
+  .well.well-sm
+    - @setting.errors.full_messages.each do |msg|
+      .text.text-danger= msg
+
