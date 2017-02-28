@@ -121,10 +121,10 @@
                             <target  if="${dmg}">
                                 <property name="dir" value="target/build"/>
                                 <copy file="src/main/resources/enchilada.properties" todir="${dir}/etc/enchilada"/>
-                                <copy file="src/main/resources/template-schema.properties" todir="${dir}/etc/enchilada/templates"/>
-                                <copy file="src/main/resources/template-hdfs.properties" todir="${dir}/etc/enchilada/templates"/>
-                                <copy file="src/main/resources/template-cassandra.properties" todir="${dir}/etc/enchilada/templates"/>
-                                <copy file="src/main/resources/template-elasticsearch.properties" todir="${dir}/etc/enchilada/templates"/>
+                                <copy file="src/main/resources/template-schema.properties" todir="${dir}/etc/enchilada/template"/>
+                                <copy file="src/main/resources/template-hdfs.properties" todir="${dir}/etc/enchilada/template"/>
+                                <copy file="src/main/resources/template-cassandra.properties" todir="${dir}/etc/enchilada/template"/>
+                                <copy file="src/main/resources/template-elasticsearch.properties" todir="${dir}/etc/enchilada/template"/>
                                 <copy file="target/enchilada.jar" todir="${dir}/usr/lib/enchilada"/>
                                 <exec executable="/bin/bash">
                                     <arg value="-c"/>

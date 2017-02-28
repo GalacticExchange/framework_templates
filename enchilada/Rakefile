@@ -10,7 +10,7 @@ end
 desc "Build java client"
 task :build_java do
   #"sudo apt-get install -y maven" before run
-  exec "cd java/enchilada; mvn clean install; cp target/enchilada-0.0.1-jar-with-dependencies.jar ../../slave/templates/usr/lib/enchilada/enchilada.jar"
+  exec "cd java/enchilada; mvn clean install; cp target/enchilada-0.0.1-jar-with-dependencies.jar ../../docker/enchilada.jar"
 end
 
 desc "Run container"
@@ -37,13 +37,13 @@ task :run do
 
   dcreate_container "gex/enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "enchilada", "8.8.8.8"
 
-  dexec "ping -c  1 8.8.8.8"
-
   dstart
+
+  dexec "ping -c  1 8.8.8.8"
 
   wait_until_running
 
-  get_processor.process_template_trees trees, $container
+  get_processor.process_template_trees [Dir.getwd + "/slave/templates"], $container
 
   remove_init_lock
 
