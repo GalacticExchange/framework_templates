@@ -11,7 +11,7 @@ desc "Build java client"
 task :build_java do
   #"sudo apt-get install maven" before run
   exec "cd java/enchilada; mvn clean install"
-  exec "cp java/enchilada/enchilada-0.0.1-jar-with-dependencies.jar slave/templates/usr/lib/enchilada/enchilada.jar"
+  exec "cp java/enchilada/target/enchilada-0.0.1-jar-with-dependencies.jar slave/templates/usr/lib/enchilada/enchilada.jar"
 end
 
 desc "Run container"
