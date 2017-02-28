@@ -9,3 +9,4 @@ target/
 /enchilada/docker/enchilada.jar
 #ruby
 /enchilada/ruby/log/
+/enchilada/ruby/tmp/
