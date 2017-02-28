@@ -19,7 +19,7 @@ task :run do
   use_container "enchilada"
 
 
-  dcreate_container "gex/echilada", "/etc/bootstrap.sh", [], "127.0.0.1", "enchilada", "8.8.8.8"
+  dcreate_container "gex/enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "enchilada", "8.8.8.8"
 
 
   dexec "ping -c  1 8.8.8.8"
