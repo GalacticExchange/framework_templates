@@ -1,4 +1,4 @@
-require_relative "../common/config/config"
+require_relative "../vagrant/common/config/config"
 require_relative "../vagrant/base/ruby_scripts/common"
 
 
