@@ -2,6 +2,9 @@ FROM ubuntu:16.04
 #USER root
 #RUN echo "root:vagrant" | chpasswd
 
+ENV RAILS_ENV production
+ENV RACK_ENV production
+
 # Copy java client
 RUN mkdir -p /usr/lib/enchilada
 COPY enchilada.jar /usr/lib/enchilada/
