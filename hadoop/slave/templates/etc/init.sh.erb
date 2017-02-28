@@ -6,6 +6,11 @@ do
     echo "waiting for the net..."
 done
 
+
+service ssh start
+
+
+
 echo "HDFS datanode" >> /tmp/INIT_LOG
 
 service hadoop-hdfs-datanode start
