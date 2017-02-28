@@ -12,7 +12,6 @@ task :build_java do
   exec "cd docker; sudo docker build -t gex/enchilada . "
 end
 
-
 desc "Run container"
 task :run do
 
