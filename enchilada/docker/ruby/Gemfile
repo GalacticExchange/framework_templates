@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'therubyracer', '0.12.2', platforms: :ruby
+
 # spec.add_development_dependency gems doesn't installed by `gem install fluentd-ui`, but required them from config/application.rb, then error.
 # this is workaround for that.
 group :development, :production do

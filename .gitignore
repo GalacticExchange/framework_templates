@@ -8,5 +8,5 @@ target/
 /enchilada/java/enchilada/.idea/
 /enchilada/docker/enchilada.jar
 #ruby
-/enchilada/ruby/log/
-/enchilada/ruby/tmp/
+/enchilada/docker/ruby/log/
+/enchilada/docker/ruby/tmp/
