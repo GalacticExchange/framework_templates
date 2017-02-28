@@ -1,0 +1,9 @@
+name={insert_name}
+connector.class=io.confluent.connect.elasticsearch.ElasticsearchSinkConnector
+tasks.max=1
+topics={insert_topics}
+key.ignore=true
+connection.url={insert_connection.url}
+type.name={insert_topics}
+topic.index.map={insert_topics}:{insert_index}
+

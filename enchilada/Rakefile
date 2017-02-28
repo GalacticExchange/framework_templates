@@ -7,28 +7,36 @@ task :build do
   exec "cd docker; sudo docker build -t gex/enchilada . "
 end
 
-desc "Build container"
+desc "Build java client"
 task :build_java do
-  exec "cd docker; sudo docker build -t gex/enchilada . "
+  exec "mvn clean install"
 end
 
 desc "Run container"
 task :run do
 
-
   init_vars(
-      {"parameter1" => "12345",
-       "parameter2" => "12345"
+      {
+          "kafka" => "10.1.0.11:9092",
+          "zookeeper" => "10.1.0.11:2181",
+          "schemaregistry" => "http://10.1.0.11:8081",
+          "hdfs_url" => "hdfs://51.77.0.160:8020",
+          "hive_metastore_uris" => "thrift://51.77.0.160:9083",
+          "topics_dir" => "/enchilada",
+          "elasticsearch_url" => "http://10.1.0.11:9200",
+          "elasticsearch_index" => "enchilada",
+          "cassandra_host" => "10.1.0.11",
+          "cassandra_port" => "9042",
+          "cassandra_username" => "cassandra",
+          "cassandra_password" => "cassandra",
+          "cassandra_keyspace" => "enchilada"
       })
 
   use_container "enchilada"
 
-
   dcreate_container "gex/enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "enchilada", "8.8.8.8"
 
-
   dexec "ping -c  1 8.8.8.8"
-
 
   dstart
 
