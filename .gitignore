@@ -7,3 +7,5 @@ target/
 /enchilada/java/enchilada/target/
 /enchilada/java/enchilada/.idea/
 /enchilada/docker/enchilada.jar
+#ruby
+/enchilada/ruby/log/
