@@ -4,7 +4,7 @@ require_relative "../../vagrant/base/ruby_scripts/common"
 
 desc "Build container"
 task :build do
-  exec "cd docker; sudo docker build -t enchilada . "
+  exec "cd docker; sudo docker build -t gex/enchilada . "
 end
 
 desc "Run container"
