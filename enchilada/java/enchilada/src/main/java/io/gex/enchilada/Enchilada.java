@@ -4,15 +4,13 @@ import io.gex.enchilada.connector.Connector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-// only for one instance of each sink
 public class Enchilada {
     //todo not standalone
-    //todo web server to remove connectors
+    //todo only for one instance of each sink
     private final static Logger logger = LogManager.getLogger(Enchilada.class);
     public static Properties properties = new Properties();
     public static String configDir = "/data/enchilada/connectors";
@@ -31,6 +29,7 @@ public class Enchilada {
                 for (String topic : topicsToRemove) {
                     // remove does't throw exceptions
                     EnchiladaTask.tasks.get(topic).remove();
+                    logger.info(topic + " connector removed.");
                 }
 
                 currentTopics = EnchiladaTask.getCurrentTopicList();

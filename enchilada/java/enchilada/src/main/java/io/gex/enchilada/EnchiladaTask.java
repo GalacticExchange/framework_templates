@@ -18,7 +18,6 @@ import org.apache.logging.log4j.core.config.LoggerConfig;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -51,6 +50,7 @@ class EnchiladaTask {
         EnchiladaTask task = new EnchiladaTask(connector);
         task.start();
         tasks.put(task.topic, task);
+        logger.info(task.topic + " connector added.");
     }
 
     static List<String> getCurrentTopicList() {
