@@ -16,7 +16,7 @@ class Fluentd
   DEFAULT_CONF = <<-CONF.strip_heredoc
     <match fluent.*>
       @type stdout
-    </match
+    </match>
 
     <match #{SERVER_PREFIX}.**>
       @type kafka_buffered
