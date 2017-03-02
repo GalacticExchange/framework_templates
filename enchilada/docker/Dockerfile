@@ -1,12 +1,8 @@
 FROM ubuntu:16.04
-#USER root
-#RUN echo "root:vagrant" | chpasswd
 
-# Define RUBY variable
+
 ENV RAILS_ENV production
 ENV RACK_ENV production
-
-# Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH $JAVA_HOME/bin:$PATH
 
@@ -27,25 +23,8 @@ RUN apt-get install -q -y oracle-java8-installer
 RUN apt-get install -q -y oracle-java8-set-default
 
 RUN apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs
-RUN apt-get install -y ruby2.3 ruby-dev
-
-RUN mkdir -p /root/.fluentd-ui
-RUN chmod 777 /root/.fluentd-ui
-
-# Ruby app
-RUN mkdir -p /var/www/apps/enchilada
-#RUN git clone https://kladkogex:Galactic1@github.com/GalacticExchange/framework_templates.git
-ADD ruby /var/www/apps/enchilada
-RUN apt-get install -y nodejs
-RUN gem install bundler
-
-# run
-RUN gem install rake json
-
-RUN apt-get install -y libmysqlclient-dev
-RUN gem install mysql2
-
-RUN cd /var/www/apps/enchilada && bundle install
+RUN apt-get install -y ruby2.3 ruby-dev nodejs libmysqlclient-dev
+RUN gem install bundler rake json mysql2
 
 # Download Confluent
 RUN wget http://packages.confluent.io/archive/3.1/confluent-oss-3.1.2-2.11.tar.gz
@@ -53,6 +32,11 @@ RUN wget -qO - http://packages.confluent.io/deb/3.1/archive.key | sudo apt-key a
 RUN sudo add-apt-repository "deb [arch=amd64] http://packages.confluent.io/deb/3.1 stable main"
 RUN sudo apt-get update && sudo apt-get install -y confluent-platform-oss-2.11
 
-
+# Ruby app
+RUN mkdir -p /var/www/apps/enchilada
+RUN mkdir -p /root/.fluentd-ui
+RUN chmod 777 /root/.fluentd-ui
+ADD ruby /var/www/apps/enchilada
+RUN cd /var/www/apps/enchilada && bundle install
 
 

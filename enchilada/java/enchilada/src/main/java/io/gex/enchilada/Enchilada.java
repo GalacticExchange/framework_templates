@@ -47,7 +47,8 @@ public class Enchilada {
                 EnchiladaHelper.sleep(300000);
             } catch (Throwable e) {
                 logger.error(e.getMessage(), e);
-                EnchiladaHelper.sleep();
+                // sleep for 5 minutes
+                EnchiladaHelper.sleep(300000);
             }
         }
     }

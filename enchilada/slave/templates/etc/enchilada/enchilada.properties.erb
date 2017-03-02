@@ -1,13 +1,14 @@
-kafka=<%= assert_nnil(@kafka) %>
-zookeeper=<%= assert_nnil(@zookeeper) %>
-schemaregistry=<%= assert_nnil(@schemaregistry) %>
-hdfs_url=<%= assert_nnil(@hdfs_url) %>
-hive_metastore_uris=<%= assert_nnil(@hive_metastore_uris) %>
-topics_dir=<%= assert_nnil(@topics_dir) %>
-elasticsearch_url=<%= assert_nnil(@elasticsearch_url) %>
-elasticsearch_index=<%= assert_nnil(@elasticsearch_index) %>
-cassandra_host=<%= assert_nnil(@cassandra_host) %>
-cassandra_port=<%= assert_nnil(@cassandra_port) %>
-cassandra_username=<%= assert_nnil(@cassandra_username) %>
-cassandra_password=<%= assert_nnil(@cassandra_password) %>
-cassandra_keyspace=<%= assert_nnil(@cassandra_keyspace) %>
+master_ip=<%= assert_nnil(@_master_ip) %>
+kafka=<%= assert_nnil(@_slave_ip) %>:9092
+zookeeper=<%= assert_nnil(@_master_ip) %>:2181
+schemaregistry=http://<%= assert_nnil(@_master_ip) %>:8081
+hdfs_url=hdfs://<%= assert_nnil(@_master_ip) %>:8020
+hive_metastore_uris=thrift://<%= assert_nnil(@_master_ip) %>:9083
+topics_dir=/enchilada
+elasticsearch_url=http://<%= assert_nnil(@_slave_ip) %>:9200
+elasticsearch_index=enchilada
+cassandra_host=<%= assert_nnil(@_slave_ip) %>
+cassandra_port=9042
+cassandra_username=cassandra
+cassandra_password=cassandra
+cassandra_keyspace=enchilada
