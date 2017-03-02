@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def fluentd_ui_logo
-    image_tag(ENV["FLUENTD_UI_LOGO"] || "/fluentd-logo-right-text.png")
+    image_tag(ENV["FLUENTD_UI_LOGO"] || "/enchilada_logo.png")
   end
 
   def fluentd_status_icon
