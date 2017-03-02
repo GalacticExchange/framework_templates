@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 class EnchiladaTask {
 
     private final static Logger logger = LogManager.getLogger(EnchiladaTask.class);
-    private final static String EXEC_PATH = "/home/khotkevych/Downloads/confluent-3.1.2/bin/connect-standalone"; //"/usr/bin/connect-standalone";
+    private final static String EXEC_PATH = "/usr/bin/connect-standalone"; //"/home/khotkevych/Downloads/confluent-3.1.2/bin/connect-standalone"
     private final static int bufferSize = 512;
     static Map<String, EnchiladaTask> tasks = new HashMap<>();
     static List<Process> processes = new ArrayList<>();
