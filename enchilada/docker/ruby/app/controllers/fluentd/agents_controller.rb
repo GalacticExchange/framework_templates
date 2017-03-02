@@ -2,7 +2,7 @@ class Fluentd::AgentsController < ApplicationController
   before_action :find_fluentd
 
   def start
-    run_action(__method__) { @fluentd.agent.log.tail(1).first }
+    run_action(__method__) { @fluentd.agent.log.tail(1).first.to_s }
     redirect_to daemon_path(@fluentd), status: 303 # 303 is change HTTP Verb GET
   end
 
@@ -12,7 +12,7 @@ class Fluentd::AgentsController < ApplicationController
   end
 
   def restart
-    run_action(__method__) { @fluentd.agent.log.tail(1).first }
+    run_action(__method__) { @fluentd.agent.log.tail(1).first.to_s }
     redirect_to daemon_path(@fluentd), status: 303 # 303 is change HTTP Verb GET
   end
 

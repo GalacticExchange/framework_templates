@@ -24,7 +24,7 @@ RUN apt-get install -q -y oracle-java8-set-default
 
 RUN apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs
 RUN apt-get install -y ruby2.3 ruby-dev nodejs libmysqlclient-dev
-RUN gem install bundler rake json mysql2
+RUN gem install bundler rake mysql2
 
 # Download Confluent
 RUN wget http://packages.confluent.io/archive/3.1/confluent-oss-3.1.2-2.11.tar.gz
