@@ -42,7 +42,7 @@ public class Enchilada {
                     // add does't throw exceptions
                     EnchiladaTask.add(connector);
                 }
-
+                logger.info("Topics total: " + EnchiladaTask.getCurrentTopicList().size() + ".");
                 // sleep for 5 minutes
                 EnchiladaHelper.sleep(300000);
             } catch (Throwable e) {

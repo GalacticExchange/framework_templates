@@ -1,5 +1,6 @@
 target/
 *.iml
+*.tar
 .idea/
 .project
 *~

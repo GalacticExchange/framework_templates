@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-#supervisord -c /etc/supervisor/supervisord.conf -n
 sudo service supervisor start
-
-#start Ruby
 cd /var/www/apps/enchilada; rails s -p 80
 
 
