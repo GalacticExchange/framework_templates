@@ -18,6 +18,7 @@ public class Enchilada {
     public static void main(String[] args) {
         logger.trace("Entered " + EnchiladaHelper.getMethodName());
         init();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> EnchiladaTask.processes.forEach(Process::destroyForcibly)));
         while (true) {
             try {
                 List<String> topics = KafkaClient.getTopics();

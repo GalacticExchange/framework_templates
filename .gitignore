@@ -1,6 +1,7 @@
 target/
 *.iml
 *.tar
+*.tar.gz
 .idea/
 .project
 *~

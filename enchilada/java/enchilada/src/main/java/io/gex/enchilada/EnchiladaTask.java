@@ -26,14 +26,16 @@ import java.util.concurrent.Future;
 class EnchiladaTask {
 
     private final static Logger logger = LogManager.getLogger(EnchiladaTask.class);
-    private final static String EXEC_PATH = "/usr/bin/connect-standalone"; //"/home/khotkevych/Downloads/confluent-3.1.2/bin/connect-standalone";
+    private final static String EXEC_PATH = "/home/khotkevych/Downloads/confluent-3.1.2/bin/connect-standalone"; //"/usr/bin/connect-standalone";
     private final static int bufferSize = 512;
     static Map<String, EnchiladaTask> tasks = new HashMap<>();
+    static List<Process> processes = new ArrayList<>();
 
     private ExecutorService task;
     private Future<?> taskFuture;
     private String topic;
     private Connector connector;
+    private Process p;
 
     private EnchiladaTask(Connector connector) {
         this.task = Executors.newSingleThreadExecutor();
@@ -63,7 +65,8 @@ class EnchiladaTask {
             try {
                 ProcessBuilder ps = new ProcessBuilder(Arrays.asList("/bin/bash", "-c", EXEC_PATH + " " +
                         connector.getSchemaPropertiesFilePath() + connector.getSinkPropertiesString()));
-                Process p = ps.start();
+                p = ps.start();
+                processes.add(p);
                 InputStream in = p.getInputStream();
                 Logger logger = createLogger();
                 byte[] buffer = new byte[bufferSize];
@@ -110,6 +113,7 @@ class EnchiladaTask {
 
     void remove() {
         logger.trace("Entered " + EnchiladaHelper.getMethodName());
+        p.destroyForcibly();
         if (taskFuture != null) {
             taskFuture.cancel(true);
         }
