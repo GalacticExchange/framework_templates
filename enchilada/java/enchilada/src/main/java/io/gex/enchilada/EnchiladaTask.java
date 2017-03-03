@@ -80,6 +80,8 @@ class EnchiladaTask {
                     }
                 }
                 p.waitFor();
+            } catch (InterruptedException e) {
+                logger.error("Connector execution for topic " + topic + " has been interrupted.");
             } catch (Throwable e) {
                 logger.error(e.getMessage(), e);
             }
