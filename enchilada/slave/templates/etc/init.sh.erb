@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-# sudo gem install parallel slack-notifier zookeeper
+sudo service supervisor start
+cd /var/www/apps/enchilada; rails s -p 80
 
-# Run confluent client
 
-#confluent_agent  &
-
-supervisord -c /etc/supervisor/supervisord.conf -n
 

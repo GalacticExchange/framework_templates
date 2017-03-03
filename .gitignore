@@ -1,0 +1,14 @@
+target/
+*.iml
+*.tar
+*.tar.gz
+.idea/
+.project
+*~
+#java
+/enchilada/java/enchilada/target/
+/enchilada/java/enchilada/.idea/
+/enchilada/docker/enchilada.jar
+#ruby
+/enchilada/docker/ruby/log/
+/enchilada/docker/ruby/tmp/
