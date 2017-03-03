@@ -15,7 +15,7 @@ class KafkaClient {
         try {
             zk = new ZooKeeper(Enchilada.properties.getProperty(PropertiesReader.ZOOKEEPER), 10000, event -> {});
             List<String> topics = zk.getChildren("/brokers/topics", false);
-            topics.removeIf(name -> !name.startsWith("ip_"));// && name.equals("ip_172_17_0_1_sys_db_test_table1")
+            topics.removeIf(name -> !name.startsWith("ip"));
             return topics;
         } finally {
             if (zk != null) {
