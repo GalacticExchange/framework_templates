@@ -13,9 +13,13 @@ class KafkaClient {
         logger.trace("Entered " + EnchiladaHelper.getMethodName());
         ZooKeeper zk = null;
         try {
-            zk = new ZooKeeper(Enchilada.properties.getProperty(PropertiesReader.ZOOKEEPER), 10000, event -> {});
+            zk = new ZooKeeper(Enchilada.properties.getProperty(PropertiesReader.ZOOKEEPER), 10000, event -> {
+            });
             List<String> topics = zk.getChildren("/brokers/topics", false);
             topics.removeIf(name -> !name.startsWith("ip"));
+            List<String> markedForDeletion = zk.getChildren("/admin/delete_topics", false);
+            //do not use topic if it is marked for deletion
+            topics.removeIf(markedForDeletion::contains);
             return topics;
         } finally {
             if (zk != null) {
