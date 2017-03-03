@@ -35,7 +35,7 @@ class Fluentd
             follow_ids: '',
             locations: '',
             lang: :en,
-            output_format: 'nest',
+            output_format: 'simple',
             consumer_key: 'a530R2VCibX8qDE1e19EIvm18',
             consumer_secret: '9QmK9w3ZaAEJGJxmrYd0dE5EhxFdTHTsr57WXHetE21M0VzPv8',
             oauth_token: '454451418-hGagC8lLAwVPfXOLtfNlrPgUnMGuMD7JYvNdyluH',
