@@ -11,7 +11,7 @@ class Fluentd
   before_validation :expand_paths
 
   COLUMNS = [:id, :variant, :log_file, :pid_file, :config_file]
-  SERVER_PREFIX = "ip#{Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address)}"
+  SERVER_PREFIX = "ip_#{Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address)}"
   contents = IO.read("/etc/enchilada/enchilada.properties").strip
 
   KAFKA_SERVER = contents.lines.first.split("=")[1].strip
@@ -23,7 +23,7 @@ class Fluentd
     <match #{SERVER_PREFIX}.**>
       @type kafka_buffered
       zookeeper #{KAFKA_SERVER}:2181
-      schema_registry #{KAFKA_SERVER}:8081
+      schema_registry http://#{KAFKA_SERVER}:8081
       output_data_type avro
     </match>
 
