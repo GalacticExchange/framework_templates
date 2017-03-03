@@ -11,7 +11,7 @@ class Fluentd
   before_validation :expand_paths
 
   COLUMNS = [:id, :variant, :log_file, :pid_file, :config_file]
-  SERVER_PREFIX = "ip_#{Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address)}"
+  SERVER_PREFIX = "ip#{Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address).delete('.')}"
   contents = IO.read("/etc/enchilada/enchilada.properties").strip
 
   KAFKA_SERVER = contents.lines.first.split("=")[1].strip

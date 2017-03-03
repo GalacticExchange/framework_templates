@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
   end
 
   def fluentd_ui_title
-    ENV["FLUENTD_UI_TITLE"] || "Fluentd UI"
+    ENV["FLUENTD_UI_TITLE"] || "Data Enchilada UI"
   end
 
   def fluentd_ui_brand
-    ENV["FLUENTD_UI_BRAND"] || "fluentd"
+    ENV["FLUENTD_UI_BRAND"] || "Data Enchilada"
   end
 
   def fluentd_run_user

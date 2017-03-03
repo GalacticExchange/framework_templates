@@ -22,7 +22,7 @@ json.existing_element element_exists
 
 if preview.present? && preview_fields.present?
   json.edit_link edit_link
-  json.preview preview_fields.map{|field| "#{field}: #{element[field.to_s]}"}.join("\n")
+  json.preview (preview_fields.map{|field| "#{field}: #{element[field.to_s]}"} + (!listener ? ["topic_prefix: #{(element['tag'] || element['tag_prefix']).to_s.gsub('.', '_')}"] : [])).join("\n")
   json.icon icon("#{preview[:icon]} fa-lg").html_safe
 end
 unless element_exists
