@@ -27,7 +27,7 @@ service ssh start
 
 echo "Zookeper" >> /tmp/INIT_LOG
 
-service zookeeper-server start
+### service zookeeper-server start
 
 echo "MySQL" >> /tmp/INIT_LOG
 
@@ -39,11 +39,11 @@ service hadoop-hdfs-namenode start
 
 echo "Cassandra" >> /tmp/INIT_LOG
 
-service cassandra start
+### service cassandra start
 
 echo "Elastic Search" >> /tmp/INIT_LOG
 
-service elasticsearch start
+#service elasticsearch start
 
 
 
@@ -63,7 +63,7 @@ service hive-metastore start
 
 echo "Schema Registry Start" >> /tmp/INIT_LOG
 
-/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
+#/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
 
 
 echo "HTTPFS" >> /tmp/INIT_LOG
@@ -92,11 +92,11 @@ service hadoop-mapreduce-historyserver start
 
 echo "sqoop2" >> /tmp/INIT_LOG
 
-service sqoop2-server start
+### service sqoop2-server start
 
 echo "hue" >> /tmp/INIT_LOG
 
-service hue start
+### service hue start
 
 export HIVE_PORT=10001
 
@@ -107,7 +107,7 @@ service hive-server2 start
 echo "webhcat" >> /tmp/INIT_LOG
 
 
-service hive-webhcat-server start
+###service hive-webhcat-server start
 # ENTERPRISE service impala-catalog start
 
 # ENTERPRISE service impala-state-store start
