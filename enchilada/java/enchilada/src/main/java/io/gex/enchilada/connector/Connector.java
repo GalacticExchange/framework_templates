@@ -94,17 +94,17 @@ public class Connector {
                 /*try {
                     connector.sinks.add(new SinkHDFS(topic, topic));
                 } catch (Throwable e) {
-                    logger.error("Failed to add HDFS sink to " + topic + " topic.", e);
+                    logger.error("Failed to add HDFS sink to " + topic + " topic.");
                 }*/
                 try {
                     connector.sinks.add(new SinkElasticsearch(topic, topic));
                 } catch (Throwable e) {
-                    logger.error("Failed to add Elasticsearch sink to " + topic + " topic.", e);
+                    logger.error("Failed to add Elasticsearch sink to " + topic + " topic.");
                 }
                 try {
                     connector.sinks.add(new SinkCassandra(topic, topic));
                 } catch (Throwable e) {
-                    logger.error("Failed to add Cassandra sink to " + topic + " topic.", e);
+                    logger.error("Failed to add Cassandra sink to " + topic + " topic.");
                 }
                 connectors.add(connector);
             } catch (Throwable e) {

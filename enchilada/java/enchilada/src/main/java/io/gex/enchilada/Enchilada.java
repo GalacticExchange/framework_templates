@@ -38,10 +38,12 @@ public class Enchilada {
                 // add new connectors
                 List<String> topicsToAdd = new ArrayList<>(topics);
                 topicsToAdd.removeAll(currentTopics);
-                List<Connector> connectors = Connector.generate(topicsToAdd);
-                for (Connector connector : connectors) {
-                    // add does't throw exceptions
-                    EnchiladaTask.add(connector);
+                if (topicsToAdd.size() != 0) {
+                    List<Connector> connectors = Connector.generate(topicsToAdd);
+                    for (Connector connector : connectors) {
+                        // add does't throw exceptions
+                        EnchiladaTask.add(connector);
+                    }
                 }
                 logger.info("Topics total: " + EnchiladaTask.getCurrentTopicList().size() + ".");
                 // sleep for 5 minutes

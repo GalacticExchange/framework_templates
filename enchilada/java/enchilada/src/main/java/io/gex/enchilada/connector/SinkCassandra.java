@@ -11,6 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -81,12 +84,23 @@ public class SinkCassandra implements Sink {
             Files.write(file.toPath(), content.getBytes(StandardCharsets.UTF_8));
         }
         try {
+            checkConnection();
             buildCluster();
             checkKeyspace();
             connect();
             checkTable();
         } finally {
             close();
+        }
+    }
+
+    private void checkConnection() throws Exception {
+        logger.trace("Entered " + EnchiladaHelper.getMethodName());
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(host, port), 3000);
+        } catch (Throwable e) {
+            logger.error("Failed to connect to Cassandra.");
+            throw e;
         }
     }
 
