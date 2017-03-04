@@ -1,10 +1,22 @@
-require_relative "../../vagrant/common/config/config"
-require_relative "../../vagrant/base/ruby_scripts/common"
+require_relative "../../gexcloud/common/config/config"
+require_relative "../../gexcloud/base/ruby_scripts/common"
 
 
 desc "Build container"
 task :build do
-  exec "docker rmi -f gex/enchilada; cd docker; sudo docker build -t gex/enchilada .; docker save gex/enchilada | gzip > enchilada.tar.gz"
+  #exec "docker rmi -f gex/enchilada; cd docker; sudo docker build -t gex/enchilada .; docker save gex/enchilada | gzip > enchilada.tar.gz"
+  commands = [
+      'docker rmi -f temp-enchilada; cd docker; docker build -t temp-enchilada . ',
+      'docker rm -f temp-enchilada; docker create --name temp-enchilada temp-enchilada',
+      'docker cp ../slave/templates temp-enchilada:/templates/create',
+      'docker export temp-enchilada | gzip > enchilada.tar.gz'
+  ]
+  exec commands.join("; ")
+
+
+
+
+
 end
 
 desc "Build java client"

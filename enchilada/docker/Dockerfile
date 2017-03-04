@@ -35,3 +35,8 @@ RUN mkdir -p /root/.fluentd-ui
 RUN chmod 777 /root/.fluentd-ui
 ADD ruby /var/www/apps/enchilada
 RUN cd /var/www/apps/enchilada && bundle install
+
+
+#
+RUN mkdir -p /opt/gex/config
+RUN mkdir -p /templates/create
