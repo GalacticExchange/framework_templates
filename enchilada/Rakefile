@@ -8,10 +8,15 @@ task :build do
   commands = [
       'docker rmi -f temp-enchilada; cd docker; docker build -t temp-enchilada . ',
       'docker rm -f temp-enchilada; docker create --name temp-enchilada temp-enchilada',
-      'docker cp ../slave/templates temp-enchilada:/templates/create',
-      'docker export temp-enchilada | gzip > enchilada.tar.gz'
+      'docker cp ../slave/templates/. temp-enchilada:/templates/create/.',
+      'docker export temp-enchilada | gzip > enchilada.tar.gz',
+      #%Q(docker commit -a 'Gex' -m 'provision' temp-enchilada gex/enchilada),
+      #"docker save gex/enchilada | gzip > enchilada.tar.gz"
   ]
-  exec commands.join("; ")
+
+  cmd = commands.join("; ")
+  puts "#{cmd}"
+  exec cmd
 
 
 

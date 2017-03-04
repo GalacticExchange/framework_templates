@@ -37,6 +37,8 @@ ADD ruby /var/www/apps/enchilada
 RUN cd /var/www/apps/enchilada && bundle install
 
 
-#
+# provision
 RUN mkdir -p /opt/gex/config
+ADD files/configure.sh /opt/gex/configure.sh
+RUN chmod +x /opt/gex/configure.sh
 RUN mkdir -p /templates/create
