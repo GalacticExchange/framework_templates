@@ -6,7 +6,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH $JAVA_HOME/bin:$PATH
 
 RUN apt-get update
-RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano supervisor git
+RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano supervisor git openvpn
 
 # Install Java 8
 RUN add-apt-repository ppa:webupd8team/java
