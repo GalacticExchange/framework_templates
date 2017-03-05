@@ -25,7 +25,7 @@ end
 desc "Run container"
 task :run do
 
-  puts `docker import enchilada.tar.gz enchilada`
+  puts `docker import docker/enchilada.tar.gz enchilada`
   init_vars(
       {
           "_master_ip" => "10.1.0.11",
