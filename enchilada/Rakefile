@@ -8,7 +8,8 @@ task :build do
       'docker rmi -f enchilada; cd docker; docker build -t enchilada . ',
       'docker rm -f enchilada; docker create --name enchilada enchilada',
       'docker cp ../slave/templates/. enchilada:/templates/create/.',
-      'docker export enchilada | gzip > enchilada.tar.gz'
+      'docker export enchilada | gzip > enchilada.tar.gz',
+      'docker rmi -f enchilada; docker import enchilada.tar.gz enchilada'
   ]
   cmd = commands.join("; ")
   puts "#{cmd}"
@@ -18,12 +19,14 @@ end
 desc "Build java client"
 task :build_java do
   #"sudo apt-get install -y maven" before run
-  exec "cd java/enchilada; mvn clean install; cp target/enchilada-0.0.1-jar-with-dependencies.jar ../../docker/enchilada.jar"
+  exec "cd java/enchilada; mvn clean install"
+  exec "cp target/enchilada-0.0.1-jar-with-dependencies.jar ../../docker/enchilada.jar"
 end
 
 desc "Run container"
 task :run do
 
+  puts "import finished"
   init_vars(
       {
           "_master_ip" => "10.1.0.11",
@@ -31,6 +34,7 @@ task :run do
       })
 
   use_container "enchilada"
+
 
   dcreate_container "enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "enchilada", "8.8.8.8"
 
