@@ -5,12 +5,10 @@ require_relative "../../vagrant/base/ruby_scripts/common"
 desc "Build container"
 task :build do
  commands = [
-     #docker rmi -f enchilada;
       'cd docker; docker build -t enchilada . ',
       'docker rm -f enchilada; docker create --name enchilada enchilada',
       'docker cp ../slave/templates/. enchilada:/templates/create/.',
       'docker export enchilada | gzip > enchilada.tar.gz',
-      #'docker rmi -f enchilada'
   ]
   cmd = commands.join("; ")
   puts "#{cmd}"
