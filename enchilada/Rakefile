@@ -1,5 +1,5 @@
-require_relative "../../gexcloud/common/config/config"
-require_relative "../../gexcloud/base/ruby_scripts/common"
+require_relative "../../vagrant/common/config/config"
+require_relative "../../vagrant/base/ruby_scripts/common"
 
 
 desc "Build container"
