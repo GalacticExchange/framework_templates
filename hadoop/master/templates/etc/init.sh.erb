@@ -59,12 +59,12 @@ service hive-metastore start
 
 #service kafka-server start
 
-echo "Schema Registry Start" >> /tmp/INIT_LOG
+echo "Kafka Start" >> /tmp/INIT_LOG
 
 
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
 
-/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
+
 
 
 echo "HTTPFS" >> /tmp/INIT_LOG
@@ -105,8 +105,14 @@ echo "hive-server 2" >> /tmp/INIT_LOG
 
 service hive-server2 start
 
-echo "webhcat" >> /tmp/INIT_LOG
 
+
+echo "Schema Registry Start" >> /tmp/INIT_LOG
+
+
+/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
+
+#echo "webhcat" >> /tmp/INIT_LOG
 
 ###service hive-webhcat-server start
 # ENTERPRISE service impala-catalog start
