@@ -27,7 +27,7 @@ service ssh start
 
 echo "Zookeper" >> /tmp/INIT_LOG
 
-### service zookeeper-server start
+service zookeeper-server start
 
 echo "MySQL" >> /tmp/INIT_LOG
 
@@ -39,11 +39,11 @@ service hadoop-hdfs-namenode start
 
 echo "Cassandra" >> /tmp/INIT_LOG
 
-### service cassandra start
+service cassandra start
 
 echo "Elastic Search" >> /tmp/INIT_LOG
 
-#service elasticsearch start
+service elasticsearch start
 
 echo "Resource Manager" >> /tmp/INIT_LOG
 
