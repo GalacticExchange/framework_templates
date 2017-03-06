@@ -61,7 +61,10 @@ service hive-metastore start
 
 echo "Schema Registry Start" >> /tmp/INIT_LOG
 
-#/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
+
+/usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
+
+/usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
 
 
 echo "HTTPFS" >> /tmp/INIT_LOG
