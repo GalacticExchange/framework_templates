@@ -4,9 +4,9 @@ gemspec
 
 
 
-group :production do
+#group :production do
   gem "puma"
-end
+#end
 
 
 gem 'therubyracer', '0.12.2', platforms: :ruby

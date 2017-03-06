@@ -6,7 +6,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH $JAVA_HOME/bin:$PATH
 
 RUN apt-get update
-RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano supervisor git
+RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano supervisor git openvpn
 
 # Install Java 8
 RUN add-apt-repository ppa:webupd8team/java
@@ -35,3 +35,10 @@ RUN mkdir -p /root/.fluentd-ui
 RUN chmod 777 /root/.fluentd-ui
 ADD ruby /var/www/apps/enchilada
 RUN cd /var/www/apps/enchilada && bundle install
+
+
+# provision
+RUN mkdir -p /opt/gex/config
+ADD files/configure.sh /opt/gex/configure.sh
+RUN chmod +x /opt/gex/configure.sh
+RUN mkdir -p /templates/create

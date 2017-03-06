@@ -4,7 +4,15 @@ require_relative "../../vagrant/base/ruby_scripts/common"
 
 desc "Build container"
 task :build do
-  exec "docker rmi -f gex/enchilada; cd docker; sudo docker build -t gex/enchilada .; docker save gex/enchilada | gzip > enchilada.tar.gz"
+ commands = [
+      'cd docker; docker build -t enchilada . ',
+      'docker rm -f enchilada; docker create --name enchilada enchilada',
+      'docker cp ../slave/templates/. enchilada:/templates/create/.',
+      'docker export enchilada | gzip > enchilada.tar.gz',
+  ]
+  cmd = commands.join("; ")
+  puts "#{cmd}"
+  exec cmd
 end
 
 desc "Build java client"
@@ -16,6 +24,7 @@ end
 desc "Run container"
 task :run do
 
+  puts `docker import docker/enchilada.tar.gz enchilada`
   init_vars(
       {
           "_master_ip" => "10.1.0.11",
@@ -24,7 +33,8 @@ task :run do
 
   use_container "enchilada"
 
-  dcreate_container "gex/enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "enchilada", "8.8.8.8"
+
+  dcreate_container "enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "enchilada", "8.8.8.8"
 
   dstart
 
