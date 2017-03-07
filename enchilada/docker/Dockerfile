@@ -24,6 +24,12 @@ RUN gem install bundler rake mysql2
 RUN wget -qO - http://packages.confluent.io/deb/3.1/archive.key | apt-key add -
 RUN add-apt-repository "deb [arch=amd64] http://packages.confluent.io/deb/3.1 stable main"
 RUN apt-get update && apt-get install -y confluent-platform-oss-2.11
+# Download Cassandra Sink
+RUN mkdir -p kafka-connect-cassandra
+RUN wget https://github.com/datamountaineer/stream-reactor/releases/download/v0.2.4/kafka-connect-cassandra-0.2.4-3.1.1-all.tar.gz
+RUN tar -xvf kafka-connect-cassandra-0.2.4-3.1.1-all.tar.gz -C kafka-connect-cassandra
+RUN cp kafka-connect-cassandra/kafka-connect-cassandra-0.2.4-3.1.1-all.jar /usr/share/java/kafka/
+RUN rm -rf kafka-connect-cassandra
 
 # Copy java client
 RUN mkdir -p /usr/lib/enchilada
