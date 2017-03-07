@@ -91,11 +91,11 @@ public class Connector {
         for (String topic : topics) {
             try {
                 Connector connector = new Connector(topic);
-                /*try {
+                try {
                     connector.sinks.add(new SinkHDFS(topic, topic));
                 } catch (Throwable e) {
                     logger.error("Failed to add HDFS sink to " + topic + " topic.", e);
-                }*/
+                }
                 try {
                     connector.sinks.add(new SinkElasticsearch(topic, topic));
                 } catch (Throwable e) {
