@@ -29,7 +29,7 @@ class Fluentd
 
       def self.initial_params
         {
-            tag: 'input.twitter.sampling',
+            tag: 'input.twitter.iphone',
             timeline: 'tracking',
             keyword: '#iphone',
             follow_ids: '',
