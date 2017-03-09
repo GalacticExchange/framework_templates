@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sudo service supervisor start
+cd /var/www/apps/data_enchilada; rails s -p 80 -e production --binding=0.0.0.0
+
+
+

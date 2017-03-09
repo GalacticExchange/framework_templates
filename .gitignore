@@ -6,9 +6,9 @@ target/
 .project
 *~
 #java
-/enchilada/java/enchilada/target/
-/enchilada/java/enchilada/.idea/
-/enchilada/docker/enchilada.jar
+/data_enchilada/java/data_enchilada/target/
+/data_enchilada/java/data_enchilada/.idea/
+/data_enchilada/docker/data_enchilada.jar
 #ruby
-/enchilada/docker/ruby/log/
-/enchilada/docker/ruby/tmp/
+/data_enchilada/docker/ruby/log/
+/data_enchilada/docker/ruby/tmp/
