@@ -42,7 +42,7 @@ service hue start
 
 echo "Spark worker" >> /tmp/INIT_LOG
 
-service spark-worker start
+/usr/lib/spark/sbin/start-slave.sh &
 
 service kibana start
 

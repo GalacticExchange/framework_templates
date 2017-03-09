@@ -75,7 +75,7 @@ service hadoop-httpfs start
 
 echo "spark-master" >> /tmp/INIT_LOG
 
-service spark-master start
+ /usr/lib/spark/sbin/start-master.sh &
 
 echo "spark-history" >> /tmp/INIT_LOG
 
