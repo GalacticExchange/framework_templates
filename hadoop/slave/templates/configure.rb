@@ -14,7 +14,7 @@ editor = get_editor '/etc/pam.d/common-session'
 # noinspection RubyArgumentParentheses
 editor.insert_line_after_match(/^# end of pam-auth-update config.*$/, 'session required  pam_limits.so')
 
-e
+
 # ENTERPRISSE RUN \
 #        echo "hbase -       nofile  32768" >> /etc/security/limits.conf && \
 #        echo "hbase -       nproc   2048" >> /etc/security/limits.conf && \
