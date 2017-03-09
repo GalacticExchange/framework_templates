@@ -31,7 +31,7 @@ class Fluentd
         {
             tag: 'input.twitter.sampling',
             timeline: 'tracking',
-            keyword: '@realdonaldtrump',
+            keyword: '#iphone',
             follow_ids: '',
             locations: '',
             lang: :en,
