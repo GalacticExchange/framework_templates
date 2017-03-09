@@ -9,13 +9,13 @@
               = icon("fa-play")
               = t("fluentd.common.running")
             - else
-              = icon("fa-pause")
+              = icon("fa-stop")
               = t("fluentd.common.stopped")
         .panel-body
           - if flash[:error]
             .alert.alert-danger= flash[:error]
           = link_to icon("fa-play") << t("fluentd.common.start"), start_daemon_agent_path(@fluentd),     method: :put, class: "btn #{@fluentd.agent.running? ? "disabled btn-default" : "btn-primary"}"
-          = link_to icon("fa-pause") << t("fluentd.common.stop"), stop_daemon_agent_path(@fluentd),       method: :put, class: "btn #{@fluentd.agent.running? ? "btn-danger" : "disabled btn-default"}"
+          = link_to icon("fa-stop") << t("fluentd.common.stop"), stop_daemon_agent_path(@fluentd),       method: :put, class: "btn #{@fluentd.agent.running? ? "btn-danger" : "disabled btn-default"}"
           = link_to icon("fa-refresh") << t("fluentd.common.restart"), restart_daemon_agent_path(@fluentd), method: :put, class: "btn #{@fluentd.agent.running? ? "btn-warning" : "disabled btn-default"}"
     .col-xs-6
       .panel.panel-default

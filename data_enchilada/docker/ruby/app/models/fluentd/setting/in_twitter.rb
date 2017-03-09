@@ -29,9 +29,9 @@ class Fluentd
 
       def self.initial_params
         {
-            tag: 'input.twitter.sampling',
+            tag: 'input.twitter.iphone',
             timeline: 'tracking',
-            keyword: '@realdonaldtrump',
+            keyword: '#iphone',
             follow_ids: '',
             locations: '',
             lang: :en,

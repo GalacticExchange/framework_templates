@@ -73,7 +73,10 @@ class Fluentd
           end
         else
           extra_format_options.each do |key|
-            format_specific_conf << "#{indent}#{key} #{send(key)}\n"
+            value = send(key)
+            if value.present?
+              format_specific_conf << "#{indent}#{key} #{send(key)}\n"
+            end
           end
         end
 
