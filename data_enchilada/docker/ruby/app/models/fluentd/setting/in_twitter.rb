@@ -29,9 +29,9 @@ class Fluentd
 
       def self.initial_params
         {
-            tag: 'input.twitter.iphone',
+            tag: 'twitter.nasa',
             timeline: 'tracking',
-            keyword: '#iphone',
+            keyword: 'nasa',
             follow_ids: '',
             locations: '',
             lang: :en,
