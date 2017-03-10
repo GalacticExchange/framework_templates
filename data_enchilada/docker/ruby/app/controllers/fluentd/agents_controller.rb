@@ -8,10 +8,12 @@ class Fluentd::AgentsController < ApplicationController
 
   def stop
     run_action(__method__)
+    `/usr/bin/pkill -f -KILL fluentd-ui`
     redirect_to daemon_path(@fluentd), status: 303 # 303 is change HTTP Verb GET
   end
 
   def restart
+    `/usr/bin/pkill -f -KILL fluentd-ui`
     run_action(__method__) { @fluentd.agent.log.tail(1).first.to_s }
     redirect_to daemon_path(@fluentd), status: 303 # 303 is change HTTP Verb GET
   end
