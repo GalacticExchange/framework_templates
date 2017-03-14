@@ -5,6 +5,7 @@ import org.apache.avro.Schema;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -30,6 +31,7 @@ public class SinkElasticsearch implements Sink {
     private String index;
     private String host;
     private String timeFiled;
+    private String clusterName;
 
     // name filed is needed for multiple sinks of the one type
     SinkElasticsearch(String topic, String name) throws Exception {
@@ -37,6 +39,7 @@ public class SinkElasticsearch implements Sink {
         this.name = name + "-elasticsearch-sink";
         this.propertiesFilePath = Paths.get(DataEnchilada.configDir, name + "-elasticsearch.properties").toString();
         this.url = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_URL);
+        this.clusterName = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_CLUSTER_NAME);
         this.host = this.url.replaceAll("http://", "").replaceAll("https://", "").split(":")[0];
         this.index = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_INDEX);
         this.timeFiled = DataEnchilada.properties.getProperty(PropertiesReader.TIME_FIELD);
@@ -64,9 +67,10 @@ public class SinkElasticsearch implements Sink {
 
     private void checkSchema() throws Exception {
         logger.trace("Entered " + DataEnchiladaHelper.getMethodName());
-        TransportClient client = null;
+        Client client = null;
         try {
-            client = new PreBuiltTransportClient(Settings.EMPTY)
+            Settings settings = Settings.builder().put("cluster.name", clusterName).build();
+            client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), 9300));
             if (!client.admin().indices().prepareExists(index).execute().actionGet().isExists()) {
                 client.admin().indices().prepareCreate(index).get();

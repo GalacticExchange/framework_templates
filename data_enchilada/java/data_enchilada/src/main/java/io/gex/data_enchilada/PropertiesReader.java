@@ -19,6 +19,7 @@ public class PropertiesReader {
     public final static String SCHEMAREGISTRY = "schemaregistry";
     public final static String TOPICS_DIR = "topics_dir";
     public final static String ELASTICSEARCH_URL = "elasticsearch_url";
+    public final static String ELASTICSEARCH_CLUSTER_NAME = "elasticsearch_cluster_name";
     public final static String ELASTICSEARCH_INDEX = "elasticsearch_index";
     public final static String CASSANDRA_HOST = "cassandra_host";
     public final static String CASSANDRA_PORT = "cassandra_port";
