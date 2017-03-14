@@ -1,16 +1,21 @@
 package io.gex.data_enchilada.connector;
 
-import io.gex.data_enchilada.DataEnchilada;
-import io.gex.data_enchilada.DataEnchiladaHelper;
-import io.gex.data_enchilada.PropertiesReader;
+import io.gex.data_enchilada.*;
+import org.apache.avro.Schema;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.io.File;
+import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class SinkElasticsearch implements Sink {
 
@@ -23,6 +28,8 @@ public class SinkElasticsearch implements Sink {
     private String name;
     private String url;
     private String index;
+    private String host;
+    private String timeFiled;
 
     // name filed is needed for multiple sinks of the one type
     SinkElasticsearch(String topic, String name) throws Exception {
@@ -30,8 +37,11 @@ public class SinkElasticsearch implements Sink {
         this.name = name + "-elasticsearch-sink";
         this.propertiesFilePath = Paths.get(DataEnchilada.configDir, name + "-elasticsearch.properties").toString();
         this.url = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_URL);
+        this.host = this.url.replaceAll("http://", "").replaceAll("https://", "").split(":")[0];
         this.index = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_INDEX);
+        this.timeFiled = DataEnchilada.properties.getProperty(PropertiesReader.TIME_FIELD);
         checkConfig();
+        checkSchema();
     }
 
     @Override
@@ -50,5 +60,56 @@ public class SinkElasticsearch implements Sink {
     @Override
     public String getPropertiesFilePath() {
         return propertiesFilePath;
+    }
+
+    private void checkSchema() throws Exception {
+        logger.trace("Entered " + DataEnchiladaHelper.getMethodName());
+        TransportClient client = null;
+        try {
+            client = new PreBuiltTransportClient(Settings.EMPTY)
+                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), 9300));
+            if (!client.admin().indices().prepareExists(index).execute().actionGet().isExists()) {
+                client.admin().indices().prepareCreate(index).get();
+            }
+            if (!client.admin().indices().prepareTypesExists(index).setTypes(topic).execute().actionGet().isExists()) {
+                client.admin().indices().preparePutMapping(index).setType(topic).setSource(generateSource()).get();
+            }
+        } catch (Throwable e) {
+            logger.error(e.getMessage(), e);
+            throw e;
+        } finally {
+            if (client != null) {
+                client.close();
+            }
+        }
+
+    }
+
+    private String generateSource() throws Exception {
+        logger.trace("Entered " + DataEnchiladaHelper.getMethodName());
+        StringBuilder stringBuilder = new StringBuilder("{\n  \"properties\": {\n");
+        Schema schema = SchemaRegistry.getSchema(topic + "-value");
+        List<Schema.Field> fields = schema.getFields();
+        for (Schema.Field field : fields) {
+            stringBuilder.append("    \"").append(field.name()).append("\": {\n").append(getType(field)).append("\n    },\n");
+        }
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length()).append("\n  }\n}");
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
+
+    }
+
+    private String getType(Schema.Field field) {
+        StringBuilder stringBuilder = new StringBuilder("      \"type\": ");
+        if (field.name().equals(timeFiled)) {
+            stringBuilder.append("\"date\"");
+        } else {
+            String type = AvroToElasticsearchDataType.getValue(field.schema().getType());
+            stringBuilder.append("\"").append(type).append("\"");
+            if (type.equals(AvroToElasticsearchDataType.STRING.get())) {
+                stringBuilder.append(",\n      \"analyzer\": \"standard\"");
+            }
+        }
+        return stringBuilder.toString();
     }
 }

@@ -25,6 +25,7 @@ public class PropertiesReader {
     public final static String CASSANDRA_USERNAME = "cassandra_username";
     public final static String CASSANDRA_PASSWORD = "cassandra_password";
     public final static String CASSANDRA_KEYSPACE = "cassandra_keyspace";
+    public final static String TIME_FIELD = "time_field";
 
     static Properties read() throws Exception {
         logger.trace("Entered " + DataEnchiladaHelper.getMethodName());
