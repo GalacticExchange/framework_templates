@@ -4,6 +4,7 @@ ENV RAILS_ENV production
 ENV RACK_ENV production
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH $JAVA_HOME/bin:$PATH
+ENV TERM xterm
 
 RUN apt-get update
 RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano supervisor git openvpn
@@ -19,6 +20,9 @@ RUN apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libre
     libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs ruby2.3 ruby-dev nodejs libmysqlclient-dev
 RUN gem install bundler rake mysql2
 
+# Create user and password
+RUN useradd -p $(openssl passwd -1 gexborsch4) -m -s /bin/bash gex
+RUN adduser gex sudo
 
 # Download Confluent
 RUN wget -qO - http://packages.confluent.io/deb/3.1/archive.key | apt-key add -
