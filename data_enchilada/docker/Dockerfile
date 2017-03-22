@@ -8,6 +8,7 @@ ENV TERM xterm
 
 RUN apt-get update
 RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano supervisor git openvpn
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tshark
 
 # Install Java 8
 RUN add-apt-repository ppa:webupd8team/java
@@ -45,7 +46,6 @@ RUN mkdir -p /root/.fluentd-ui
 RUN chmod 777 /root/.fluentd-ui
 ADD ruby /var/www/apps/data_enchilada
 RUN cd /var/www/apps/data_enchilada && bundle install
-
 
 # provision
 RUN mkdir -p /opt/gex/config
