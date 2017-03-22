@@ -13,6 +13,7 @@ public class PropertiesReader {
     final static String PROPERTIES_FILENAME = "/etc/data_enchilada/data_enchilada.properties";
 
     public final static String HIVE_METASTORE_URIS = "hive_metastore_uris";
+    public final static String HIVE_DATABASE = "hive_database";
     public final static String HDFS_URL = "hdfs_url";
     public final static String KAFKA = "kafka";
     public final static String ZOOKEEPER = "zookeeper";

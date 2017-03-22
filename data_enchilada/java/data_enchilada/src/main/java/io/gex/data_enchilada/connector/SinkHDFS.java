@@ -23,6 +23,7 @@ public class SinkHDFS implements Sink {
     private String hdfsURL;
     private String hiveURL;
     private String topicsDir;
+    private String hiveDatabase;
 
     // name filed is needed for multiple sinks of the one type
     SinkHDFS(String topic, String name) throws Exception {
@@ -32,6 +33,7 @@ public class SinkHDFS implements Sink {
         this.hdfsURL = DataEnchilada.properties.getProperty(PropertiesReader.HDFS_URL);
         this.hiveURL = DataEnchilada.properties.getProperty(PropertiesReader.HIVE_METASTORE_URIS);
         this.topicsDir = DataEnchilada.properties.getProperty(PropertiesReader.TOPICS_DIR);
+        this.hiveDatabase = DataEnchilada.properties.getProperty(PropertiesReader.HIVE_DATABASE);
         checkConfig();
     }
 
@@ -44,7 +46,7 @@ public class SinkHDFS implements Sink {
             String content = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
             content = content.replaceAll("\\{insert_name}", name).replaceAll("\\{insert_topics}", topic).
                     replaceAll("\\{insert_hdfs.url}", hdfsURL).replaceAll("\\{insert_hive.metastore.uris}", hiveURL).
-                    replaceAll("\\{insert_topics.dir}", topicsDir);
+                    replaceAll("\\{insert_topics.dir}", topicsDir).replaceAll("\\{insert_hive.database}", hiveDatabase);
             Files.write(file.toPath(), content.getBytes(StandardCharsets.UTF_8));
         }
     }
