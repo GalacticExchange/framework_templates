@@ -19,6 +19,7 @@ gem 'fluent-plugin-twitter'
 gem 'fluent-plugin-kafka-enchanced'
 gem 'font-awesome-rails'
 gem 'fluent-plugin-retag'
+gem 'fluent-plugin-rss'
 gem 'fluent-plugin-mixpanel-enchanced'
 
 

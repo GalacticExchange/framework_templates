@@ -113,7 +113,7 @@ GEM
     excon (0.55.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fluent-plugin-kafka-enchanced (0.5.23)
+    fluent-plugin-kafka-enchanced (0.5.24)
       avro-builder
       avro_turf_enchanced
       fluentd (>= 0.10.58, < 2)
@@ -124,6 +124,8 @@ GEM
       fluentd (>= 0.10.55)
       mixpanel-ruby (~> 2.2.0)
     fluent-plugin-retag (0.0.2)
+      fluentd
+    fluent-plugin-rss (0.0.1)
       fluentd
     fluent-plugin-sql (0.4.4)
       activerecord (~> 4.2)
@@ -338,6 +340,7 @@ DEPENDENCIES
   fluent-plugin-kafka-enchanced
   fluent-plugin-mixpanel-enchanced
   fluent-plugin-retag
+  fluent-plugin-rss
   fluent-plugin-sql
   fluent-plugin-twitter
   fluentd-ui!
