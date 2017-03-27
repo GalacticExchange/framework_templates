@@ -39,7 +39,7 @@ class Fluentd
             tag_prefix: 'my.rdb',
             select_interval: '60s',
             select_limit: '500',
-            state_file: "/tmp/fluentd-sql-#{Fluentd.instance.id}-#{Time.now.to_i}.pos",
+            state_file: "/tmp/data_enchilada-sql-#{Fluentd.instance.id}-#{Time.now.to_i}.pos",
             table: [
                 {
                     table: 'rdb_table',
