@@ -127,7 +127,7 @@ class Fluentd
           config << "\n"
         end
         tables = send(:table).reject{|t| t.values.join('') == ''} rescue []
-        if tables.present? && conf(:all_tables) != '1'
+        if tables.present? && all_tables != '1'
           tables.each do |tab|
             config << "\n"
             config << indent
