@@ -49,7 +49,7 @@ en:
     new_listener_desc: Element will be added with default config
     new: New
     initial_setup: Setup
-    setup: "Set up %{target}"
+    setup: "Set Up %{target}"
     install_it: "Install %{target}"
     installing: "Installing: %{target}"
     uninstalling: "Uninstalling: %{target}"

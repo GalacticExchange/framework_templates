@@ -48,7 +48,7 @@
               this.mode = "edit";
             },
             onDelete: function(ev) {
-              if(!confirm("really?")) return;
+              if(!confirm("Are you sure to remove this source?")) return;
               this.destroy();
             },
             onSubmit: function(ev) {
