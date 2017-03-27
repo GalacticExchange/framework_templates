@@ -5,9 +5,9 @@ class Fluentd
 
       def self.default_options
         {
-          :pid_file    => "#{ENV["HOME"]}/.fluentd-ui/fluent.pid",
-          :log_file    => "#{ENV["HOME"]}/.fluentd-ui/fluent.log",
-          :config_file => "#{ENV["HOME"]}/.fluentd-ui/fluent.conf",
+          :pid_file    => "#{ENV["HOME"]}/.data_enchilada/data_enchilada.pid",
+          :log_file    => "#{ENV["HOME"]}/.data_enchilada/data_enchilada.log",
+          :config_file => "#{ENV["HOME"]}/.data_enchilada/data_enchilada.conf",
         }
       end
 

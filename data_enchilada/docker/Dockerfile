@@ -42,8 +42,8 @@ COPY data_enchilada.jar /usr/lib/data_enchilada/
 
 # Ruby app
 RUN mkdir -p /var/www/apps/data_enchilada
-RUN mkdir -p /root/.fluentd-ui
-RUN chmod 777 /root/.fluentd-ui
+RUN mkdir -p /root/.data_enchilada
+RUN chmod 777 /root/.data_enchilada
 ADD ruby /var/www/apps/data_enchilada
 RUN cd /var/www/apps/data_enchilada && bundle install
 
