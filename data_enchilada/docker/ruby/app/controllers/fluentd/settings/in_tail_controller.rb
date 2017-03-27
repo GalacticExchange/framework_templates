@@ -15,7 +15,7 @@ class Fluentd::Settings::InTailController < ApplicationController
     if attrs[:pos_file].blank?
       attrs.merge!(pos_file: "/tmp/fluentd-#{@fluentd.id}-#{Time.now.to_i}.pos")
     end
-    attrs.merge!(tag: attrs['path'].to_s.sub('/', '').sub('.', '_').gsub('/', '.'))
+    attrs.merge!(tag: attrs['path'].split('/').last)
     @setting = Fluentd::Setting::InTail.new(attrs)
   end
 
