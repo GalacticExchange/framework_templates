@@ -3,7 +3,7 @@ kafka=<%= assert_nnil(@_slave_ip) %>:9092
 zookeeper=<%= assert_nnil(@_master_ip) %>:2181
 schemaregistry=http://<%= assert_nnil(@_master_ip) %>:8081
 hdfs_url=hdfs://<%= assert_nnil(@_master_ip) %>:8020
-hive_metastore_uris=thrift://<%= assert_nnil(@_master_ip) %>:9083
+hive_metastore_uris=thrдаift://<%= assert_nnil(@_master_ip) %>:9083
 hive_database=data_enchilada
 topics_dir=/data_enchilada
 elasticsearch_url=http://<%= assert_nnil(@_slave_ip) %>:9200

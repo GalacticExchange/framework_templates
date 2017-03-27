@@ -116,7 +116,7 @@ public class SinkCassandra implements Sink {
                 return;
             }
             session = cluster.connect();
-            session.execute("CREATE KEYSPACE " + keyspace + " WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : 3};");
+            session.execute("CREATE KEYSPACE " + keyspace + " WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : 1};");
         } catch (Throwable e) {
             logger.error(e.getMessage(), e);
             throw e;
