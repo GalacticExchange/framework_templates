@@ -35,12 +35,13 @@ public class SinkElasticsearch implements Sink {
     // name filed is needed for multiple sinks of the one type
     SinkElasticsearch(String topic, String name) throws Exception {
         this.topic = topic;
+        this.index = topic.substring(0, topic.lastIndexOf("_"));
         this.name = name + "-elasticsearch-sink";
         this.propertiesFilePath = Paths.get(DataEnchilada.configDir, name + "-elasticsearch.properties").toString();
         this.url = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_URL);
         this.clusterName = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_CLUSTER_NAME);
         this.host = this.url.replaceAll("http://", "").replaceAll("https://", "").split(":")[0];
-        this.index = DataEnchilada.properties.getProperty(PropertiesReader.ELASTICSEARCH_INDEX);
+
         this.timeFiled = DataEnchilada.properties.getProperty(PropertiesReader.TIME_FIELD);
         checkConfig();
         checkSchema();
