@@ -68,7 +68,7 @@ GEM
       multi_json
     avro-builder (0.14.0)
       avro (>= 1.7.0)
-    avro_turf_enchanced (0.7.3)
+    avro_turf_enchanced (0.7.4)
       avro (>= 1.7.7, < 1.9)
       excon (~> 0.45)
     better_errors (2.1.1)
@@ -113,7 +113,7 @@ GEM
     excon (0.55.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fluent-plugin-kafka-enchanced (0.5.30)
+    fluent-plugin-kafka-enchanced (0.5.31)
       avro-builder
       avro_turf_enchanced
       fluentd (>= 0.10.58, < 2)
@@ -249,6 +249,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    redis (3.3.3)
     ref (2.0.0)
     request_store (1.1.0)
     rspec-core (3.2.2)
@@ -350,6 +351,7 @@ DEPENDENCIES
   pry
   pry-rails
   puma
+  redis (~> 3.2)
   rspec-rails (~> 3.0)
   therubyracer (= 0.12.2)
   web-console (~> 2.0)
