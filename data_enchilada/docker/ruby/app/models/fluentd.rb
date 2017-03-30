@@ -12,10 +12,10 @@ class Fluentd
 
   COLUMNS = [:id, :variant, :log_file, :pid_file, :config_file]
   SERVER_PREFIX = "ip#{Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address).delete('.')}"
-  # contents = IO.read("/etc/data_enchilada/data_enchilada.properties").strip
+  contents = IO.read("/etc/data_enchilada/data_enchilada.properties").strip
 
-  # KAFKA_SERVER = contents.lines.first.split("=")[1].strip
-  KAFKA_SERVER = '10.1.0.57'
+  KAFKA_SERVER = contents.lines.first.split("=")[1].strip
+  # KAFKA_SERVER = '10.1.0.57'
   DEFAULT_CONF = <<-CONF.strip_heredoc
     <match fluent.*>
       @type stdout
