@@ -22,13 +22,14 @@ public enum AvroToElasticsearchDataType {
         this.value = value;
     }
 
-    public String get(){
+    public String get() {
         return value;
     }
 
     public static String getValue(Schema.Type type) {
         for (AvroToElasticsearchDataType item : values()) {
-            if (item.name.equals(type.getName())) return item.value;
+            if (item.name.equals(type.getName().replaceAll("null", "").replaceAll(",", "")
+                    .trim())) return item.value;
         }
         throw new IllegalArgumentException("Failed to parse " + type.getName() + " to Elasticsearch data type.");
     }
