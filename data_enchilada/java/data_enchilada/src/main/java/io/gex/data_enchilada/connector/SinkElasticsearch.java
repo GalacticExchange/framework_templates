@@ -108,9 +108,20 @@ public class SinkElasticsearch implements Sink {
         if (field.name().equals(timeFiled)) {
             stringBuilder.append("\"date\"");
         } else {
-            String type = AvroToElasticsearchDataType.getValue(field.schema().getType());
-            stringBuilder.append("\"").append(type).append("\"");
-            if (type.equals(AvroToElasticsearchDataType.STRING.get())) {
+            String value = null;
+            Schema.Type type = field.schema().getType();
+            if (type != Schema.Type.UNION) {
+                value = AvroToElasticsearchDataType.getValue(field.schema().getType());
+            } else {
+                for (Schema s : field.schema().getTypes()) {
+                    //work only for 2 parameters with null
+                    if (s.getType() != Schema.Type.NULL) {
+                        value = AvroToElasticsearchDataType.getValue(s.getType());
+                    }
+                }
+            }
+            stringBuilder.append("\"").append(value).append("\"");
+            if (AvroToElasticsearchDataType.STRING.get().equals(value)) {
                 stringBuilder.append(",\n      \"analyzer\": \"standard\"");
             }
         }

@@ -1,6 +1,7 @@
 package io.gex.data_enchilada;
 
 import io.gex.data_enchilada.connector.Connector;
+import org.apache.avro.Schema;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

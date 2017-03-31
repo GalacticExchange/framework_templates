@@ -28,8 +28,7 @@ public enum AvroToElasticsearchDataType {
 
     public static String getValue(Schema.Type type) {
         for (AvroToElasticsearchDataType item : values()) {
-            if (item.name.equals(type.getName().replaceAll("null", "").replaceAll(",", "")
-                    .trim())) return item.value;
+            if (item.name.equals(type.getName())) return item.value;
         }
         throw new IllegalArgumentException("Failed to parse " + type.getName() + " to Elasticsearch data type.");
     }

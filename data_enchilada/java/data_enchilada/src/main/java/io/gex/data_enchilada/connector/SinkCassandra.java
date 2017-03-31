@@ -163,9 +163,18 @@ public class SinkCassandra implements Sink {
         Schema schema = SchemaRegistry.getSchema(topic + "-value");
         List<Schema.Field> fields = schema.getFields();
         for (Schema.Field field : fields) {
-            stringBuilder.append(field.name()).append(" ").append(AvroToCassandraDataType.getValue(field.schema().getType())).append(",");
+            Schema.Type type = field.schema().getType();
+            if (type != Schema.Type.UNION) {
+                stringBuilder.append(field.name()).append(" ").append(AvroToCassandraDataType.getValue(type)).append(",");
+            } else {
+                for (Schema s : field.schema().getTypes()) {
+                    //work only for 2 parameters with null
+                    if (s.getType() != Schema.Type.NULL) {
+                        stringBuilder.append(field.name()).append(" ").append(AvroToCassandraDataType.getValue(s.getType())).append(",");
+                    }
+                }
+            }
         }
-        // SELECT token(enchilada_timestamp) FROM table; will give different value for a string and a number
         stringBuilder.append(" PRIMARY KEY (" + PRIMARY_KEY + ")");
         return stringBuilder.toString();
     }
