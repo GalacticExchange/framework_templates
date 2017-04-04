@@ -95,7 +95,7 @@ en:
 
   users:
     show:
-      page_title: Password
+      page_title: Change Password
 
   fluentd:
     common:
@@ -103,6 +103,8 @@ en:
       stop: Stop
       restart: Restart
       log: Log
+      view_error_log: View error log
+      view_log: View App log
       stopped: Stopped
       running: Running
       operation: Detail
@@ -136,12 +138,13 @@ en:
       never_started_yet: "%{brand} had never been started yet."
     show:
       page_title: Dashboard
+      current: Current settings
     new:
-      page_title: New
+      page_title: New DataEnchilada Configuration
     edit:
-      page_title: Edit
+      page_title: Edit DataEnchilada Configuration
     log:
-      page_title: log
+      page_title: DataEnchilada application log
     errors:
       page_title: Error log
       error_is_empty: No errors
@@ -153,12 +156,12 @@ en:
         in: Source
         out: Output
         current: Current setting
-        setting_empty: Not exists
+        setting_empty: No active sources
       source:
         page_title: Sources
         current: Current settings
         listeners: Listeners
-        setting_empty: Not exists
+        setting_empty: No active sources
       show:
         page_title: Config File
         in_out_head: In/Out setting

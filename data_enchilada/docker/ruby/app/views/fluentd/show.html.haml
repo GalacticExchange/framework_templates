@@ -1,7 +1,7 @@
 - if @fluentd.present?
   - page_title t('.page_title')
   .row
-    .col-xs-6
+    .col-xs-12
       %div{class: "panel panel-#{@fluentd.agent.running? ? "success":"default"}"}
         .panel-heading
           %h4
@@ -17,44 +17,42 @@
           = link_to icon("fa-play") << t("fluentd.common.start"), start_daemon_agent_path(@fluentd),     method: :put, class: "btn #{@fluentd.agent.running? ? "disabled btn-default" : "btn-primary"}"
           = link_to icon("fa-stop") << t("fluentd.common.stop"), stop_daemon_agent_path(@fluentd),       method: :put, class: "btn #{@fluentd.agent.running? ? "btn-danger" : "disabled btn-default"}"
           = link_to icon("fa-refresh") << t("fluentd.common.restart"), restart_daemon_agent_path(@fluentd), method: :put, class: "btn #{@fluentd.agent.running? ? "btn-warning" : "disabled btn-default"}"
-    .col-xs-6
-      .panel.panel-default
-        .panel-heading
           .pull-right
-            = link_to t('terms.edit'), edit_daemon_path, class: "btn btn-default"
-            = link_to t('terms.destroy'), "#", class: "btn btn-danger", data: { toggle: "modal", target: "#setting-destroy-modal" }
-          %h4= t('fluentd.common.fluentd_info')
-          .modal.fade{id: "setting-destroy-modal"}
-            .modal-dialog
-              .modal-content
-                .modal-header
-                  %button.close{"data-dismiss" => "modal"}
-                    = raw "&times;"
-                  %h4.modal-title
-                    = t('fluentd.common.destroy_fluentd_setting', brand: fluentd_ui_brand)
-                .modal-body
-                  = raw t('fluentd.common.destroy_fluentd_setting_warning', brand: fluentd_ui_brand)
-                .modal-footer
-                  = form_tag(daemon_path(@fluentd), method: :delete) do
-                    %button.btn.btn-default{"data-dismiss" => "modal"}
-                      Close
-                    = submit_tag t('terms.destroy'), class: "btn btn-danger"
+            = link_to icon("fa-file-text-o") << t("fluentd.common.view_log"), log_daemon_path, method: :get, class: "btn btn-primary"
+            = link_to icon("fa-file-text-o") << t("fluentd.common.view_error_log"), errors_daemon_path, method: :get, class: "btn btn-danger"
 
-        %table.table.table-hover
-          %tbody
-            %tr
-              %th= @fluentd.class.human_attribute_name(:pid_file)
-              %td= @fluentd.agent.pid_file
-            %tr
-              %th= @fluentd.class.human_attribute_name(:log_file)
-              %td= @fluentd.agent.log_file
-            %tr
-              %th= @fluentd.class.human_attribute_name(:config_file)
-              %td= @fluentd.agent.config_file
   .row
     .col-xs-12
-      = preserve do # partial containing <pre>, so shouldn't break indent
-        = render partial: "shared/vue/fluent_log", locals: { fluentd: @fluentd }
+      .text-center
+        = link_to icon("fa-plus") << t("fluentd.common.add_new_source"), source_daemon_setting_path, method: :get, class: "btn btn-lg btn-success"
+  = render "shared/vue/setting"
+  #vue-setting.row
+    %h2
+      = t('.listeners')
+      -#.pull-right
+        -#%button.btn.btn-default.btn-sm{"v-on" => "click: update", "v-if" => "!loading"}= icon('fa-refresh')
+        -#%button.btn.btn-default.btn-sm{"v-if" => "loading"}= icon('fa-spin fa-refresh')
+    .row.fluentd-setting-inout
+      %div{"v-if" => "loaded && sections.listeners.length == 0"}
+        %p.empty= t('.setting_empty')
+      %div{"v-repeat" => "sections.listeners", "v-component" => "section"}
+
+    .current-settings
+      %h2
+        = t('.current')
+        -#.pull-right
+          -#%button.btn.btn-default.btn-sm{"v-on" => "click: update", "v-if" => "!loading"}= icon('fa-refresh')
+          -#%button.btn.btn-default.btn-sm{"v-if" => "loading"}= icon('fa-spin fa-refresh')
+      .row
+        .input
+          %div{"v-if" => "loaded && sections.sources.length == 0"}
+            %p.empty= t('.setting_empty')
+          %div{"v-repeat" => "sections.sources", "v-component" => "section"}
+
+  -#.row
+  -#  .col-xs-12
+  -#    = preserve do # partial containing <pre>, so shouldn't break indent
+  -#      = render partial: "shared/vue/fluent_log", locals: { fluentd: @fluentd }
 
 - else
   = render partial: "shared/initial_setup"

@@ -127,10 +127,10 @@ GEM
       fluentd
     fluent-plugin-rss (0.0.1)
       fluentd
-    fluent-plugin-sql-enchanced (0.5.3)
+    fluent-plugin-sql (0.4.4)
       activerecord (~> 4.2)
       activerecord-import (~> 0.7)
-      fluentd (>= 0.12.7, < 2)
+      fluentd (>= 0.10.58, < 2)
     fluent-plugin-twitter (0.5.4)
       fluentd (>= 0.10.46)
       tweetstream (>= 2.6.1)
@@ -342,7 +342,7 @@ DEPENDENCIES
   fluent-plugin-mixpanel-enchanced
   fluent-plugin-retag
   fluent-plugin-rss
-  fluent-plugin-sql-enchanced
+  fluent-plugin-sql
   fluent-plugin-twitter
   fluentd-ui!
   font-awesome-rails

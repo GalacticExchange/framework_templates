@@ -113,16 +113,16 @@ module SettingsHelper
 
   def listeners_types_with_icons
     {
-        # forward: {
-        #     icon: 'fa-mail-forward',
-        #     edit_link: edit_daemon_setting_in_forward_path,
-        #     create_link: daemon_setting_in_forward_path,
-        #     preview_fields: [
-        #         :bind,
-        #         :port
-        #     ],
-        #     default_params: Fluentd::Setting::InForward.default_element
-        # },
+        forward: {
+            icon: 'fa-mail-forward',
+            edit_link: edit_daemon_setting_in_forward_path,
+            create_link: daemon_setting_in_forward_path,
+            preview_fields: [
+                :bind,
+                :port
+            ],
+            default_params: Fluentd::Setting::InForward.default_element
+        },
         http: {
             icon: 'fa-globe',
             edit_link: edit_daemon_setting_in_http_path,
@@ -133,16 +133,16 @@ module SettingsHelper
             ],
             default_params: Fluentd::Setting::InHttp.default_element
         },
-        http_mixpanel: {
-            icon: 'fa-bar-chart',
-            edit_link: edit_daemon_setting_in_mixpanel_path,
-            create_link: daemon_setting_in_mixpanel_path,
-            preview_fields: [
-                :bind,
-                :port
-            ],
-            default_params: Fluentd::Setting::InMixpanel.default_element
-        }
+        # http_mixpanel: {
+        #     icon: 'fa-bar-chart',
+        #     edit_link: edit_daemon_setting_in_mixpanel_path,
+        #     create_link: daemon_setting_in_mixpanel_path,
+        #     preview_fields: [
+        #         :bind,
+        #         :port
+        #     ],
+        #     default_params: Fluentd::Setting::InMixpanel.default_element
+        # }
     }
   end
 end

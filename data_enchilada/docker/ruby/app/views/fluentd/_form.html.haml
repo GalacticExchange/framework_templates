@@ -3,10 +3,11 @@
     .alert.alert-danger= e
 
   = form_for(:fluentd, url: url, method: method) do |f|
-    .form-group
-      = f.label :variant
-      = f.hidden_field :variant
-      = @fluentd.variant
+    -#.form-group
+      -#= f.label :variant
+      -#= f.hidden_field :variant
+      -#= @fluentd.variant
+    = f.hidden_field :variant
     .form-group
       = f.label :pid_file
       - if @fluentd.td_agent?
