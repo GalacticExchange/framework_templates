@@ -14,7 +14,7 @@ gem 'therubyracer', '0.12.2', platforms: :ruby
 gem "pry"
 gem "pry-rails"
 gem 'mysql2', '~> 0.3.21'
-gem 'fluent-plugin-sql-enchanced'
+gem 'fluent-plugin-sql'
 gem 'fluent-plugin-twitter'
 gem 'fluent-plugin-kafka-enchanced'
 gem 'font-awesome-rails'
