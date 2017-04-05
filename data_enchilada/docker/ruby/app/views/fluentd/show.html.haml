@@ -27,27 +27,28 @@
         = link_to icon("fa-plus") << t("fluentd.common.add_new_source"), source_daemon_setting_path, method: :get, class: "btn btn-lg btn-success"
   = render "shared/vue/setting"
   #vue-setting.row
-    %h2
-      = t('.listeners')
-      -#.pull-right
-        -#%button.btn.btn-default.btn-sm{"v-on" => "click: update", "v-if" => "!loading"}= icon('fa-refresh')
-        -#%button.btn.btn-default.btn-sm{"v-if" => "loading"}= icon('fa-spin fa-refresh')
-    .row.fluentd-setting-inout
-      %div{"v-if" => "loaded && sections.listeners.length == 0"}
-        %p.empty= t('.setting_empty')
-      %div{"v-repeat" => "sections.listeners", "v-component" => "section"}
-
-    .current-settings
+    .col-xs-12
       %h2
-        = t('.current')
+        = t('.listeners')
         -#.pull-right
           -#%button.btn.btn-default.btn-sm{"v-on" => "click: update", "v-if" => "!loading"}= icon('fa-refresh')
           -#%button.btn.btn-default.btn-sm{"v-if" => "loading"}= icon('fa-spin fa-refresh')
-      .row
-        .input
-          %div{"v-if" => "loaded && sections.sources.length == 0"}
-            %p.empty= t('.setting_empty')
-          %div{"v-repeat" => "sections.sources", "v-component" => "section"}
+      .row.fluentd-setting-inout
+        %div{"v-if" => "loaded && sections.listeners.length == 0"}
+          %p.empty= t('.setting_empty')
+        %div{"v-repeat" => "sections.listeners", "v-component" => "section"}
+
+      .current-settings
+        %h2
+          = t('.current')
+          -#.pull-right
+            -#%button.btn.btn-default.btn-sm{"v-on" => "click: update", "v-if" => "!loading"}= icon('fa-refresh')
+            -#%button.btn.btn-default.btn-sm{"v-if" => "loading"}= icon('fa-spin fa-refresh')
+        .row
+          .input
+            %div{"v-if" => "loaded && sections.sources.length == 0"}
+              %p.empty= t('.setting_empty')
+            %div{"v-repeat" => "sections.sources", "v-component" => "section"}
 
   -#.row
   -#  .col-xs-12

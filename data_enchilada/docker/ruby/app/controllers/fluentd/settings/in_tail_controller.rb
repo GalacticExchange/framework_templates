@@ -46,7 +46,7 @@ class Fluentd::Settings::InTailController < ApplicationController
 
     @fluentd.agent.config_append @setting.to_conf
     @fluentd.agent.restart if @fluentd.agent.running?
-    redirect_to daemon_setting_path(@fluentd)
+    redirect_to source_daemon_setting_path(@fluentd)
   end
 
   private

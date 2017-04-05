@@ -62,6 +62,7 @@ en:
     auto_reload: "Auto Reload(every %{seconds} seconds)"
     next: Next
     prev: Prev
+    beginning: From beginning
     advanced_setting: Advanced Settings
     notice_restart_for_config_edit: "NOTICE: running %{brand} will restart after update config"
     lines: Lines
