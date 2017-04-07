@@ -22,7 +22,7 @@ public class Connector {
 
     private final static int DEFAULT_PORT = 8083;
     private final static String SCHEMA_TEMPLATE_FILENAME = "/etc/data_enchilada/templates/template-schema.properties";
-    private static int currentPort = DEFAULT_PORT;
+    public static int currentPort = DEFAULT_PORT;
 
     private String schemaPropertiesFilePath;
     private int restPort;
@@ -30,10 +30,14 @@ public class Connector {
     private String topic;
 
     private Connector(String topic) throws Exception {
-        this.schemaPropertiesFilePath = Paths.get(DataEnchilada.configDir, topic + "-connect-avro.properties").toString();
+        this.schemaPropertiesFilePath = generateSchemaPropertiesFilePath(topic);
         this.restPort = selectPort();
         this.topic = topic;
         checkSchemaConfig();
+    }
+
+    public static String generateSchemaPropertiesFilePath(String topic) {
+        return Paths.get(DataEnchilada.configDir, topic + "-connect-avro.properties").toString();
     }
 
     public String getTopic() {
