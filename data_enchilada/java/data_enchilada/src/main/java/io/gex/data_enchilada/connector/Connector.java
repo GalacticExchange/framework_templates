@@ -76,7 +76,7 @@ public class Connector {
     private static int selectPort() throws Exception {
         logger.trace("Entered " + DataEnchiladaHelper.getMethodName());
         int port = currentPort;
-        while (port != DEFAULT_PORT + 404) {
+        while (port != 65535) {
             try {
                 ServerSocket serverSocket = new ServerSocket(port);
                 serverSocket.close();

@@ -74,13 +74,10 @@ public class DataEnchilada {
         }
         try {
             List<String> topics = KafkaClient.getTopics();
-            logger.info("TEST TEST "+ topics.size());
             //select last used rest port
             for (String topic : topics) {
                 File file = new File(Connector.generateSchemaPropertiesFilePath(topic));
-                logger.info(file.getAbsolutePath());
                 if (file.exists()) {
-                    logger.info("exists");
                     Properties properties = new Properties();
                     try (FileInputStream fileStream = new FileInputStream(file);
                          InputStreamReader inputStreamReader = new InputStreamReader(fileStream, StandardCharsets.UTF_8)) {
