@@ -20,13 +20,14 @@
           #advanced-setting.collapse
             - @setting.advanced_options.each do |key|
               = field(f, key)
-            .form-group
-              = f.check_box :all_tables
-              = f.label :all_tables
-              %br
-              %small.form-text.text-muted
-                = @setting.fields_descriptions[:all_tables]
-    .col-xs-8#tables-column{style: ("display: none" if @setting.all_tables)}
+            -#.form-group
+            -#  = f.check_box :all_tables
+            -#  = f.label :all_tables
+            -#  %br
+            -#  %small.form-text.text-muted
+            -#    = @setting.fields_descriptions[:all_tables]
+    -#.col-xs-8#tables-column{style: ("display: none" if @setting.all_tables)}
+    .col-xs-8#tables-column
       %h2= t('.tracked_tables')
       .col-xs-12.well
         %button#add-table.btn.btn-avg.btn-success= t('.add_table')
@@ -66,11 +67,11 @@
     updateTables();
   });
 
-  $('#fluentd_setting_in_sql_all_tables').change(function() {
-    var text_blocks = $('.table-block');
-    if ($(this).prop('checked')) {
-      $('#tables-column').hide();
-    } else if (!$(this).prop('checked')) {
-      $('#tables-column').show();
-    }
-  });
+  // $('#fluentd_setting_in_sql_all_tables').change(function() {
+  //   var text_blocks = $('.table-block');
+  //   if ($(this).prop('checked')) {
+  //     $('#tables-column').hide();
+  //   } else if (!$(this).prop('checked')) {
+  //     $('#tables-column').show();
+  //   }
+  // });

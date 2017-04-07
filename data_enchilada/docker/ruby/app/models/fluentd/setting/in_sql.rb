@@ -16,7 +16,7 @@ class Fluentd
           :select_limit,
           :state_file,
           :table,
-          :all_tables
+          # :all_tables
       ].freeze
 
       attr_accessor(*KEYS)
@@ -64,7 +64,7 @@ class Fluentd
             select_interval: 'interval to run SQLs (optional)',
             select_limit: 'LIMIT of number of rows for each SQL (optional)',
             state_file: '* path to a file to store last rows (required)',
-            all_tables: 'reads all tables instead of configuring each tables in &lt;table&gt; sections (optional)',
+            # all_tables: 'reads all tables instead of configuring each tables in &lt;table&gt; sections (optional)',
             table: {
                 tag: 'tag name of events (optional; default value is table name)',
                 table: '* RDBM table name',
@@ -121,31 +121,31 @@ class Fluentd
         config << "#{indent}type #{plugin_type_name}\n"
         self.class.const_get(:KEYS).each do |key|
           next if key == :table
-          next if key == :all_tables
+          # next if key == :all_tables
           config << indent
           config << conf(key)
           config << "\n"
         end
         tables = send(:table).reject{|t| t.values.join('') == ''} rescue []
-        if tables.present? && all_tables != '1'
-          tables.each do |tab|
-            config << "\n"
-            config << indent
-            config << "<table>\n"
-            tab.each do |key, value|
-              config << indent
-              config << indent
-              config << "#{key} #{value}"
-              config << "\n"
-            end
-            config << indent
-            config << "</table>\n"
-          end
-        else
-          config << indent
-          config << 'all_tables'
+        # if tables.present? #&& all_tables != '1'
+        tables.each do |tab|
           config << "\n"
+          config << indent
+          config << "<table>\n"
+          tab.each do |key, value|
+            config << indent
+            config << indent
+            config << "#{key} #{value}"
+            config << "\n"
+          end
+          config << indent
+          config << "</table>\n"
         end
+        # else
+        #   config << indent
+        #   config << 'all_tables'
+        #   config << "\n"
+        # end
 
 
         config << "</source>\n"
@@ -168,8 +168,8 @@ class Fluentd
               to_table = false
               @tables << table
               table = {}
-            when 'all_tables'
-              @setting[:all_tables] = true
+            # when 'all_tables'
+            #   @setting[:all_tables] = true
             else
               param = str.split(' ')
               if to_table
