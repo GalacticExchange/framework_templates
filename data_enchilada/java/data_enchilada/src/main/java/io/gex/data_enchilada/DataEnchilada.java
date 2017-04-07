@@ -77,7 +77,7 @@ public class DataEnchilada {
             //select last used rest port
             for (String topic : topics) {
                 File file = new File(Connector.generateSchemaPropertiesFilePath(topic));
-                if (!file.exists()) {
+                if (file.exists()) {
                     Properties properties = new Properties();
                     try (FileInputStream fileStream = new FileInputStream(file);
                          InputStreamReader inputStreamReader = new InputStreamReader(fileStream, StandardCharsets.UTF_8)) {
