@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resource :setting, only: [:show, :edit, :update] do
         get "source_and_output"
         get "source"
+        get "connector"
 
         resource :in_tail, only: [:show], module: :settings, controller: :in_tail do
           post "after_file_choose"

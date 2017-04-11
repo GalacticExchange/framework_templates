@@ -94,6 +94,14 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
+      multi_json
+    elasticsearch-transport (5.0.4)
+      faraday
+      multi_json
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
       cookiejar (!= 0.3.1)
@@ -113,6 +121,10 @@ GEM
     excon (0.55.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    fluent-plugin-elasticsearch (1.9.3)
+      elasticsearch
+      excon
+      fluentd (>= 0.10.43)
     fluent-plugin-kafka-enchanced (0.5.35)
       avro-builder
       avro_turf_enchanced
@@ -338,6 +350,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  fluent-plugin-elasticsearch
   fluent-plugin-kafka-enchanced
   fluent-plugin-mixpanel-enchanced
   fluent-plugin-retag

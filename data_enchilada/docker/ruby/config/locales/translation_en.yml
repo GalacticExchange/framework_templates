@@ -163,6 +163,8 @@ en:
         current: Current settings
         listeners: Listeners
         setting_empty: No active sources
+      connector:
+        page_title: Connectors
       show:
         page_title: Config File
         in_out_head: In/Out setting

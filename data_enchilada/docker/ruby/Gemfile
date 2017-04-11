@@ -22,6 +22,7 @@ gem 'fluent-plugin-retag'
 gem 'fluent-plugin-rss'
 gem 'redis', '~>3.2'
 gem 'fluent-plugin-mixpanel-enchanced'
+gem 'fluent-plugin-elasticsearch'
 
 
 group :development do

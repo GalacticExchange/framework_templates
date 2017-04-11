@@ -25,7 +25,9 @@ class Fluentd::SettingsController < ApplicationController
   end
 
   def source
+  end
 
+  def connector
   end
 
   def source_and_output
