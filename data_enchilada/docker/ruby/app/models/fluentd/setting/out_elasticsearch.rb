@@ -1,6 +1,6 @@
 class Fluentd
   module Setting
-    class OutElasticsearch
+    class OutElasticsearch < Output
       include Common
 
       KEYS = [

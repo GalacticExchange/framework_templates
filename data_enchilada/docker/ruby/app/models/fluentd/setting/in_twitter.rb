@@ -1,22 +1,25 @@
 class Fluentd
   module Setting
-    class InTwitter
-      include ActiveModel::Model
+    class InTwitter < Source
+
+      relate_to_details
+
+      # include ActiveModel::Model
       include Common
 
-      KEYS = [
-          :consumer_key,
-          :consumer_secret,
-          :oauth_token,
-          :oauth_token_secret,
-          :tag,
-          :timeline,
-          :keyword,
-          :follow_ids,
-          :locations,
-          :lang,
-          :output_format
-      ].freeze
+      # KEYS = [
+      #     :consumer_key,
+      #     :consumer_secret,
+      #     :access_token,
+      #     :access_token_secret,
+      #     :tag,
+      #     :timeline,
+      #     :keyword,
+      #     :follow_ids,
+      #     :locations,
+      #     :lang,
+      #     :output_format
+      # ].freeze
 
       attr_accessor(*KEYS)
 
