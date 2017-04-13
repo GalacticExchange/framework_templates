@@ -1,7 +1,7 @@
 class Fluentd
   module Setting
     module Detail
-      class TwitterDetail
+      class InTwitterDetail < ActiveRecord::Base
         belongs_to :source
       end
     end
