@@ -23,12 +23,12 @@ class Fluentd
       #
       # attr_accessor(*KEYS)
       #
-      # validates :consumer_key, presence: true
-      # validates :consumer_secret, presence: true
-      # validates :oauth_token, presence: true
-      # validates :oauth_token_secret, presence: true
-      # validates :tag, presence: true
-      # validates :timeline, presence: true
+      validates :consumer_key, presence: true
+      validates :consumer_secret, presence: true
+      validates :oauth_token, presence: true
+      validates :oauth_token_secret, presence: true
+      validates :tag, presence: true
+      validates :timeline, presence: true
 
       def self.initial_params
         {

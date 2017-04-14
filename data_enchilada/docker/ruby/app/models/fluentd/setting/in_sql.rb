@@ -1,26 +1,27 @@
 class Fluentd
   module Setting
-    class InSql
-      include ActiveModel::Model
+    class InSql < Source
+
+      relate_to_details
+      # include ActiveModel::Model
       include Common
 
-      KEYS = [
-          :host,
-          :port,
-          :database,
-          :adapter,
-          :username,
-          :password,
-          :tag_prefix,
-          :select_interval,
-          :select_limit,
-          :state_file,
-          :table,
-          # :all_tables
-      ].freeze
-
-      attr_accessor(*KEYS)
-      attr_accessor(:fields_descriptions)
+      # KEYS = [
+      #     :host,
+      #     :port,
+      #     :database,
+      #     :adapter,
+      #     :username,
+      #     :password,
+      #     :tag_prefix,
+      #     :select_interval,
+      #     :select_limit,
+      #     :state_file,
+      #     :table,
+      #     # :all_tables
+      # ].freeze
+      #
+      # attr_accessor(*KEYS)
 
       validates :host, presence: true
       validates :database, presence: true

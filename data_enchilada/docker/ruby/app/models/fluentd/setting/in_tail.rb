@@ -1,10 +1,13 @@
 class Fluentd
   module Setting
-    class InTail
+    class InTail < Source
+
+      relate_to_details
+
       MULTI_LINE_MAX_FORMAT_COUNT = 20
 
-      include ActiveModel::Model
-      attr_accessor :path, :tag, :format, :regexp, :time_format, :rotate_wait, :pos_file, :read_from_head, :refresh_interval
+      # include ActiveModel::Model
+      # attr_accessor :path, :tag, :format, :regexp, :time_format, :rotate_wait, :pos_file, :read_from_head, :refresh_interval
 
       validates :path, presence: true
       validates :tag, presence: true

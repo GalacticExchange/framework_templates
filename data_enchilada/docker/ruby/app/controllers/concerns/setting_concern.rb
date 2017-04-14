@@ -9,7 +9,8 @@ module SettingConcern
 
 
   def show
-    @setting = target_class.new(initial_params)
+    binding.pry
+    @setting = target_class.new.details.new(initial_params)
     render "shared/settings/show"
   end
 

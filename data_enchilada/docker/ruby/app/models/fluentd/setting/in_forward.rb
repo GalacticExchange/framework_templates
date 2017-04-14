@@ -1,14 +1,16 @@
 class Fluentd
   module Setting
-    class InForward
-      include ActiveModel::Model
+    class InForward < Source
+
+      relate_to_details
+      # include ActiveModel::Model
       include Common
 
-      KEYS = [
-        :bind, :port, :linger_timeout, :chunk_size_limit, :chunk_size_warn_limit, :log_level
-      ].freeze
-
-      attr_accessor(*KEYS)
+      # KEYS = [
+      #   :bind, :port, :linger_timeout, :chunk_size_limit, :chunk_size_warn_limit, :log_level
+      # ].freeze
+      #
+      # attr_accessor(*KEYS)
 
       validates :bind, presence: true
       validates :port, presence: true

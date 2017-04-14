@@ -3,14 +3,14 @@ class Fluentd
     class OutElasticsearch < Output
       include Common
 
-      KEYS = [
-        :match,
-        :host, :port, :index_name, :type_name,
-        :logstash_format, :logstash_prefix, :logstash_dateformat, :utc_index,
-        :hosts, :request_timeout, :include_tag_key
-      ].freeze
-
-      attr_accessor(*KEYS)
+      # KEYS = [
+      #   :match,
+      #   :host, :port, :index_name, :type_name,
+      #   :logstash_format, :logstash_prefix, :logstash_dateformat, :utc_index,
+      #   :hosts, :request_timeout, :include_tag_key
+      # ].freeze
+      #
+      # attr_accessor(*KEYS)
 
       booleans :logstash_format, :utc_index, :include_tag_key
 
