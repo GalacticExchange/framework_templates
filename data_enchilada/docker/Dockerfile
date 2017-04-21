@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 ENV RAILS_ENV production
 ENV RACK_ENV production
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-ENV PATH $JAVA_HOME/bin:$PATH
+ENV PATH /usr/local/flume/bin:$JAVA_HOME/bin:$PATH
 ENV TERM xterm
 
 RUN apt-get update
