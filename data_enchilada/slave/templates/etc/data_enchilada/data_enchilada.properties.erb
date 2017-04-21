@@ -6,7 +6,8 @@ hdfs_url=hdfs://<%= assert_nnil(@_master_ip) %>:8020
 hive_metastore_uris=thrift://<%= assert_nnil(@_master_ip) %>:9083
 hive_database=data_enchilada
 topics_dir=/data_enchilada
-elasticsearch_url=http://<%= assert_nnil(@_slave_ip) %>:9200
+elasticsearch_host=<%= assert_nnil(@_slave_ip) %>
+elasticsearch_port=9200
 elasticsearch_cluster_name=<%= assert_nnil(@cluster["name"]) %>
 cassandra_host=<%= assert_nnil(@_slave_ip) %>
 cassandra_port=9042

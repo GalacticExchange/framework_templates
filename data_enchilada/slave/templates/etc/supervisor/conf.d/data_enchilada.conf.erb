@@ -7,7 +7,7 @@ stdout_logfile=/var/log/data_enchilada.out.log
 
 [program:data_enchilada_web_server]
 directory=/var/www/apps/data_enchilada
-command=sudo rails s -p 80 -e production --binding=0.0.0.0
+command=sudo rails s -p 80 -e development --binding=0.0.0.0
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/data_enchilada_web_server.err.log
