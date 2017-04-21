@@ -7,7 +7,7 @@ hive_metastore_uris=thrift://<%= assert_nnil(@_master_ip) %>:9083
 hive_database=data_enchilada
 topics_dir=/data_enchilada
 elasticsearch_url=http://<%= assert_nnil(@_slave_ip) %>:9200
-elasticsearch_cluster_name=<%= assert_nnil(@cluster["name"]) %>
+elasticsearch_cluster_name=name
 cassandra_host=<%= assert_nnil(@_slave_ip) %>
 cassandra_port=9042
 cassandra_username=cassandra

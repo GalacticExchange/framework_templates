@@ -12,6 +12,6 @@ dexecs_parallel(
 
 
 
-#COPY download/log4j.properties /etc/hadoop/conf/log4j.properties
+#COPY download/log4j.properties.erb /etc/hadoop/conf/log4j.properties.erb
 
 
