@@ -65,10 +65,10 @@ RUN chmod 777 /usr/local/flume/logs/flume.log
 
 # Nutch
 RUN mkdir -p /usr/local/nutch
-RUN wget apache.volia.net/nutch/1.13/apache-nutch-1.13-bin.tar.gz
-RUN tar -xvzf apache-nutch-1.13-bin.tar.gz
-RUN mv apache-nutch-1.13/* /usr/local/nutch
-RUN rm apache-nutch-1.13-bin.tar.gz
+RUN wget http://51.0.0.101:80/nutch/nutch-1.13-patch.tar.gz
+RUN tar -xvzf nutch-1.13-patch.tar.gz
+RUN mv local/* /usr/local/nutch
+RUN rm nutch-1.13-patch.tar.gz
 
 # Provision
 RUN mkdir -p /opt/gex/config
