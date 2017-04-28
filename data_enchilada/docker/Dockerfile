@@ -17,34 +17,33 @@ RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 RUN apt-get install -q -y oracle-java8-installer oracle-java8-set-default
 
-RUN apt-get install -y gawk git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 \
-    libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs ruby-dev nodejs libmysqlclient-dev
+RUN apt-get install -y gawk git-core curl
+
+RUN apt-get update --fix-missing
+
+RUN apt-get install -y zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev
+# libsqlite3-dev  sqlite3
+RUN apt-get install -y libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs libmysqlclient-dev
+# ruby-dev
+
+
+# copy Ruby app
+RUN mkdir -p /var/www/apps/data_enchilada
+RUN mkdir -p /root/.data_enchilada
+RUN chmod 777 /root/.data_enchilada
+ADD ruby /var/www/apps/data_enchilada
+#RUN cd /var/www/apps/data_enchilada && bundle install
 
 
 # rvm, ruby
-RUN \curl -sSL https://get.rvm.io | bash -s stable
-RUN source /etc/profile.d/rvm.sh
+#RUN \curl -sSL https://get.rvm.io | bash -s stable
 
-# add to /root/.bash_rc ??
-
-RUN rvm install ruby-2.3.3
-
-RUN rvm use --default 2.3.3
-
-RUN gem install bundle bundler rake mysql2
-
-RUN cd /var/www/apps/data_enchilada && bundle install
-
-# fluent plugin
-RUN rvm wrapper ruby-2.3.3 boot fluentd
-
-# check
-#which fluentd
-#/usr/local/rvm/gems/ruby-2.3.3/bin/fluentd
-#boot_fluentd --version
+ADD files/ruby.sh /tmp/ruby.sh
+RUN chmod +x /tmp/ruby.sh
+RUN bash -c "/tmp/ruby.sh"
 
 # rails app
-COPY files/app.sh /etc/app.sh
+ADD files/app.sh /etc/app.sh
 
 RUN chmod +x /etc/app.sh
 
@@ -69,13 +68,6 @@ RUN adduser gex sudo
 # Copy java client
 #RUN mkdir -p /usr/lib/data_enchilada
 #COPY data_enchilada.jar /usr/lib/data_enchilada/
-
-# Ruby app
-RUN mkdir -p /var/www/apps/data_enchilada
-RUN mkdir -p /root/.data_enchilada
-RUN chmod 777 /root/.data_enchilada
-ADD ruby /var/www/apps/data_enchilada
-RUN cd /var/www/apps/data_enchilada && bundle install
 
 # Flume
 RUN mkdir -p /usr/local/flume/logs
