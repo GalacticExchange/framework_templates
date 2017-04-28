@@ -18,10 +18,37 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-sel
 RUN apt-get install -q -y oracle-java8-installer oracle-java8-set-default
 
 RUN apt-get install -y gawk git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 \
-    libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs ruby2.3 ruby-dev nodejs libmysqlclient-dev
+    libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs ruby-dev nodejs libmysqlclient-dev
 
-RUN gem install bundler rake mysql2
 
+# rvm, ruby
+RUN \curl -sSL https://get.rvm.io | bash -s stable
+RUN source /etc/profile.d/rvm.sh
+
+# add to /root/.bash_rc ??
+
+RUN rvm install ruby-2.3.3
+
+RUN rvm use --default 2.3.3
+
+RUN gem install bundle bundler rake mysql2
+
+RUN cd /var/www/apps/data_enchilada && bundle install
+
+# fluent plugin
+RUN rvm wrapper ruby-2.3.3 boot fluentd
+
+# check
+#which fluentd
+#/usr/local/rvm/gems/ruby-2.3.3/bin/fluentd
+#boot_fluentd --version
+
+# rails app
+COPY files/app.sh /etc/app.sh
+
+RUN chmod +x /etc/app.sh
+
+#
 RUN apt-get install -y redis-server
 
 # Create user and password
@@ -70,9 +97,12 @@ RUN tar -xvzf nutch-1.13-patch.tar.gz
 RUN mv local/* /usr/local/nutch
 RUN rm nutch-1.13-patch.tar.gz
 
+
+
 # Provision
 RUN mkdir -p /opt/gex/config
 ADD files/configure.sh /opt/gex/configure.sh
 RUN chmod +x /opt/gex/configure.sh
 RUN mkdir -p /templates/create
+
 
