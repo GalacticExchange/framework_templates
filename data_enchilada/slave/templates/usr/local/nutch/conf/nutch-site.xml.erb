@@ -1171,7 +1171,7 @@
 
 <property>
   <name>plugin.includes</name>
-  <value>protocol-http|urlfilter-regex|parse-(html|tika)|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+  <value>protocol-selenium|urlfilter-regex|raw-html|parse-html|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
   <description>Regular expression naming plugin directory names to
   include.  Any plugin not matching this expression is excluded.
   In any case you need at least include the nutch-extensionpoints plugin. By
@@ -2089,6 +2089,40 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
   1: Load all stylesheet
   2: Block all stylesheet
   Currently this option exist for - 'firefox' </description>
+</property>
+
+<property>
+  <name>libselenium.page.load.delay</name>
+  <value>3</value>
+  <description>
+    The delay in seconds to use when loading a page with lib-selenium. This
+    setting is used by protocol-selenium and protocol-interactiveselenium
+    since they depending on lib-selenium for fetching.
+  </description>
+</property>
+
+<property>
+  <name>selenium.take.screenshot</name>
+  <value>false</value>
+  <description>
+    Boolean property determining whether the protocol-selenium
+    WebDriver should capture a screenshot of the URL. If set to
+    true remember to define the 'selenium.screenshot.location'
+    property as this determines the location screenshots should be
+    persisted to on HDFS. If that property is not set, screenshots
+    are simply discarded.
+  </description>
+</property>
+
+<property>
+  <name>selenium.screenshot.location</name>
+  <value></value>
+  <description>
+    The location on disk where a URL screenshot should be saved
+    to if the 'selenium.take.screenshot' proerty is set to true.
+    By default this is null, in this case screenshots held in memory
+    are simply discarded.
+  </description>
 </property>
 
 <!-- protocol-interactiveselenium configuration -->

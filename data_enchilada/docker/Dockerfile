@@ -64,10 +64,23 @@ RUN touch /usr/local/flume/logs/flume.log
 RUN chmod 777 /usr/local/flume/logs/flume.log
 
 # Nutch
+RUN apt-get install -y libasound2 libasound2-data libcanberra0 libdbusmenu-glib4 libdbusmenu-gtk4 libogg0 \
+    libtdb1 libvorbis0a libvorbisfile3 sound-theme-freedesktop xul-ext-ubufox fonts-lyx libasound2-plugins \
+    alsa-utils libcanberra-gtk0 libcanberra-pulse
+RUN wget https://sourceforge.net/projects/ubuntuzilla/files/mozilla/apt/pool/main/f/firefox-mozilla-build/firefox-mozilla-build_38.0.5-0ubuntu1_amd64.deb/download -O firefox
+RUN dpkg -i firefox
+RUN rm firefox
+COPY ./keyboard /etc/default/keyboard
+RUN apt-get install -y xorg synaptic xvfb gtk2-engines-pixbuf xfonts-cyrillic xfonts-100dpi \
+    xfonts-75dpi xfonts-base xfonts-scalable freeglut3-dev dbus-x11 openbox x11-xserver-utils libxrender1 cabextract
+# error while loading shared libraries: libGL.so.1: cannot open shared object file: No such file or directory FIX
+#RUN apt-get --reinstall install libgl1-mesa-glx
+#RUN ldconfig
+# end of FIX
 RUN mkdir -p /usr/local/nutch
 RUN wget http://51.0.0.101:80/nutch/nutch-1.13-patch.tar.gz
 RUN tar -xvzf nutch-1.13-patch.tar.gz
-RUN mv local/* /usr/local/nutch
+RUN mv nutch/* /usr/local/nutch
 RUN rm nutch-1.13-patch.tar.gz
 
 # Provision
