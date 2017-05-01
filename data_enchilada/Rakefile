@@ -63,7 +63,7 @@ task :run_local do
 
   use_container "data_enchilada"
 
-  dcreate_container "data_enchilada", "/etc/bootstrap.sh", [['/projects/dataenchilada-app', '/var/www/apps/data_enchilada']], "127.0.0.1", "data_enchilada", "8.8.8.8"
+  dcreate_container "data_enchilada", "/etc/bootstrap.sh", [['/projects/dataenchilada-app', '/var/www/apps/data_enchilada']], "127.0.0.1", "data_enchilada", "8.8.8.8",host_records:[],options:"-p 55140:5140/udp",recreate:false
 
   create_init_lock
 
