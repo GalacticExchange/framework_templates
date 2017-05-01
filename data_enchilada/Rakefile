@@ -29,6 +29,7 @@ task :run do
       {
           "_master_ip" => "10.1.0.11",
           "_slave_ip" => "10.1.0.11",
+          "cluster" => {"name" => "elasticsearch"}
       })
 
   use_container "data_enchilada"
@@ -54,12 +55,13 @@ end
 desc "Run local container"
 task :run_local do
 
-  #puts `docker import docker/data_enchilada.tar.gz data_enchilada`
   init_vars(
       {
           "_master_ip" => "10.1.0.11",
           "_slave_ip" => "10.1.0.11",
-      })
+          "cluster" => {"name" => "elasticsearch"}
+          }
+      )
 
   use_container "data_enchilada"
 
