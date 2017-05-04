@@ -6,4 +6,4 @@ dexec "cp etc/hadoop/conf/hdfs-site.xml /etc/impala/conf/hdfs-site.xml"
 
 dexec "cp /etc/hive/conf/hive-site.xml /etc/impala/conf/hive-site.xml"
 
-dexec "chmod 777 /etc/init.d/elasticsearch"
+#dexec "chmod 777 /etc/init.d/elasticsearch"
