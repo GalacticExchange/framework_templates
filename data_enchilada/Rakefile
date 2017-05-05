@@ -29,6 +29,7 @@ task :run do
       {
           "_master_ip" => "10.1.0.11",
           "_slave_ip" => "10.1.0.11",
+          "cluster" => {"name" => "elasticsearch"}
       })
 
   use_container "data_enchilada"
@@ -54,16 +55,17 @@ end
 desc "Run local container"
 task :run_local do
 
-  #puts `docker import docker/data_enchilada.tar.gz data_enchilada`
   init_vars(
       {
           "_master_ip" => "10.1.0.11",
           "_slave_ip" => "10.1.0.11",
-      })
+          "cluster" => {"name" => "elasticsearch"}
+          }
+      )
 
   use_container "data_enchilada"
 
-  dcreate_container "data_enchilada", "/etc/bootstrap.sh", [['/projects/dataenchilada-app', '/var/www/apps/data_enchilada']], "127.0.0.1", "data_enchilada", "8.8.8.8"
+  dcreate_container "data_enchilada", "/etc/bootstrap.sh", [['/projects/dataenchilada-app', '/var/www/apps/data_enchilada']], "127.0.0.1", "data_enchilada", "8.8.8.8",host_records:[],options:"-p 55140:5140/udp",recreate:false
 
   create_init_lock
 
