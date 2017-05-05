@@ -83,6 +83,17 @@ RUN tar -xvzf nutch-1.13-patch.tar.gz
 RUN mv nutch/* /usr/local/nutch
 RUN rm nutch-1.13-patch.tar.gz
 
+# Nifi
+RUN mkdir -p /usr/local/nifi
+RUN wget apache.ip-connect.vn.ua/nifi/1.1.2/nifi-1.1.2-bin.tar.gz
+RUN tar -xvzf nifi-1.1.2-bin.tar.gz
+RUN mv nifi-1.1.2/* /usr/local/nifi
+RUN wget http://51.0.0.101:80/nifi/nifi-corenlp-nar-1.0.nar
+RUN mv nifi-corenlp-nar-1.0.nar /usr/local/nifi/lib
+RUN rm nifi-1.1.2-bin.tar.gz && rm -rf nifi-1.1.2
+RUN cd /usr/local/nifi; git clone --depth 1 https://github.com/EvGe22/corenlp_nifi
+RUN gem install nifi_sdk_ruby
+
 # Provision
 RUN mkdir -p /opt/gex/config
 ADD files/configure.sh /opt/gex/configure.sh
