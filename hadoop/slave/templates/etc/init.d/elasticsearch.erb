@@ -134,7 +134,7 @@ case "$1" in
 
 #TODO: this fix is made for missing .kibana index
 curl -XPOST 'localhost:9200/_cluster/reroute' -d \
-'{ "commands" : [ {"allocate" : {"index" : ".kibana", "shard" : "0", "node" : "<%= assert_nnil(@_node_name) %>", "allow_primary" : true}}]}' | true
+'{ "commands" : [ { "allocate_empty_primary" : { "index" : ".kibana", "shard" : "0", "node" : "<%= assert_nnil(@_node_name) %>", "accept_data_loss": true } } ]}' | true
 
     exit $return
     ;;
