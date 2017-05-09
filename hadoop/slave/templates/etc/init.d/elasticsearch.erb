@@ -133,7 +133,7 @@ case "$1" in
     log_end_msg $return
 
 #TODO: this fix is made for missing .kibana index
-(sleep 5; curl -XPOST 'localhost:9200/_cluster/reroute' -d \
+(sleep 10; curl -XPOST 'localhost:9200/_cluster/reroute' -d \
 '{ "commands" : [ { "allocate_empty_primary" : { "index" : ".kibana", "shard" : "0", "node" : "<%= assert_nnil(@_node_name) %>", "accept_data_loss": true } } ]}'\
  | true) &>/dev/null
 
