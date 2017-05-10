@@ -65,12 +65,11 @@ start() {
 
 #TODO: this fix is made for missing .kibana index
 OUTPUT=$(curl -HEAD 'localhost:9200/.kibana?pretty')
-if  [[ $OUTPUT == *"mappings"* ]] ;
-then
-  echo "reroute .kibana index"
+case $OUTPUT in *"mappings"*)
+echo "reroute .kibana index"
   curl -XPOST 'localhost:9200/_cluster/reroute' -d \
   '{ "commands" : [ {"allocate" : {"index" : ".kibana", "shard" : "0", "node" : "<%= assert_nnil(@_node_name) %>", "allow_primary" : true}}]}'
-fi
+esac
 
 
   return 0
