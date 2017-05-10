@@ -64,6 +64,7 @@ start() {
   emit "$name started"
 
 #TODO: this fix is made for missing .kibana index
+sleep 5
 OUTPUT=$(curl -HEAD 'localhost:9200/.kibana?pretty')
 case $OUTPUT in *"mappings"*)
 echo "reroute .kibana index"
