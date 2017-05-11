@@ -42,6 +42,9 @@ ADD files/ruby.sh /tmp/ruby.sh
 RUN chmod +x /tmp/ruby.sh
 RUN bash -c "/tmp/ruby.sh"
 
+RUN echo 'source /etc/profile.d/rvm.sh' >> /root/.bashrc
+
+
 # rails app
 ADD files/app.sh /etc/app.sh
 
