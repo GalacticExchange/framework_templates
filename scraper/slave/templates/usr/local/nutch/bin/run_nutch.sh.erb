@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+if test -e "crawldb"; then
+    rm -rf crawldb
+fi
+
+./crawl -i seed crawldb <%=assert_nnil(@scrap_num_rounds)%>

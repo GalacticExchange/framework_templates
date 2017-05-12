@@ -12,3 +12,6 @@ target/
 #ruby
 /data_enchilada/docker/ruby/log/
 /data_enchilada/docker/ruby/tmp/
+
+#nutch
+/scraper/docker/nutch/

@@ -821,7 +821,7 @@
 
 <property>
   <name>fetcher.threads.per.queue</name>
-  <value>1</value>
+  <value>10</value>
   <description>This number is the maximum number of threads that
     should be allowed to access a queue at one time. Setting it to
     a value > 1 will cause the Crawl-Delay value from robots.txt to
@@ -970,7 +970,7 @@
 
 <property>
   <name>fetcher.maxNum.threads</name>
-  <value>25</value>
+  <value>50</value>
   <description>Max number of fetch threads allowed when using fetcher.bandwidth.target. Defaults to fetcher.threads.fetch if unspecified or
   set to a value lower than it. </description>
 </property>
@@ -1171,7 +1171,7 @@
 
 <property>
   <name>plugin.includes</name>
-  <value>protocol-selenium|urlfilter-regex|raw-html|parse-html|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+  <value>protocol-selenium|urlfilter-regex|article-html|parse-html|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
   <description>Regular expression naming plugin directory names to
   include.  Any plugin not matching this expression is excluded.
   In any case you need at least include the nutch-extensionpoints plugin. By
@@ -1849,7 +1849,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>elastic.index</name>
-  <value>nutch</value>
+  <value><%= assert_nnil(@elastic_index_name) %></value>
   <description>Default index to send documents to.</description>
 </property>
 
@@ -1990,7 +1990,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>selenium.driver</name>
-  <value>firefox</value>
+  <value>phantomjs</value>
   <description>
     A String value representing the flavour of Selenium
     WebDriver() to use. Currently the following options
