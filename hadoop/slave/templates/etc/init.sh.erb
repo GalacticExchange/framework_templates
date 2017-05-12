@@ -44,8 +44,19 @@ echo "Spark worker" >> /tmp/INIT_LOG
 
 /usr/lib/spark/sbin/start-slave.sh &
 
+
+echo "Kibana" >> /tmp/INIT_LOG
+
 chmod 0755 /etc/init.d/kibana
 service kibana start
+
+echo "Neo4j" >> /tmp/INIT_LOG
+
+/usr/bin/neo4j start
+
+echo "Nifi" >> /tmp/INIT_LOG
+
+/usr/local/nifi/bin/nifi.sh start
 
 # ENTERPRISE service impala-server start
 # ENTERPRISE service solr-server start
