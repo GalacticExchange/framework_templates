@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+sudo service ssh start
+sudo service supervisor start
+
+# Nutch
+sudo /usr/bin/Xvfb :11 -screen 0 1024x768x24 &
+export DISPLAY=:11
