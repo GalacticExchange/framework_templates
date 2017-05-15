@@ -5,6 +5,7 @@ data = {
     "scrap_urls" => { description: "URLs for scrapping (please separate with ,)", default_value: "", mandatory: 1, editable: 1},
     "scrap_domains" => { description: "Domains for scrapping urls (Needs for not to scrap external websites)", default_value: "", mandatory: 1, editable: 1},
     "scrap_num_rounds" => { description: "The number of rounds to scrap", default_value: "2", mandatory: 1, editable: 1},
+    "scrap_interval" => { description: "Time between scrapping in seconds (1m - minute, 1h - hour)", default_value: "1h", mandatory: 1, editable: 1},
 }
 
 config_params(data)

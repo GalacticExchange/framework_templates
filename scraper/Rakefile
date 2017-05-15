@@ -33,6 +33,7 @@ task :run do
           "scrap_urls" => "https://ru.tsn.ua/ukrayina,http://news.liga.net/all/politics/",
           "scrap_domains" => "ru.tsn.ua,news.liga.net",
           "scrap_num_rounds" => "2",
+          "scrap_interval" => "10m"
       })
 
   use_container "scraper"
