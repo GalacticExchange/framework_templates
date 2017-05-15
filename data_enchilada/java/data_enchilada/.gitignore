@@ -1,7 +1,0 @@
-#common
-target/
-*.iml
-.idea/
-.project
-*~
-

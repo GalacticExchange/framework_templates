@@ -15,12 +15,6 @@ task :build do
   exec cmd
 end
 
-desc "Build java client"
-task :build_java do
-  #"sudo apt-get install -y maven" before run
-  exec "cd java/data_enchilada; mvn clean install; cp target/data_enchilada-0.0.1-jar-with-dependencies.jar ../../docker/data_enchilada.jar"
-end
-
 desc "Run container"
 task :run do
 
