@@ -52,6 +52,7 @@ service kibana start
 
 echo "Neo4j" >> /tmp/INIT_LOG
 
+mkdir -p /var/run/neo4j
 /usr/bin/neo4j start
 
 echo "Nifi" >> /tmp/INIT_LOG
