@@ -2,13 +2,8 @@
 
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
-while true
-do
-  if test -e "/usr/local/nutch/crawldb"; then
-      rm -rf /usr/local/nutch/crawldb
-  fi
+if test -e "/usr/local/nutch/crawldb"; then
+    rm -rf /usr/local/nutch/crawldb
+fi
 
-  ./usr/local/nutch/bin/crawl -i /usr/local/nutch/seed /usr/local/nutch/crawldb <%=assert_nnil(@scrap_num_rounds)%>
-
-  sleep <%=assert_nnil(@scrap_interval)%>
-done
+/./usr/local/nutch/bin/crawl -i /usr/local/nutch/seed /usr/local/nutch/crawldb <%=assert_nnil(@scrap["num_rounds"])%>

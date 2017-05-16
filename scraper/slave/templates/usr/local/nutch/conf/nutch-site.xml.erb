@@ -215,7 +215,7 @@
 
 <property>
   <name>http.content.limit</name>
-  <value>65536</value>
+  <value>-1</value>
   <description>The length limit for downloaded content using the http://
   protocol, in bytes. If this value is nonnegative (>=0), content longer
   than it will be truncated; otherwise, no truncation at all. Do not
@@ -549,7 +549,7 @@
 
 <property>
   <name>db.ignore.external.links</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, outlinks leading from a page to external hosts or domain
   will be ignored. This is an effective way to limit the crawl to include
   only initially injected hosts, without creating complex URLFilters.
@@ -1171,7 +1171,7 @@
 
 <property>
   <name>plugin.includes</name>
-  <value>protocol-selenium|urlfilter-regex|article-html|parse-html|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+  <value>protocol-selenium|parse-sitemap|urlfilter-regex|article-html|parse-html|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
   <description>Regular expression naming plugin directory names to
   include.  Any plugin not matching this expression is excluded.
   In any case you need at least include the nutch-extensionpoints plugin. By
@@ -1849,7 +1849,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>elastic.index</name>
-  <value><%= assert_nnil(@elastic_index_name) %></value>
+  <value><%= assert_nnil(@elastic["index_name"]) %></value>
   <description>Default index to send documents to.</description>
 </property>
 

@@ -35,7 +35,5 @@
 # skip URLs with slash-delimited segment that repeats 3+ times, to break loops
 -.*(/[^/]+)/[^/]+\1/[^/]+\1/
 
-# regex url filter custom
-<% @scrap_domains.split(",").each do |t| %>
-+^http(s)?://<%=t.gsub('.', '\.')%>.*$
-<% end %>
+# accept anything else
++.
