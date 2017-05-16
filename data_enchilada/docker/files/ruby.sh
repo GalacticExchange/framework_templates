@@ -2,7 +2,6 @@
 
 \curl -sSL https://get.rvm.io | bash -s stable
 
-#
 source /etc/profile.d/rvm.sh
 
 # add to /root/.bash_rc ??
@@ -22,5 +21,4 @@ rvm wrapper ruby-2.3.3 boot fluentd
 #boot_fluentd --version
 
 
-##
 cd /var/www/apps/data_enchilada && bundle install

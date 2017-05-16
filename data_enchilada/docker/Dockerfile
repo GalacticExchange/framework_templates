@@ -51,8 +51,6 @@ RUN chmod 777 /root/.data_enchilada
 #ADD ruby /var/www/apps/data_enchilada
 RUN cd /var/www/apps; git clone --depth 1 https://github.com/kladkogex/dataenchilada_app data_enchilada
 
-# rvm, ruby
-#RUN \curl -sSL https://get.rvm.io | bash -s stable
 ADD files/ruby.sh /tmp/ruby.sh
 RUN chmod +x /tmp/ruby.sh
 RUN bash -c "/tmp/ruby.sh"
