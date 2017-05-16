@@ -119,10 +119,10 @@ RUN chmod 777 /usr/local/flume/logs/flume.log
 #RUN gem install nifi_sdk_ruby
 
 # Provision
-RUN mkdir -p /opt/gex/config
-ADD files/configure.sh /opt/gex/configure.sh
-RUN chmod +x /opt/gex/configure.sh
-RUN mkdir -p /templates/create
+#RUN mkdir -p /opt/gex/config
+#ADD files/configure.sh /opt/gex/configure.sh
+#RUN chmod +x /opt/gex/configure.sh
+#RUN mkdir -p /templates/create
 
 
 
