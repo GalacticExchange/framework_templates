@@ -38,14 +38,20 @@ RUN cd /var/www/apps/data_enchilada && bundle install
 
 # Flume
 RUN mkdir -p /usr/local/flume/logs
-RUN wget http://51.0.0.101:80/flume_1_7_0_kafka_es/my-flume-1.7.0-for-docker.tar.gz
-RUN tar -xvzf my-flume-1.7.0-for-docker.tar.gz
+RUN wget http://51.0.0.101:80/flume_1_7_0_kafka_es/my-flume-1.7.0-for-docker_10_05_2017.tar.gz
+RUN tar -xvzf my-flume-1.7.0-for-docker_10_05_2017.tar.gz
 RUN mv my-flume-1.7.0-for-docker/* /usr/local/flume
-RUN wget http://51.0.0.101:80/flume_1_7_0_kafka_es/kudu/kudu-producer.jar
-RUN wget http://51.0.0.101:80/flume_1_7_0_kafka_es/kudu/kudu-flume-sink-1.3.0.jar
+RUN wget http://51.0.0.101:80/kudu/kudu-producer.jar
+RUN wget http://51.0.0.101:80/kudu/kudu-flume-sink-1.3.0.jar
 RUN mv kudu-producer.jar /usr/local/flume/lib
 RUN mv kudu-flume-sink-1.3.0.jar /usr/local/flume/lib
-RUN rm my-flume-1.7.0-for-docker.tar.gz && rm -rf /usr/local/flume/conf/
+RUN rm my-flume-1.7.0-for-docker_10_05_2017.tar.gz && rm -rf /usr/local/flume/conf/
 RUN touch /usr/local/flume/logs/flume.log
 RUN chmod 777 /usr/local/flume/logs/flume.log
+
+# Provision
+RUN mkdir -p /opt/gex/config
+ADD files/configure.sh /opt/gex/configure.sh
+RUN chmod +x /opt/gex/configure.sh
+RUN mkdir -p /templates/create
 
