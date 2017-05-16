@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+NEO4J_BIN=/usr/share/neo4j/bin
+SCRIPT_NAME="$(basename "$0")"
+SCRIPT_PATH=""${NEO4J_BIN}"/"${SCRIPT_NAME}""
+
+[ -r /etc/default/neo4j ] && . /etc/default/neo4j
+if [ ! -z "$@" ] &&  ([ "$@" == "console" ] || [ "$@" == "start" ] || [ "$@" == "restart" ]); then
+  IP=$(ip addr show eth1 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+  sed -i "s/^dbms.connectors.default_advertised_address=.*/dbms.connectors.default_advertised_address=$IP/" /etc/neo4j/neo4j.conf
+fi
+NEO4J_HOME="${NEO4J_HOME:-/var/lib/neo4j}" NEO4J_CONF="${NEO4J_CONF:-/etc/neo4j}" exec "${SCRIPT_PATH}" "$@"

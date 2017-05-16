@@ -116,6 +116,7 @@ echo "Schema Registry Start" >> /tmp/INIT_LOG
 
 echo "Neo4j" >> /tmp/INIT_LOG
 
+chmod 0755 /usr/bin/neo4j
 mkdir -p /var/run/neo4j
 /usr/bin/neo4j start
 
