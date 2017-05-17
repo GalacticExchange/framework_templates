@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+
+development:
+  <<: *default
+  database: enchilada
+  username: enchilada
+  password: Galactic1
+  host: 10.1.0.11
+  port: 3306
+
+test:
+  <<: *default
+  database: enchilada
+
+production:
+  <<: *default
+  database: enchilada
+  username: enchilada
+  password: Galactic1
+  host: 10.1.0.11
+  port: 3306

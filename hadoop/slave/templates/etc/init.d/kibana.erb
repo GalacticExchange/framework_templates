@@ -64,7 +64,30 @@ start() {
   emit "$name started"
 
 #TODO: this fix is made for missing .kibana index
-sleep 7
+throw() {
+echo $1
+exit 5
+}
+
+retries=10
+interval=5
+
+n=0
+while [ $n != $retries ]
+do
+if [ $(curl localhost:9200) ]; then
+echo 'Elasticsearch ready!'
+break;
+fi
+echo "Elasticsearch check #$n"
+n=$(( n+1 ))
+sleep $interval
+done
+
+if [ $n -eq $retries ]; then
+throw "Elastic search retries amount exceeded"
+
+fi
 OUTPUT=$(curl -HEAD 'localhost:9200/_cat/shards?h=index,prirep,state')
 TRIM=$(echo $OUTPUT | sed -e 's/^[ \t]*//')
 case $TRIM in *".kibana p UNASSIGNED"*)
