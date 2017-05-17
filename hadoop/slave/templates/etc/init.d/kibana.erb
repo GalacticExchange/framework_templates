@@ -75,7 +75,7 @@ interval=5
 n=0
 while [ $n != $retries ]
 do
-if [ $(curl localhost:9200) ]; then
+if [ ! -z "$(curl localhost:9200)" ]; then
 echo 'Elasticsearch ready!'
 break;
 fi
@@ -85,7 +85,7 @@ sleep $interval
 done
 
 if [ $n -eq $retries ]; then
-throw "Elastic search retries amount exceeded"
+throw "Elasticsearch retries amount exceeded"
 
 fi
 OUTPUT=$(curl -HEAD 'localhost:9200/_cat/shards?h=index,prirep,state')
