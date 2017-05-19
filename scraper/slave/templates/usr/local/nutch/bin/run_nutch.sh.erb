@@ -2,8 +2,4 @@
 
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
-if test -e "/usr/local/nutch/crawldb"; then
-    rm -rf /usr/local/nutch/crawldb
-fi
-
 /./usr/local/nutch/bin/crawl -i /usr/local/nutch/seed /usr/local/nutch/crawldb <%=assert_nnil(@scrap["num_rounds"])%>

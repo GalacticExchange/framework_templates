@@ -164,7 +164,7 @@
 
 <property>
   <name>http.agent.version</name>
-  <value>Nutch-1.13-SNAPSHOT</value>
+  <value>Nutch-1.13</value>
   <description>A version string to advertise in the User-Agent
    header.</description>
 </property>
@@ -559,7 +559,7 @@
 
 <property>
   <name>db.ignore.external.links.mode</name>
-  <value>byHost</value>
+  <value>byDomain</value>
   <description>Alternative value is byDomain</description>
 </property>
 
@@ -573,7 +573,7 @@
 
 <property>
   <name>db.injector.overwrite</name>
-  <value>false</value>
+  <value>true</value>
   <description>Whether existing records in the CrawlDB will be overwritten
   by injected records.
   </description>
@@ -758,7 +758,7 @@
 
 <property>
   <name>partition.url.mode</name>
-  <value>byHost</value>
+  <value>byDomain</value>
   <description>Determines how to partition URLs. Default value is 'byHost',
   also takes 'byDomain' or 'byIP'.
   </description>
@@ -833,7 +833,7 @@
 
 <property>
   <name>fetcher.queue.mode</name>
-  <value>byHost</value>
+  <value>byDomain</value>
   <description>Determines how to put URLs into queues. Default value is 'byHost',
   also takes 'byDomain' or 'byIP'.
   </description>
@@ -954,7 +954,7 @@
 
 <property>
   <name>fetcher.follow.outlinks.ignore.external</name>
-  <value>true</value>
+  <value>false</value>
   <description>Whether to ignore or follow external links. Set db.ignore.external.links to false and this to true to store outlinks
   in the output but not follow them. If db.ignore.external.links is true this directive is ignored.
   </description>
@@ -1171,7 +1171,7 @@
 
 <property>
   <name>plugin.includes</name>
-  <value>protocol-selenium|parse-sitemap|urlfilter-regex|article-html|parse-html|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+  <value>protocol-selenium|parse-sitemap|scoring-depth|urlfilter-regex|article-html|parse-html|index-(basic|anchor)|indexer-elastic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
   <description>Regular expression naming plugin directory names to
   include.  Any plugin not matching this expression is excluded.
   In any case you need at least include the nutch-extensionpoints plugin. By
@@ -1435,7 +1435,7 @@ CAUTION: Set the parser.timeout to -1 or a bigger value than 30, when using this
 
 <property>
   <name>scoring.depth.max</name>
-  <value>1000</value>
+  <value>2</value>
   <description>Max depth value from seed allowed by default.
   Can be overridden on a per-seed basis by specifying "_maxdepth_=VALUE"
   as a seed metadata. This plugin adds a "_depth_" metadatum to the pages
