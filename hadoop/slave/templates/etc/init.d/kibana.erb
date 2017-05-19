@@ -14,37 +14,53 @@
 # Short-Description:
 # Description:       Kibana
 ### END INIT INFO
+
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 export PATH
+
 name=kibana
-program=/usr/share/kibana/bin/kibana
-args=-c\\\ /etc/kibana/kibana.yml
+program=/opt/kibana/bin/kibana
+args=''
 pidfile="/var/run/$name.pid"
+
 [ -r /etc/default/$name ] && . /etc/default/$name
 [ -r /etc/sysconfig/$name ] && . /etc/sysconfig/$name
+
 [ -z "$nice" ] && nice=0
+
 trace() {
   logger -t "/etc/init.d/kibana" "$@"
 }
+
 emit() {
   trace "$@"
   echo "$@"
 }
+
 start() {
+
   # Ensure the log directory is setup correctly.
   [ ! -d "/var/log/kibana/" ] && mkdir "/var/log/kibana/"
   chown "$user":"$group" "/var/log/kibana/"
   chmod 755 "/var/log/kibana/"
+
+
   # Setup any environmental stuff beforehand
+
+
   # Run the program!
+
   chroot --userspec "$user":"$group" "$chroot" sh -c "
+
     cd \"$chdir\"
     exec \"$program\" $args
   " >> /var/log/kibana/kibana.stdout 2>> /var/log/kibana/kibana.stderr &
+
   # Generate the pidfile from here. If we instead made the forked process
   # generate it there will be a race condition between the pidfile writing
   # and a process possibly asking for status.
   echo $! > $pidfile
+
   emit "$name started"
 
 #TODO: this fix is made for missing .kibana index
@@ -76,12 +92,14 @@ OUTPUT=$(curl -HEAD 'localhost:9200/_cat/shards?h=index,prirep,state')
 TRIM=$(echo $OUTPUT | sed -e 's/^[ \t]*//')
 case $TRIM in *".kibana p UNASSIGNED"*)
 echo "reroute .kibana index"
-curl -XPOST 'localhost:9200/_cluster/reroute' -d \
-'{ "commands" : [ { "allocate_empty_primary" : { "index" : ".kibana", "shard" : "0", "node" : "<%= assert_nnil(@_node_name) %>", "accept_data_loss": true } } ]}'
+  curl -XPOST 'localhost:9200/_cluster/reroute' -d \
+  '{ "commands" : [ {"allocate" : {"index" : ".kibana", "shard" : "0", "node" : "<%= assert_nnil(@_node_name) %>", "allow_primary" : true}}]}'
 esac
+
 
   return 0
 }
+
 stop() {
   # Try a few times to kill TERM the program
   if status ; then
@@ -107,6 +125,7 @@ stop() {
     fi
   fi
 }
+
 status() {
   if [ -f "$pidfile" ] ; then
     pid=$(cat "$pidfile")
@@ -124,17 +143,21 @@ status() {
     return 3 # program is not running
   fi
 }
+
 force_stop() {
   if status ; then
     stop
     status && kill -KILL $(cat "$pidfile")
   fi
 }
+
+
 case "$1" in
   force-start|start|stop|force-stop|restart)
     trace "Attempting '$1' on kibana"
     ;;
 esac
+
 case "$1" in
   force-start)
     PRESTART=no
@@ -164,6 +187,7 @@ case "$1" in
     exit $code
     ;;
   restart)
+
     stop && start
     ;;
   *)
@@ -171,4 +195,5 @@ case "$1" in
     exit 3
   ;;
 esac
+
 exit $?
