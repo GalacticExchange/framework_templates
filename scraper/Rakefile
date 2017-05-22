@@ -30,7 +30,7 @@ task :run do
           "_slave_ip" => "10.1.0.16",
           "cluster" => {"name" => ""},
           "elastic" => {"index_name" => "scraper"},
-          "scrap" => {"urls" => "https://www.standardmedia.co.ke/kenya,http://www.nation.co.ke/news-sitemap.xml", "num_rounds" => "2", "interval" => "1h"}
+          "scrap" => {"urls" => "http://www.businessdailyafrica.com/news-sitemap.xml,http://www.nation.co.ke/sitemap-index.xml,http://www.monitor.co.ug/sitemap.xml,http://www.thecitizen.co.tz/news-sitemap.xml", "num_rounds" => "2", "interval" => "1h"}
       })
 
   use_container "scraper"
