@@ -57,7 +57,3 @@ RUN bash -c "/tmp/ruby.sh"
 RUN echo 'source /etc/profile.d/rvm.sh' >> /root/.bashrc
 ADD files/app.sh /etc/app.sh
 RUN chmod +x /etc/app.sh
-
-
-
-
