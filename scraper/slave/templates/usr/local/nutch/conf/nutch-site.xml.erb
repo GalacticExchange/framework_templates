@@ -1829,27 +1829,27 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>elastic.host</name>
-  <value><%= assert_nnil(@elastic["host"]) %></value>
+  <value><%= assert_nnil(@elasticsearch["host"]) %></value>
   <description>Comma-separated list of hostnames to send documents to using
   TransportClient. Either host and port must be defined or cluster.</description>
 </property>
 
 <property>
   <name>elastic.port</name>
-  <value><%= assert_nnil(@elastic["port"]) %></value>
+  <value><%= assert_nnil(@elasticsearch["port"]) %></value>
   <description>The port to connect to using TransportClient.</description>
 </property>
 
 <property>
   <name>elastic.cluster</name>
-  <value><%= assert_nnil(@elastic["cluster_name"]) %></value>
+  <value><%= assert_nnil(@elasticsearch["cluster_name"]) %></value>
   <description>The cluster name to discover. Either host and port must be defined
   or cluster.</description>
 </property>
 
 <property>
   <name>elastic.index</name>
-  <value><%= assert_nnil(@elastic["index_name"]) %></value>
+  <value><%= assert_nnil(@elasticsearch["index_name"]) %></value>
   <description>Default index to send documents to.</description>
 </property>
 
