@@ -1829,20 +1829,20 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>elastic.host</name>
-  <value><%= assert_nnil(@_slave_ip) %></value>
+  <value><%= assert_nnil(@elastic["host"]) %></value>
   <description>Comma-separated list of hostnames to send documents to using
   TransportClient. Either host and port must be defined or cluster.</description>
 </property>
 
 <property>
   <name>elastic.port</name>
-  <value>9300</value>
+  <value><%= assert_nnil(@elastic["port"]) %></value>
   <description>The port to connect to using TransportClient.</description>
 </property>
 
 <property>
   <name>elastic.cluster</name>
-  <value><%= assert_nnil(@cluster["name"]) %></value>
+  <value><%= assert_nnil(@elastic["cluster_name"]) %></value>
   <description>The cluster name to discover. Either host and port must be defined
   or cluster.</description>
 </property>

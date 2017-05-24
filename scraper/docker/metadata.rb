@@ -1,7 +1,8 @@
 data = {
-    "cluster.uid" => { description: "Cluster ID", default_value: "{{cluster.uid}}", mandatory: 1, editable: 0},
-    "cluster.name" => { description: "Cluster name", default_value: "{{cluster.name}}", mandatory: 1, editable: 0},
-    "elastic.index_name" => { description: "Elastic Search index name", default_value: "scraper", mandatory: 1, editable: 1},
+    "elastic.host" => { description: "Elasticsearch host", default_value: "{{slave.ip}}", mandatory: 1, editable: 1},
+    "elastic.port" => { description: "Elasticsearch port (NOT! REST port)", default_value: "9300", mandatory: 1, editable: 1},
+    "elastic.cluster_name" => { description: "Elasticsearch cluster name. Default value for embadded Elasticsearch id the cluster name", default_value: "{{cluster.name}}", mandatory: 1, editable: 1},
+    "elastic.index_name" => { description: "Elasticsearch index name", default_value: "scraper", mandatory: 1, editable: 1},
     "scrap.urls" => { description: "URLs for scrapping (please separate with ,)", default_value: "https://ru.tsn.ua/ukrayina,http://news.liga.net/all/politics/", mandatory: 1, editable: 1},
     "scrap.num_rounds" => { description: "The number of rounds to scrap", default_value: "2", mandatory: 1, editable: 1},
     "scrap.interval" => { description: "Time between scrapping in seconds (1m - minute, 1h - hour)", default_value: "1h", mandatory: 1, editable: 1},
