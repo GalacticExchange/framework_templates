@@ -1,5 +1,5 @@
 data = {
-    "elastic.host" => { description: "Elasticsearch host", default_value: "{{slave.ip}}", mandatory: 1, editable: 1},
+    "elastic.host" => { description: "Elasticsearch host", default_value: "{{_slave_ip}}", mandatory: 1, editable: 1},
     "elastic.port" => { description: "Elasticsearch port (NOT! REST port)", default_value: "9300", mandatory: 1, editable: 1},
     "elastic.cluster_name" => { description: "Elasticsearch cluster name. Default value for embadded Elasticsearch id the cluster name", default_value: "{{cluster.name}}", mandatory: 1, editable: 1},
     "elastic.index_name" => { description: "Elasticsearch index name", default_value: "scraper", mandatory: 1, editable: 1},
