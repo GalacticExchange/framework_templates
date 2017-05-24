@@ -6,6 +6,7 @@ data = {
     "scrap.urls" => { description: "URLs for scrapping (please separate with ,)", default_value: "https://ru.tsn.ua/ukrayina,http://news.liga.net/all/politics/", mandatory: 1, editable: 1},
     "scrap.num_rounds" => { description: "The number of rounds to scrap", default_value: "2", mandatory: 1, editable: 1},
     "scrap.interval" => { description: "Time between scrapping in seconds (1m - minute, 1h - hour)", default_value: "1h", mandatory: 1, editable: 1},
+    "scrap.extract_article" => { description: "Extract articles from pages", default_value: "false", mandatory: 1, editable: 1},
 }
 
 config_params(data)

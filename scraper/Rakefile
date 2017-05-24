@@ -4,7 +4,7 @@ require_relative "../../vagrant/base/ruby_scripts/common"
 
 desc "Build container"
 task :build do
- commands = [
+  commands = [
       'cd docker; docker build -t scraper . ',
       'docker rm -f scraper; docker create --name scraper scraper',
       'docker cp ../slave/templates/. scraper:/templates/create/.',
@@ -29,12 +29,13 @@ task :run do
           "_master_ip" => "10.1.0.16",
           "_slave_ip" => "10.1.0.16",
           "elasticsearch" => {"host" => "10.1.0.16", "port" => "9300", "index_name" => "scraper", "cluster_name" => ""},
-          "scrap" => {"urls" => "http://www.businessdailyafrica.com/news-sitemap.xml,http://www.nation.co.ke/sitemap-index.xml,http://www.monitor.co.ug/sitemap.xml,http://www.thecitizen.co.tz/news-sitemap.xml", "num_rounds" => "2", "interval" => "1h"}
+          "scrap" => {"urls" => "http://www.businessdailyafrica.com/news-sitemap.xml", "num_rounds" => "2", "interval" => "1h",
+                      "extract_article" => "false"}
       })
 
   use_container "scraper"
 
-  dcreate_container "scraper", "/etc/bootstrap.sh", [], "127.0.0.1", "scraper", "8.8.8.8", host_records:[], options:"-p 8080:8080/tcp", recreate:false
+  dcreate_container "scraper", "/etc/bootstrap.sh", [], "127.0.0.1", "scraper", "8.8.8.8", host_records: [], options: "-p 8080:8080/tcp", recreate: false
 
   create_init_lock
 
