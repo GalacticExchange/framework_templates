@@ -1,9 +1,9 @@
 data = {
-    "cluster.uid" => { description: "Cluster ID", default_value: "{{cluster.uid}}", mandatory: 1, editable: 0},
-    "cluster.name" => { description: "Cluster name", default_value: "{{cluster.name}}", mandatory: 1, editable: 0}
-    #"master.host" => { description: "Host of hadoop master node", default_value: "{{master.host}}", mandatory: 1, basic: 1, editable: 0,},
-    #"master.ip" => { description: "IP of Hadoop master node", default_value: "{{master.ip}}", mandatory: 1, basic: 1, editable: 0,},
-    #"slave.ip" => { description: "IP of Hadoop slave node", default_value: "{{slave.ip}}", mandatory: 1, basic: 1, editable: 0,},
+    "elasticsearch.host" => { description: "Elasticsearch host", default_value: "{{elasticsearch.host}}", mandatory: 0, editable: 1},
+    "elasticsearch.port" => { description: "Elasticsearch REST port", default_value: "9200", mandatory: 0, editable: 1},
+    "elasticsearch.cluster_name" => { description: "Elasticsearch cluster name. Default value for embadded Elasticsearch id the cluster name", default_value: "{{cluster.name}}", mandatory: 0, editable: 1},
+    "cassandra.username" => { description: "Cassandra username", default_value: "cassandra", mandatory: 0, editable: 1},
+    "cassandra.password" => { description: "Cassandra password", default_value: "cassandra", mandatory: 0, editable: 1},
 }
 
 config_params(data)

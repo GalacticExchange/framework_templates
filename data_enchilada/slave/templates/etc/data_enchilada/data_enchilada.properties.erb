@@ -1,17 +1,12 @@
-master_ip=<%= assert_nnil(@_master_ip) %>
+elasticsearch_host=<%= assert_nnil(@elasticsearch["host"]) %>
+elasticsearch_port=<%= assert_nnil(@elasticsearch["port"]) %>
+elasticsearch_cluster_name=<%= assert_nnil(@elasticsearch["cluster_name"]) %>
+cassandra_username=<%= assert_nnil(@cassandra["username"]) %>
+cassandra_password=<%= assert_nnil(@cassandra["password"]) %>
+
 kafka=<%= assert_nnil(@_slave_ip) %>:9092
 zookeeper=<%= assert_nnil(@_master_ip) %>:2181
 schemaregistry=http://<%= assert_nnil(@_master_ip) %>:8081
 hdfs_url=hdfs://<%= assert_nnil(@_master_ip) %>:8020
-hive_metastore_uris=thrift://<%= assert_nnil(@_master_ip) %>:9083
-hive_database=data_enchilada
-topics_dir=/data_enchilada
-elasticsearch_host=<%= assert_nnil(@_slave_ip) %>
-elasticsearch_port=9200
-elasticsearch_cluster_name=<%= assert_nnil(@cluster["name"]) %>
 cassandra_host=<%= assert_nnil(@_slave_ip) %>
-cassandra_port=9042
-cassandra_username=cassandra
-cassandra_password=cassandra
 cassandra_keyspace=data_enchilada
-time_field=enchilada_time_with_format
