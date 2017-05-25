@@ -96,7 +96,7 @@ public class SinkElasticsearch implements Sink {
             stringBuilder.append("    \"").append(field.name()).append("\": {\n").append(getType(field)).append("\n    },\n");
         }
         stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length()).append("\n  }\n}");
-        System.out.println(stringBuilder.toString());
+        logger.info(stringBuilder.toString());
         return stringBuilder.toString();
 
     }

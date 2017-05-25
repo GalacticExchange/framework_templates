@@ -4,10 +4,9 @@ import org.apache.avro.Schema;
 
 public enum AvroToElasticsearchDataType {
 
-    // keyword, short, byte, date, binary, integer_range, float_range, long_range, double_range, date_range,
-    // type, object, nested, geo_point, geo_shape, ip, completion, token_count, murmur3
+    // for elastic 2.4.5
 
-    STRING("string", "text"),
+    STRING("string", "string"),
     INT("int", "integer"),
     BOOLEAN("boolean", "boolean"),
     LONG("long", "long"),
