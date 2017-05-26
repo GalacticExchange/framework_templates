@@ -1,7 +1,6 @@
 data = {
     "elasticsearch.host" => { description: "Elasticsearch host", default_value: "{{elasticsearch.host}}", mandatory: 0, editable: 1},
     "elasticsearch.port" => { description: "Elasticsearch REST port", default_value: "9200", mandatory: 0, editable: 1},
-    "elasticsearch.cluster_name" => { description: "Elasticsearch cluster name. Default value for embadded Elasticsearch id the cluster name", default_value: "{{cluster.name}}", mandatory: 0, editable: 1},
     "kafka.host" => { description: "Kafka host", default_value: "{{kafka.host}}", mandatory: 0, editable: 1},
     "kafka.port" => { description: "Kafka port", default_value: "9092", mandatory: 0, editable: 1},
     "zookeeper.host" => { description: "Zookeper host", default_value: "{{zookeeper.host}}", mandatory: 0, editable: 1},
