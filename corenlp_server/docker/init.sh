@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-/sbin/my_init
+cd /opt/corenlp/src
+exec java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer
