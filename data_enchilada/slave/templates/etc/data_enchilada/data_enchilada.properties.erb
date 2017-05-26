@@ -10,8 +10,8 @@ kafka_host=<%= assert_nnil(@kafka["host"]) %>
 kafka_port=<%= assert_nnil(@kafka["port"]) %>
 hdfs_host=<%= assert_nnil(@hdfs["host"]) %>
 hdfs_port=<%= assert_nnil(@hdfs["port"]) %>  #8020
-kudu_master_host=<%= assert_nnil(@kudu["host"]) %>
-kudu_master_port=<%= assert_nnil(@kudu["port"]) %>
+kudu_master_host=<%= assert_nnil(@kudu["master"]["host"]) %>
+kudu_master_port=<%= assert_nnil(@kudu["master"]["port"]) %>
 
 schemaregistry=http://<%= assert_nnil(@_master_ip) %>:8081
 hive_metastore_uris=thrift://<%= assert_nnil(@_master_ip) %>:9083
