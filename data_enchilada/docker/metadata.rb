@@ -9,7 +9,6 @@ data = {
     "cassandra.port" => { description: "Cassandra port", default_value: "9042", mandatory: 0, editable: 1},
     "cassandra.username" => { description: "Cassandra username", default_value: "cassandra", mandatory: 0, editable: 1},
     "cassandra.password" => { description: "Cassandra password", default_value: "cassandra", mandatory: 0, editable: 1},
-    "cassandra.keyspace" => { description: "Cassandra keyspace", default_value: "data_enchilada", mandatory: 0, editable: 1},
     "hdfs.host" => { description: "HDFS host", default_value: "{{hdfs.host}}", mandatory: 0, editable: 1},
     "hdfs.port" => { description: "HDFS port", default_value: "50070", mandatory: 0, editable: 1},
 }
