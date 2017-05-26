@@ -52,12 +52,6 @@
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-core</artifactId>
             <version>3.1.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-handler</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- for elasticsearch 2.4.5-->
@@ -65,23 +59,12 @@
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>2.4.5</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-handler</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
-         <!--<dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.8.7</version>
-        </dependency>-->
     </dependencies>
 
     <build>
@@ -142,13 +125,18 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target  if="${dmg}">
+                            <target if="${dmg}">
                                 <property name="dir" value="target/build"/>
-                                <copy file="src/main/resources/data_enchilada.properties" todir="${dir}/etc/data_enchilada"/>
-                                <copy file="src/main/resources/template-schema.properties" todir="${dir}/etc/data_enchilada/templates"/>
-                                <copy file="src/main/resources/template-hdfs.properties" todir="${dir}/etc/data_enchilada/templates"/>
-                                <copy file="src/main/resources/template-cassandra.properties" todir="${dir}/etc/data_enchilada/templates"/>
-                                <copy file="src/main/resources/template-elasticsearch.properties" todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="src/main/resources/data_enchilada.properties"
+                                      todir="${dir}/etc/data_enchilada"/>
+                                <copy file="src/main/resources/template-schema.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="src/main/resources/template-hdfs.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="src/main/resources/template-cassandra.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="src/main/resources/template-elasticsearch.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
                                 <copy file="target/data_enchilada.jar" todir="${dir}/usr/lib/data_enchilada"/>
                                 <exec executable="/bin/bash">
                                     <arg value="-c"/>
