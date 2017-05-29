@@ -20,11 +20,40 @@ task :run do
 
   puts `docker import docker/data_enchilada.tar.gz data_enchilada`
   init_vars(
-      {
-          "_master_ip" => "10.1.0.11",
-          "_slave_ip" => "10.1.0.11",
-          "cluster" => {"name" => "elasticsearch"}
-      })
+          {
+              "_master_ip" => "10.1.0.11",
+              "_slave_ip" => "10.1.0.11",
+              "elasticsearch" => {
+                  "host" => "10.1.0.11",
+                  "port" => 9200,
+              },
+              'cassandra' => {
+                  "host" => "10.1.0.11",
+                  "port" => 9042,
+                  "username" => "cassandra",
+                  "password" => "cassandra",
+              },
+              "kafka" => {
+                  "host" => "10.1.0.11",
+                  "port" => 9200,
+              },
+              "zookeeper" => {
+                  "host" => "10.1.0.11",
+                  "port" =>  2181,
+              },
+              "hdfs" => {
+                  "host" => "10.1.0.11",
+                  "port" => 50070,
+              },
+              "kudu" => {
+                  "master" => {
+                      "host" => "10.1.0.11",
+                      "port" => 7051,
+                  }
+              }
+          }
+      )
+
 
   use_container "data_enchilada"
 
@@ -53,8 +82,35 @@ task :run_local do
       {
           "_master_ip" => "10.1.0.11",
           "_slave_ip" => "10.1.0.11",
-          "cluster" => {"name" => "elasticsearch"}
+          "elasticsearch" => {
+              "host" => "10.1.0.11",
+              "port" => 9200,
+          },
+          'cassandra' => {
+              "host" => "10.1.0.11",
+              "port" => 9042,
+              "username" => "cassandra",
+              "password" => "cassandra",
+          },
+          "kafka" => {
+              "host" => "10.1.0.11",
+              "port" => 9200,
+          },
+          "zookeeper" => {
+              "host" => "10.1.0.11",
+              "port" =>  2181,
+          },
+          "hdfs" => {
+              "host" => "10.1.0.11",
+              "port" => 50070,
+          },
+          "kudu" => {
+              "master" => {
+                  "host" => "10.1.0.11",
+                  "port" => 7051,
+              }
           }
+      }
       )
 
   use_container "data_enchilada"
