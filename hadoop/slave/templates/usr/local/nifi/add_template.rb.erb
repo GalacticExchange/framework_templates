@@ -1,0 +1,10 @@
+require 'nifi_sdk_ruby'
+
+nifi_client = Nifi.new(:host => 'localhost', :port => '8080')
+nifi_client.set_debug true
+begin
+  nifi_client.upload_template(:path => '/usr/local/nifi/NiFi_CoreNLP.xml')
+rescue => err
+  exit(0)
+end
+hash = nifi_client.create_template_instance(:name => 'NiFi_CoreNLP')

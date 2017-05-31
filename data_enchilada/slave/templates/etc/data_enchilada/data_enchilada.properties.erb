@@ -1,16 +1,18 @@
-master_ip=<%= assert_nnil(@_master_ip) %>
-kafka=<%= assert_nnil(@_slave_ip) %>:9092
-zookeeper=<%= assert_nnil(@_master_ip) %>:2181
-schemaregistry=http://<%= assert_nnil(@_master_ip) %>:8081
-hdfs_url=hdfs://<%= assert_nnil(@_master_ip) %>:8020
-hive_metastore_uris=thrift://<%= assert_nnil(@_master_ip) %>:9083
+elasticsearch_host=<%= @elasticsearch["host"] %>
+elasticsearch_port=<%= @elasticsearch["port"] %>
+cassandra_host=<%= @cassandra["host"] %>
+cassandra_port=<%= @cassandra["port"] %>
+cassandra_username=<%= @cassandra["username"] %>
+cassandra_password=<%= @cassandra["password"] %>
+zookeeper_host=<%= @zookeeper["host"] %>
+zookeeper_port=<%= @zookeeper["port"] %>
+kafka_host=<%= @kafka["host"] %>
+kafka_port=<%= @kafka["port"] %>
+hdfs_host=<%= @hdfs["host"] %>
+hdfs_port=<%= @hdfs["port"] %>  #8020
+kudu_master_host=<%= @kudu["master"]["host"] %>
+kudu_master_port=<%= @kudu["master"]["port"] %>
+
+schemaregistry=http://<%= @_master_ip %>:8081
+hive_metastore_uris=thrift://<%= @_master_ip %>:9083
 hive_database=data_enchilada
-topics_dir=/data_enchilada
-elasticsearch_url=http://<%= assert_nnil(@_slave_ip) %>:9200
-elasticsearch_cluster_name=<%= assert_nnil(@cluster["name"]) %>
-cassandra_host=<%= assert_nnil(@_slave_ip) %>
-cassandra_port=9042
-cassandra_username=cassandra
-cassandra_password=cassandra
-cassandra_keyspace=data_enchilada
-time_field=enchilada_time_with_format

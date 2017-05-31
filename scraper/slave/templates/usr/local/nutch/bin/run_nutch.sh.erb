@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+/./usr/local/nutch/bin/crawl -i /usr/local/nutch/seed /usr/local/nutch/crawldb <%=assert_nnil(@scrap["depth"])%>

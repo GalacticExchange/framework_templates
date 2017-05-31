@@ -1,0 +1,75 @@
+require_relative "../../vagrant/common/config/config"
+require_relative "../../vagrant/base/ruby_scripts/common"
+
+
+desc "Build container"
+task :build do
+ commands = [
+      'cd docker; docker build -t corenlp_server . ',
+      'docker rm -f corenlp_server; docker create --name corenlp_server corenlp_server',
+      'docker export corenlp_server | gzip > corenlp_server.tar.gz',
+  ]
+  cmd = commands.join("; ")
+  puts "#{cmd}"
+  exec cmd
+end
+
+desc "Run container"
+task :run do
+
+  puts `docker import docker/corenlp_server.tar.gz corenlp_server`
+  init_vars(
+      {
+          "_master_ip" => "10.1.0.11",
+          "_slave_ip" => "10.1.0.11",
+          "cluster" => {"name" => "elasticsearch"}
+      })
+
+  use_container "corenlp_server"
+
+  dcreate_container "corenlp_server", "/etc/bootstrap.sh", [], "127.0.0.1", "corenlp_server", "8.8.8.8"
+
+  create_init_lock
+
+  dstart
+
+  dexec "ps aux"
+
+  wait_until_running
+
+  remove_init_lock
+
+  assert_drunning
+
+end
+
+desc "Run local container"
+task :run_local do
+
+  init_vars(
+      {
+          "_master_ip" => "10.1.0.11",
+          "_slave_ip" => "10.1.0.11",
+          "cluster" => {"name" => "elasticsearch"}
+          }
+      )
+
+  use_container "corenlp_server"
+
+  dcreate_container "corenlp_server", "/etc/bootstrap.sh", [], "127.0.0.1", "corenlp_server", "8.8.8.8",host_records:[],options:"-p 9000:9000",recreate:false
+
+  create_init_lock
+
+  dstart
+
+  dexec "ps aux"
+
+  wait_until_running
+
+  remove_init_lock
+
+  assert_drunning
+
+end
+
+

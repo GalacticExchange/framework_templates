@@ -26,6 +26,10 @@ echo "Kafka" >> /tmp/INIT_LOG
 export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
 
+echo "Nifi" >> /tmp/INIT_LOG
+
+/usr/local/nifi/bin/nifi.sh start
+
 echo "Cassandra" >> /tmp/INIT_LOG
 
 service cassandra start
@@ -56,9 +60,8 @@ chmod 0755 /usr/bin/neo4j
 mkdir -p /var/run/neo4j
 /usr/bin/neo4j start
 
-echo "Nifi" >> /tmp/INIT_LOG
-
-/usr/local/nifi/bin/nifi.sh start
+#echo "Nifi template" >> /tmp/INIT_LOG
+#ruby /usr/local/nifi/add_template.rb &
 
 # ENTERPRISE service impala-server start
 # ENTERPRISE service solr-server start
