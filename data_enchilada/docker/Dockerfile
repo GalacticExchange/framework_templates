@@ -43,12 +43,10 @@ RUN chmod 777 /usr/local/flume/logs/flume.log
 # Ruby
 RUN apt-get install -y gawk git-core redis-server zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev \
 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs libmysqlclient-dev
-# libsqlite3-dev  sqlite3 ruby-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 RUN mkdir -p /var/www/apps
 RUN mkdir -p /root/.data_enchilada
 RUN chmod 777 /root/.data_enchilada
-#ADD ruby /var/www/apps/data_enchilada
 RUN cd /var/www/apps; git clone --depth 1 https://github.com/kladkogex/dataenchilada_app data_enchilada
 
 ADD files/ruby.sh /tmp/ruby.sh
