@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-
-# scripts
-chmod +x /var/www/apps/data_enchilada/scripts/run_fluentd.sh
+source /etc/profile.d/rvm.sh;
