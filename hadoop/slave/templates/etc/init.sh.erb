@@ -27,7 +27,7 @@ export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
 
 echo "Nifi" >> /tmp/INIT_LOG
-
+chmod 0755 /usr/local/nifi/bin/nifi.sh
 /usr/local/nifi/bin/nifi.sh start
 
 echo "Cassandra" >> /tmp/INIT_LOG
