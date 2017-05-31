@@ -1,3 +1,4 @@
+dexec "echo \"export TERM=xterm\" >> /etc/bash.bashrc"
 dexec "service mysql start"
 dexec "mysql -e \"CREATE USER 'enchilada'@'localhost' IDENTIFIED BY 'Galactic1';\""
 dexec "mysql -e \"GRANT ALL PRIVILEGES ON *.* TO 'enchilada'@'localhost';\""
