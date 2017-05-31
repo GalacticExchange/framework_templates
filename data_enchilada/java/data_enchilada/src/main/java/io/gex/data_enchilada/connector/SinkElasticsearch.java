@@ -5,10 +5,9 @@ import org.apache.avro.Schema;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -67,11 +66,10 @@ public class SinkElasticsearch implements Sink {
 
     private void checkSchema() throws Exception {
         logger.trace("Entered " + DataEnchiladaHelper.getMethodName());
-        Client client = null;
+        TransportClient client = null;
         try {
             Settings settings = Settings.builder().put("cluster.name", clusterName).build();
-            client = new PreBuiltTransportClient(settings)
-                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), 9300));
+            client = TransportClient.builder().settings(settings).build().addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), 9300));
             if (!client.admin().indices().prepareExists(index).execute().actionGet().isExists()) {
                 client.admin().indices().prepareCreate(index).get();
             }
@@ -98,7 +96,7 @@ public class SinkElasticsearch implements Sink {
             stringBuilder.append("    \"").append(field.name()).append("\": {\n").append(getType(field)).append("\n    },\n");
         }
         stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length()).append("\n  }\n}");
-        System.out.println(stringBuilder.toString());
+        logger.info(stringBuilder.toString());
         return stringBuilder.toString();
 
     }
