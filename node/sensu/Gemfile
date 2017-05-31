@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+
+bunny
+redis
+docker-api
+net_http_unix
+sys-proctable
+sensu-plugin
+sensu-plugins-docker
