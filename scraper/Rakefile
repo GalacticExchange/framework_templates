@@ -20,6 +20,11 @@ task :build_nutch do
   exec "rm -rf docker/nutch; cd ../../nutch; rm -rf build; rm -rf runtime; ant; cp -R runtime/local ../framework_templates/scraper/docker/nutch"
 end
 
+desc "Build crawl old"
+task :build_crawl_old do
+  exec "rm -rf docker/crawl-old; cd ../../crawl-old; mvn clean install; cp target/crawl-old.jar ../framework_templates/scraper/docker"
+end
+
 desc "Run container"
 task :run do
 

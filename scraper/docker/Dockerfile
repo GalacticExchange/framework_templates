@@ -31,7 +31,8 @@ RUN rm phantomjs-2.1.1-linux-x86_64.tar.bz2
 
 # Install nutch
 ADD nutch /usr/local/nutch
-
+# Install crawl old
+ADD crawl-old.jar /usr/local/crawl_old/
 
 # Provision
 RUN mkdir -p /opt/gex/config
