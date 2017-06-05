@@ -7,6 +7,6 @@ gem 'docker-api'
 gem 'net_http_unix'
 gem 'sys-proctable'
 gem 'sensu-plugin', '~> 1.4'
-gem 'sensu-plugins-docker'
+gem 'sensu-plugins-docker', '1.2.0'
 
 gem 'faraday'

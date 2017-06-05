@@ -1,4 +1,5 @@
 #! /usr/bin/env ruby
+
 #
 #   check-container
 #
@@ -83,6 +84,16 @@ class CheckDockerContainer < Sensu::Plugin::Metric::CLI::Graphite
       #puts "node data: #{node_data}"
       #exit 1
 
+      # healthcheck of each container
+      containers.keys.each do |container_name|
+        next if ['hadoop', 'hue'].include?(container_name)
+
+        # run checks
+        containers[container_name]['services'] = get_healthcheck_container(container_name)
+      end
+
+
+
       # services in hadoop container
       containers['hadoop'] ||= {}
       containers['hadoop']['services'] = {}
@@ -112,12 +123,9 @@ class CheckDockerContainer < Sensu::Plugin::Metric::CLI::Graphite
 
 
 
-
-
       # result
       output containers.to_json.to_s
       ok
-
 
     rescue JSON::ParserError => e
       critical "JSON Error: #{e.inspect}"
@@ -342,6 +350,29 @@ class CheckDockerContainer < Sensu::Plugin::Metric::CLI::Graphite
     rescue => e
       return "error"
     end
+  end
+
+  def run_docker_cmd(container_name, cmd)
+    q = "docker exec #{container_name} #{cmd} 2>&1 "
+
+    #puts "#{q}"
+    output = `#{q}`
+    exit_code = $?.exitstatus
+    #puts "#{output}"
+
+    [output, exit_code==0]
+  end
+
+  def get_healthcheck_container(container_name)
+    #docker exec data_enchilada bash -c 'cd  /opt/gex/goss && goss validate --format json'
+    output, res = run_docker_cmd(container_name, "bash -c 'source /etc/profile.d/rvm.sh; cd  /opt/gex/ && ./healthcheck'")
+
+    return {} if !res
+
+    # parse
+    res_checks = (JSON.parse(output) rescue {})
+
+    res_checks
   end
 
 
