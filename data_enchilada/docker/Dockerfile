@@ -23,6 +23,13 @@ ADD files/configure.sh /opt/gex/configure.sh
 RUN chmod +x /opt/gex/configure.sh
 RUN mkdir -p /templates/create
 
+# Monitoring
+RUN mkdir -p /opt/gex/goss
+RUN curl -fsSL https://goss.rocks/install | sh
+ADD files/healthcheck /opt/gex/healthcheck
+ADD files/goss/goss.yaml /opt/gex/goss/goss.yaml
+
+
 # Create user and password
 RUN useradd -p $(openssl passwd -1 gexborsch4) -m -s /bin/bash gex
 RUN adduser gex sudo
