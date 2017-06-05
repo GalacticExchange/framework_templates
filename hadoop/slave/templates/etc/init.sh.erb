@@ -10,55 +10,67 @@ done
 service ssh start
 
 
-
+<% if @_components.include?('hdfs')%>
 echo "HDFS datanode" >> /tmp/INIT_LOG
-
 service hadoop-hdfs-datanode start
+<% end %>
 
+
+<% if @_components.include?('yarn') %>
 echo "Yarn nodemanager" >> /tmp/INIT_LOG
-
 service hadoop-yarn-nodemanager start
+<% end %>
 
+
+<% if @_components.include?('kafka')%>
 echo "Kafka" >> /tmp/INIT_LOG
-
-#service kafka-server start Cloudera
-
 export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
+<% end %>
 
+
+<% if @_components.include?('nifi') %>
 echo "Nifi" >> /tmp/INIT_LOG
 chmod 0755 /usr/local/nifi/bin/nifi.sh
 /usr/local/nifi/bin/nifi.sh start
+<% end %>
 
+
+<% if @_components.include?('cassandra') %>
 echo "Cassandra" >> /tmp/INIT_LOG
-
 service cassandra start
+<% end %>
+
+
+<% if @_components.include?('elasticsearch') %>
 
 echo "elasticsearch" >> /tmp/INIT_LOG
 chmod 0755 /etc/init.d/elasticsearch
 service elasticsearch start
 
-echo "Hue" >> /tmp/INIT_LOG
-
-service hue start
-
-
-
-echo "Spark worker" >> /tmp/INIT_LOG
-
-/usr/lib/spark/sbin/start-slave.sh &
-
-
 echo "Kibana" >> /tmp/INIT_LOG
-
 chmod 0755 /etc/init.d/kibana
 service kibana start
 
-echo "Neo4j" >> /tmp/INIT_LOG
+<% end %>
 
+
+echo "Hue" >> /tmp/INIT_LOG
+service hue start
+
+
+<% if @_components.include?('spark') %>
+echo "Spark worker" >> /tmp/INIT_LOG
+/usr/lib/spark/sbin/start-slave.sh &
+<% end %>
+
+
+<% if @_components.include?('neo4j') %>
+echo "Neo4j" >> /tmp/INIT_LOG
 chmod 0755 /usr/bin/neo4j
 mkdir -p /var/run/neo4j
 /usr/bin/neo4j start
+<% end %>
 
 #echo "Nifi template" >> /tmp/INIT_LOG
 #ruby /usr/local/nifi/add_template.rb &
