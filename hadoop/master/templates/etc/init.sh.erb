@@ -25,65 +25,80 @@ ip route add 10.0.0.0/8 via <%= @_openvpn_private_ip_address %>
 
 service ssh start
 
-echo "Zookeper" >> /tmp/INIT_LOG
 
+echo "Zookeper" >> /tmp/INIT_LOG
 service zookeeper-server start
 
-echo "MySQL" >> /tmp/INIT_LOG
 
+echo "MySQL" >> /tmp/INIT_LOG
 service mysql start
 
+<% if @_components.include?('hdfs')%>
 echo "NameNode" >> /tmp/INIT_LOG
-
 service hadoop-hdfs-namenode start
+<% end %>
 
+<% if @_components.include?('cassandra') %>
 echo "Cassandra" >> /tmp/INIT_LOG
-
 service cassandra start
+<% end %>
 
+<% if @_components.include?('elasticsearch') %>
 echo "Elastic Search" >> /tmp/INIT_LOG
-
 service elasticsearch start
+<% end %>
 
+
+<% if @_components.include?('yarn') %>
 echo "Resource Manager" >> /tmp/INIT_LOG
-
 service hadoop-yarn-resourcemanager start
+<% end %>
 
+
+<% if @_components.include?('hdfs')%>
 hdfs dfsadmin -safemode leave
+<% end %>
 
 rm -rf  /var/lib/hive/metastore/metastore_db/*.lck
 
+<% if @_components.include?('hdfs') && @_components.include?('hive')%>
 echo "hive metastore" >> /tmp/INIT_LOG
-
 service hive-metastore start
+<% end %>
+
 
 #service kafka-server start
 
+<% if @_components.include?('kafka')%>
 echo "Kafka Start" >> /tmp/INIT_LOG
-
-
-
 export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
+<% end %>
 
 
-
-
+<% if @_components.include?('hdfs')%>
 echo "HTTPFS" >> /tmp/INIT_LOG
-
 service hadoop-httpfs start
+<% end %>
 
+
+<% if @_components.include?('spark') %>
 echo "spark-master" >> /tmp/INIT_LOG
-
  /usr/lib/spark/sbin/start-master.sh &
+<% end %>
 
+
+<% if @_components.include?('spark') %>
 echo "spark-history" >> /tmp/INIT_LOG
-
 service spark-history-server start
+<% end %>
 
+
+<% if @_components.include?('hdfs')%>
 echo "mr history" >> /tmp/INIT_LOG
-
 service hadoop-mapreduce-historyserver start
+<% end %>
+
 
 #echo "yarn proxy" >> /tmp/INIT_LOG
 
@@ -101,24 +116,26 @@ echo "hue" >> /tmp/INIT_LOG
 
 ### service hue start
 
+<% if @_components.include?('hdfs') && @_components.include?('hive')%>
 export HIVE_PORT=10001
-
 echo "hive-server 2" >> /tmp/INIT_LOG
-
 service hive-server2 start
+<% end %>
 
 
-
+<% if @_components.include?('kafka')%>
 echo "Schema Registry Start" >> /tmp/INIT_LOG
-
-
 /usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
+<% end %>
 
+
+<% if @_components.include?('neo4j') %>
 echo "Neo4j" >> /tmp/INIT_LOG
-
 chmod 0755 /usr/bin/neo4j
 mkdir -p /var/run/neo4j
 /usr/bin/neo4j start
+<% end %>
+
 
 #echo "webhcat" >> /tmp/INIT_LOG
 
