@@ -28,6 +28,7 @@ RUN mkdir -p /opt/gex/goss
 RUN curl -fsSL https://goss.rocks/install | sh
 ADD files/healthcheck /opt/gex/healthcheck
 ADD files/goss/goss.yaml /opt/gex/goss/goss.yaml
+RUN chmod +x /opt/gex/healthcheck
 
 
 # Create user and password
