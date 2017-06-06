@@ -25,6 +25,8 @@ ip route add 10.0.0.0/8 via <%= @_openvpn_private_ip_address %>
 
 service ssh start
 
+#todo move to firstrun
+chmod +x /opt/gex/healthcheck
 
 echo "Zookeper" >> /tmp/INIT_LOG
 service zookeeper-server start

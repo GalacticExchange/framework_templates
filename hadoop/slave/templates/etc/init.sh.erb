@@ -9,6 +9,8 @@ done
 
 service ssh start
 
+#todo move to firstrun
+chmod +x /opt/gex/healthcheck
 
 <% if @_components.include?('hdfs')%>
 echo "HDFS datanode" >> /tmp/INIT_LOG

@@ -4,3 +4,6 @@ command:
     stdout:
     - ./usr/local/nutch/bin/run_nutch_cyclic.sh
     timeout: 10000
+    meta:
+      name: nutch
+    title: "Nutch is running"
