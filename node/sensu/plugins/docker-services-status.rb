@@ -37,10 +37,11 @@
 #
 
 require 'sensu-plugin/metric/cli'
-require 'sensu-plugins-docker/client_helpers'
+#require 'sensu-plugins-docker/client_helpers'
 require 'json'
 require 'faraday'
 require 'timeout'
+require 'docker'
 
 #
 # Check Docker Container
@@ -58,21 +59,26 @@ class CheckDockerContainer < Sensu::Plugin::Metric::CLI::Graphite
   #option :tag,
   #       short: '-t TAG',
   #       long: '--tag TAG'
-  def run
-    client = create_docker_client
-    path = "/containers/json"
-    req = Net::HTTP::Get.new path
-    begin
-      response = client.request(req)
-      body = JSON.parse(response.body)
 
+
+  #helpers
+  def get_running_containers
+    Docker::Container.all(all: true)
+  end
+
+  def get_container(container_name)
+    Docker::Container.get(container_name)
+  end
+
+  def run
+    begin
+      d_containers = get_running_containers
       containers = {}
 
-      body.each do |container|
-        container_name = container['Names'].first.gsub('/','')
-        container_state = container['State']
-        container_status = container['Status']
-
+      d_containers.each do |container|
+        container_name = container.info['Names'].first.delete('/')
+        container_state = container.info['State']
+        container_status = container.info['Status']
         containers[container_name] = {state: container_state, status: container_status}
       end
 
@@ -91,7 +97,6 @@ class CheckDockerContainer < Sensu::Plugin::Metric::CLI::Graphite
         # run checks
         containers[container_name]['services'] = get_healthcheck_container(container_name)
       end
-
 
 
       # services in hadoop container

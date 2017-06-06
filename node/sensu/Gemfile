@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-
 gem 'bunny'
 gem 'redis'
 gem 'docker-api'
 gem 'net_http_unix'
 gem 'sys-proctable'
 gem 'sensu-plugin', '~> 1.4'
-gem 'sensu-plugins-docker', '1.2.0'
 
 gem 'faraday'
+gem 'docker-api', '1.33.4'
