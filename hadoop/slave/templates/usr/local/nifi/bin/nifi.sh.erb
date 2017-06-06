@@ -306,10 +306,18 @@ run() {
 
 main() {
     init "$1"
+    <% if @_cluster_type == 'aws' %>
+    if [ ! -z "$@" ] &&  ([ "$@" == "start" ] || [ "$@" == "restart" ]); then
+      IP=$(ip addr show tun0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+      sed -i "s/^nifi.web.http.host=.*/nifi.web.http.host=$IP/" /usr/local/nifi/conf/nifi.properties
+    fi
+    <% else %>
     if [ ! -z "$@" ] &&  ([ "$@" == "start" ] || [ "$@" == "restart" ]); then
       IP=$(ip addr show eth1 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
       sed -i "s/^nifi.web.http.host=.*/nifi.web.http.host=$IP/" /usr/local/nifi/conf/nifi.properties
     fi
+    <% end %>
+
     run "$@"
 }
 

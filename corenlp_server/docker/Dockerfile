@@ -11,7 +11,7 @@ RUN \
   apt-get update && \
   apt-get install -y oracle-java8-installer
 
-RUN apt-get install -y unzip net-tools iputils-ping
+RUN apt-get install -y unzip net-tools iputils-ping ruby
 
 #Provision
 RUN mkdir -p /opt/gex/config /templates/create /var/cache/apt/archives/partial
@@ -35,6 +35,13 @@ RUN mkdir -p /etc/service/corenlp
 ADD corenlp.sh /etc/service/corenlp/run
 ADD init.sh /etc/init.sh
 EXPOSE 9000
+
+# Monitoring
+RUN mkdir -p /opt/gex/goss
+RUN curl -fsSL https://goss.rocks/install | sh
+ADD files/healthcheck /opt/gex/healthcheck
+ADD files/goss/goss.yaml /opt/gex/goss/goss.yaml
+RUN chmod +x /opt/gex/healthcheck
 
 # Clean up
 RUN apt-get install -y iproute && apt-get autoclean

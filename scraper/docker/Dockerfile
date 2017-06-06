@@ -7,7 +7,7 @@ ENV PATH /usr/local/flume/bin:$JAVA_HOME/bin:$PATH
 ENV TERM xterm
 
 RUN apt-get update
-RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano git openvpn
+RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano git openvpn ruby
 
 # Install Java 8
 RUN add-apt-repository ppa:webupd8team/java
@@ -39,4 +39,11 @@ RUN mkdir -p /opt/gex/config
 ADD files/configure.sh /opt/gex/configure.sh
 RUN chmod +x /opt/gex/configure.sh
 RUN mkdir -p /templates/create
+
+# Monitoring
+RUN mkdir -p /opt/gex/goss
+RUN curl -fsSL https://goss.rocks/install | sh
+ADD files/healthcheck /opt/gex/healthcheck
+ADD files/goss/goss.yaml /opt/gex/goss/goss.yaml
+RUN chmod +x /opt/gex/healthcheck
 

@@ -25,6 +25,8 @@ ip route add 10.0.0.0/8 via <%= @_openvpn_private_ip_address %>
 
 service ssh start
 
+#todo move to firstrun
+chmod +x /opt/gex/healthcheck
 
 echo "Zookeper" >> /tmp/INIT_LOG
 service zookeeper-server start
@@ -68,10 +70,9 @@ service hive-metastore start
 
 
 #service kafka-server start
-
+export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 <% if @_components.include?('kafka')%>
 echo "Kafka Start" >> /tmp/INIT_LOG
-export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
 <% end %>
 
@@ -115,9 +116,8 @@ echo "sqoop2" >> /tmp/INIT_LOG
 echo "hue" >> /tmp/INIT_LOG
 
 ### service hue start
-
-<% if @_components.include?('hdfs') && @_components.include?('hive')%>
 export HIVE_PORT=10001
+<% if @_components.include?('hdfs') && @_components.include?('hive')%>
 echo "hive-server 2" >> /tmp/INIT_LOG
 service hive-server2 start
 <% end %>
@@ -128,11 +128,10 @@ echo "Schema Registry Start" >> /tmp/INIT_LOG
 /usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
 <% end %>
 
-
-<% if @_components.include?('neo4j') %>
-echo "Neo4j" >> /tmp/INIT_LOG
 chmod 0755 /usr/bin/neo4j
 mkdir -p /var/run/neo4j
+<% if @_components.include?('neo4j') %>
+echo "Neo4j" >> /tmp/INIT_LOG
 /usr/bin/neo4j start
 <% end %>
 

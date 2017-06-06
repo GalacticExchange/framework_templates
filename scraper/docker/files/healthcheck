@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+output = %x(cd /opt/gex/goss && goss validate --format json)
+
+service_name = "ssh"
+
+#
+res_check = {}
+
+if output.nil? || output==""
+  res_check = nil
+end
+
+#
+data = JSON.parse(output)
+
+#res_check = data
+
+ind = 0
+data['results'].each do |r|
+    ind = ind + 1
+  #
+  name = r['meta']['name'] rescue ''
+  name ||= "check_#{ind}"
+
+  res_check[name] = {
+    "res"=> r['result']==0,
+    "summary" => r['summary-line'],
+    "title" => r['title'],
+  }
+
+
+end
+
+
+#
+res = {service_name=>res_check}
+
+puts res.to_json

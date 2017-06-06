@@ -1,0 +1,9 @@
+command:
+  ps -ef | grep [n]utch | awk '{print $9}':
+    exit-status: 0
+    stdout:
+    - ./usr/local/nutch/bin/run_nutch_cyclic.sh
+    timeout: 10000
+    meta:
+      name: nutch
+    title: "Nutch is running"
