@@ -23,17 +23,16 @@ echo "Yarn nodemanager" >> /tmp/INIT_LOG
 service hadoop-yarn-nodemanager start
 <% end %>
 
-
+export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 <% if @_components.include?('kafka')%>
 echo "Kafka" >> /tmp/INIT_LOG
-export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
 <% end %>
 
 
+chmod 0755 /usr/local/nifi/bin/nifi.sh
 <% if @_components.include?('nifi') %>
 echo "Nifi" >> /tmp/INIT_LOG
-chmod 0755 /usr/local/nifi/bin/nifi.sh
 /usr/local/nifi/bin/nifi.sh start
 <% end %>
 
@@ -43,15 +42,15 @@ echo "Cassandra" >> /tmp/INIT_LOG
 service cassandra start
 <% end %>
 
-
+chmod 0755 /etc/init.d/elasticsearch
+chmod 0755 /etc/init.d/kibana
 <% if @_components.include?('elasticsearch') %>
 
 echo "elasticsearch" >> /tmp/INIT_LOG
-chmod 0755 /etc/init.d/elasticsearch
 service elasticsearch start
 
+
 echo "Kibana" >> /tmp/INIT_LOG
-chmod 0755 /etc/init.d/kibana
 service kibana start
 
 <% end %>
@@ -67,10 +66,10 @@ echo "Spark worker" >> /tmp/INIT_LOG
 <% end %>
 
 
-<% if @_components.include?('neo4j') %>
-echo "Neo4j" >> /tmp/INIT_LOG
 chmod 0755 /usr/bin/neo4j
 mkdir -p /var/run/neo4j
+<% if @_components.include?('neo4j') %>
+echo "Neo4j" >> /tmp/INIT_LOG
 /usr/bin/neo4j start
 <% end %>
 
