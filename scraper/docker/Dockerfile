@@ -7,7 +7,7 @@ ENV PATH /usr/local/flume/bin:$JAVA_HOME/bin:$PATH
 ENV TERM xterm
 
 RUN apt-get update
-RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano git openvpn
+RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano git openvpn ruby
 
 # Install Java 8
 RUN add-apt-repository ppa:webupd8team/java
