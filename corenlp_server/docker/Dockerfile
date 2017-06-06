@@ -11,7 +11,7 @@ RUN \
   apt-get update && \
   apt-get install -y oracle-java8-installer
 
-RUN apt-get install -y unzip net-tools iputils-ping
+RUN apt-get install -y unzip net-tools iputils-ping ruby
 
 #Provision
 RUN mkdir -p /opt/gex/config /templates/create /var/cache/apt/archives/partial
