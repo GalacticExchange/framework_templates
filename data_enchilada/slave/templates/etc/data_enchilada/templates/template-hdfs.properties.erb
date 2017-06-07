@@ -1,0 +1,12 @@
+name={insert_name}
+connector.class=io.confluent.connect.hdfs.HdfsSinkConnector
+tasks.max=1
+topics={insert_topics}
+hdfs.url={insert_hdfs.url}
+flush.size=10000
+rotate.interval.ms=60000
+hive.integration=true
+hive.metastore.uris={insert_hive.metastore.uris}
+hive.database={insert_hive.database}
+schema.compatibility=BACKWARD
+topics.dir={insert_topics.dir}

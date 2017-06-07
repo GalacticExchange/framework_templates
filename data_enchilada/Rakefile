@@ -15,107 +15,26 @@ task :build do
   exec cmd
 end
 
+desc "Build java client"
+task :build_java do
+  #"sudo apt-get install -y maven" before run
+  exec "cd java/data_enchilada; mvn clean install; cp target/data_enchilada-0.0.1-jar-with-dependencies.jar ../../docker/data_enchilada.jar"
+end
+
 desc "Run container"
 task :run do
 
   puts `docker import docker/data_enchilada.tar.gz data_enchilada`
   init_vars(
-          {
-              "_master_ip" => "10.1.0.11",
-              "_slave_ip" => "10.1.0.11",
-              "elasticsearch" => {
-                  "host" => "10.1.0.11",
-                  "port" => 9200,
-              },
-              'cassandra' => {
-                  "host" => "10.1.0.11",
-                  "port" => 9042,
-                  "username" => "cassandra",
-                  "password" => "cassandra",
-              },
-              "kafka" => {
-                  "host" => "10.1.0.11",
-                  "port" => 9200,
-              },
-              "zookeeper" => {
-                  "host" => "10.1.0.11",
-                  "port" =>  2181,
-              },
-              "hdfs" => {
-                  "host" => "10.1.0.11",
-                  "port" => 50070,
-              },
-              "kudu" => {
-                  "master" => {
-                      "host" => "10.1.0.11",
-                      "port" => 7051,
-                  }
-              }
-          }
-      )
-
+      {
+          "_master_ip" => "10.1.0.11",
+          "_slave_ip" => "10.1.0.11",
+          "cluster" => {"name" => "elasticsearch"}
+      })
 
   use_container "data_enchilada"
 
   dcreate_container "data_enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "data_enchilada", "8.8.8.8"
-
-  create_init_lock
-
-  dstart
-
-  dexec "ping -c  1 8.8.8.8"
-
-  wait_until_running
-
-  get_processor.process_template_trees [Dir.getwd + "/slave/templates"], $container
-
-  remove_init_lock
-
-  assert_drunning
-
-end
-
-desc "Run local container"
-task :run_local do
-
-  init_vars(
-      {
-          "_master_ip" => "10.1.0.11",
-          "_slave_ip" => "10.1.0.11",
-          "elasticsearch" => {
-              "host" => "10.1.0.11",
-              "port" => 9200,
-          },
-          'cassandra' => {
-              "host" => "10.1.0.11",
-              "port" => 9042,
-              "username" => "cassandra",
-              "password" => "cassandra",
-          },
-          "kafka" => {
-              "host" => "10.1.0.11",
-              "port" => 9200,
-          },
-          "zookeeper" => {
-              "host" => "10.1.0.11",
-              "port" =>  2181,
-          },
-          "hdfs" => {
-              "host" => "10.1.0.11",
-              "port" => 50070,
-          },
-          "kudu" => {
-              "master" => {
-                  "host" => "10.1.0.11",
-                  "port" => 7051,
-              }
-          }
-      }
-      )
-
-  use_container "data_enchilada"
-#['/projects/dataenchilada-app', '/var/www/apps/data_enchilada']
-  dcreate_container "data_enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "data_enchilada", "8.8.8.8",host_records:[],options:"-p 55140:5140/udp",recreate:false
 
   create_init_lock
 

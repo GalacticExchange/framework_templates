@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.gex</groupId>
+    <artifactId>data_enchilada</artifactId>
+    <version>0.0.1</version>
+
+    <repositories>
+        <repository>
+            <id>confluent</id>
+            <url>http://packages.confluent.io/maven/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.8</version>
+        </dependency>
+        <!-- for confluent 3.1.1-->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version>0.10.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-schema-registry-client</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <!-- for cassandra 3.10-->
+        <dependency>
+            <groupId>com.datastax.cassandra</groupId>
+            <artifactId>cassandra-driver-core</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- for elasticsearch 2.4.5-->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>2.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>io.gex.data_enchilada.DataEnchilada</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy file="target/data_enchilada-${project.version}-jar-with-dependencies.jar"
+                                      tofile="target/data_enchilada.jar"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>ubuntu</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target if="${dmg}">
+                                <property name="dir" value="target/build"/>
+                                <copy file="src/main/resources/data_enchilada.properties"
+                                      todir="${dir}/etc/data_enchilada"/>
+                                <copy file="src/main/resources/template-schema.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="src/main/resources/template-hdfs.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="src/main/resources/template-cassandra.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="src/main/resources/template-elasticsearch.properties"
+                                      todir="${dir}/etc/data_enchilada/templates"/>
+                                <copy file="target/data_enchilada.jar" todir="${dir}/usr/lib/data_enchilada"/>
+                                <exec executable="/bin/bash">
+                                    <arg value="-c"/>
+                                    <arg value="fpm -s dir -t deb --deb-no-default-config-files -n data_enchilada -v 0.0.1 -d &quot;supervisor&quot; --after-install src/main/resources/after_install_or_upgrade.sh --after-upgrade src/main/resources/after_install_or_upgrade.sh --before-upgrade src/main/resources/before_upgrade.sh --before-remove src/main/resources/before_remove.sh --after-remove src/main/resources/after_remove.sh -C ${dir} etc usr"/>
+                                </exec>
+                                <move file="data-enchilada_0.0.1_amd64.deb" todir="target"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

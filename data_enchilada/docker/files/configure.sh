@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source /etc/profile.d/rvm.sh;
+# do nothing

@@ -1,21 +1,11 @@
 data = {
-    "elasticsearch.host" => { description: "Elasticsearch host", default_value: "{{elasticsearch.host}}", mandatory: 0, editable: 1},
-    "elasticsearch.port" => { description: "Elasticsearch REST port", default_value: "9200", mandatory: 0, editable: 1},
-    "kafka.host" => { description: "Kafka host", default_value: "{{kafka.host}}", mandatory: 0, editable: 1},
-    "kafka.port" => { description: "Kafka port", default_value: "9092", mandatory: 0, editable: 1},
-    "zookeeper.host" => { description: "Zookeper host", default_value: "{{zookeeper.host}}", mandatory: 0, editable: 1},
-    "zookeeper.port" => { description: "Zookeper port", default_value: "2181", mandatory: 0, editable: 1},
-    "cassandra.host" => { description: "Cassandra host", default_value: "{{cassandra.host}}", mandatory: 0, editable: 1},
-    "cassandra.port" => { description: "Cassandra port", default_value: "9042", mandatory: 0, editable: 1},
-    "cassandra.username" => { description: "Cassandra username", default_value: "cassandra", mandatory: 0, editable: 1},
-    "cassandra.password" => { description: "Cassandra password", default_value: "cassandra", mandatory: 0, editable: 1},
-    "hdfs.host" => { description: "HDFS host", default_value: "{{hdfs.host}}", mandatory: 0, editable: 1},
-    "hdfs.port" => { description: "HDFS port", default_value: "50070", mandatory: 0, editable: 1},
-    "kudu.master.host" => { description: "Kudu master host", default_value: "{{kudu.master.host}}", mandatory: 0, editable: 1},
-    "kudu.master.port" => { description: "Kudu master port", default_value: "7051", mandatory: 0, editable: 1},
+    "cluster.uid" => { description: "Cluster ID", default_value: "{{cluster.uid}}", mandatory: 1, editable: 0},
+    "cluster.name" => { description: "Cluster name", default_value: "{{cluster.name}}", mandatory: 1, editable: 0}
+    #"master.host" => { description: "Host of hadoop master node", default_value: "{{master.host}}", mandatory: 1, basic: 1, editable: 0,},
+    #"master.ip" => { description: "IP of Hadoop master node", default_value: "{{master.ip}}", mandatory: 1, basic: 1, editable: 0,},
+    #"slave.ip" => { description: "IP of Hadoop slave node", default_value: "{{slave.ip}}", mandatory: 1, basic: 1, editable: 0,},
 }
 
-#todo use predefine ports
 config_params(data)
 
 ### services
