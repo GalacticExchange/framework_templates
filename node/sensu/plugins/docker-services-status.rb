@@ -267,7 +267,7 @@ class CheckDockerContainer < Sensu::Plugin::Metric::CLI::Graphite
         res[:output] = get_curl("http://#{container_ip}:9200/_cluster/health")
         output_data = JSON.parse(res[:output])
 
-        res[:res] = output_data["status"]=="yellow"
+        res[:res] = ["yellow", "green"].include?(output_data["status"])
       rescue => e
         res[:res] = false
       end
