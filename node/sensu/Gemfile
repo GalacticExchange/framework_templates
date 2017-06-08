@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'json'
 gem 'bunny'
 gem 'redis'
 gem 'net_http_unix'
