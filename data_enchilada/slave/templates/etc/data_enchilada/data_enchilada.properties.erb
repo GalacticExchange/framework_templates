@@ -1,0 +1,18 @@
+elasticsearch_host=<%= @elasticsearch["host"] %>
+elasticsearch_port=<%= @elasticsearch["port"] %>
+cassandra_host=<%= @cassandra["host"] %>
+cassandra_port=<%= @cassandra["port"] %>
+cassandra_username=<%= @cassandra["username"] %>
+cassandra_password=<%= @cassandra["password"] %>
+zookeeper_host=<%= @zookeeper["host"] %>
+zookeeper_port=<%= @zookeeper["port"] %>
+kafka_host=<%= @kafka["host"] %>
+kafka_port=<%= @kafka["port"] %>
+hdfs_host=<%= @hdfs["host"] %>
+hdfs_port=<%= @hdfs["port"] %>  #8020
+kudu_master_host=<%= @kudu["master"]["host"] %>
+kudu_master_port=<%= @kudu["master"]["port"] %>
+
+schemaregistry=http://<%= @_master_ip %>:8081
+hive_metastore_uris=thrift://<%= @_master_ip %>:9083
+hive_database=data_enchilada
