@@ -1,1 +1,0 @@
-AllPluginCheckUpdate.new.async.perform
