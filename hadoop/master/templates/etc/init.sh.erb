@@ -28,9 +28,10 @@ service ssh start
 #todo move to firstrun
 chmod +x /opt/gex/healthcheck
 
+<% if @_components.include?('zookeeper')%>
 echo "Zookeper" >> /tmp/INIT_LOG
 service zookeeper-server start
-
+<% end %>
 
 echo "MySQL" >> /tmp/INIT_LOG
 service mysql start
