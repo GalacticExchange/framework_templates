@@ -49,6 +49,7 @@ RUN touch /usr/local/flume/logs/flume.log
 RUN chmod 777 /usr/local/flume/logs/flume.log
 
 # Ruby
+RUN apt-get update --fix-missing
 RUN apt-get install -y gawk git-core redis-server zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev \
 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs libmysqlclient-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server

@@ -78,6 +78,7 @@ end
 desc "Run local container"
 task :run_local do
 
+  puts `docker import docker/data_enchilada.tar.gz data_enchilada`
   init_vars(
       {
           "_master_ip" => "10.1.0.11",
@@ -111,11 +112,13 @@ task :run_local do
               }
           }
       }
-      )
+  )
+
 
   use_container "data_enchilada"
-#['/projects/dataenchilada-app', '/var/www/apps/data_enchilada']
-  dcreate_container "data_enchilada", "/etc/bootstrap.sh", [], "127.0.0.1", "data_enchilada", "8.8.8.8",host_records:[],options:"-p 55140:5140/udp",recreate:false
+
+  #,host_records:[],options:"-p 55140:5140/udp",recreate:false
+  dcreate_container "data_enchilada", "/etc/bootstrap.sh", [['/projects/dataenchilada-app', '/var/www/apps/data_enchilada']], "127.0.0.1", "data_enchilada", "8.8.8.8", add_default_volumes: false
 
   create_init_lock
 
@@ -132,5 +135,4 @@ task :run_local do
   assert_drunning
 
 end
-
 
