@@ -29,11 +29,6 @@ RUN tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/
 RUN ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
 RUN rm phantomjs-2.1.1-linux-x86_64.tar.bz2
 
-# Install nutch
-ADD nutch /usr/local/nutch
-# Install crawl old
-ADD crawl-old.jar /usr/local/crawl_old/
-
 # Provision
 RUN mkdir -p /opt/gex/config
 ADD files/configure.sh /opt/gex/configure.sh
@@ -46,4 +41,9 @@ RUN curl -fsSL https://goss.rocks/install | sh
 ADD files/healthcheck /opt/gex/healthcheck
 ADD files/goss/goss.yaml /opt/gex/goss/goss.yaml
 RUN chmod +x /opt/gex/healthcheck
+
+# Install nutch
+ADD nutch /usr/local/nutch
+# Install scraper jar
+ADD scraper.jar /usr/local/scraper/
 

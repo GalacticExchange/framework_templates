@@ -2,4 +2,7 @@
 
 service ssh start
 
-/bin/bash ./usr/local/nutch/bin/run_nutch_cyclic.sh
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+./usr/local/nutch/bin/nutch startserver -host 0.0.0.0 &
+/usr/lib/jvm/java-8-oracle/bin/java -jar /usr/local/scraper/scraper.jar /usr/local/scraper/config.json &

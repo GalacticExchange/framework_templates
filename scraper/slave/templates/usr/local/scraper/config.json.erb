@@ -1,0 +1,31 @@
+{
+  "appId": "<%= assert_nnil(@app_id) %>",
+  "webServerPort": 80,
+  "consulHost": "<%= assert_nnil(@consul_host) %>",
+  "consulPort": <%= assert_nnil(@consul_port) %>,
+  "nutchHost": "http://0.0.0.0",
+  "nutchPort": 8081,
+  "defScrapArchJob": {
+    "urls": null,
+    "crawlIndexesHost": "http://index.commoncrawl.org",
+    "warcFilesHost": "http://commoncrawl.s3.amazonaws.com/",
+    "crawlLinksLimit": null,
+    "fromYear": 2017,
+    "toYear": 2017,
+    "fetchThreadsNum": 32,
+    "elastic": {
+      "host": "<%= assert_nnil(@elasticsearch["host"]) %>",
+      "port": <%= assert_nnil(@elasticsearch["port"]) %>,
+      "clusterName": "<%= assert_nnil(@elasticsearch["cluster_name"]) %>",
+      "indexName": "scraper",
+      "type": "scrap_archive"
+    }
+  },
+  "defScrapJob": {
+    "urls": null,
+    "depth": 2,
+    "interval": 7200,
+    "extractArticle": false,
+    "elasticIndexName": "scraper"
+  }
+}

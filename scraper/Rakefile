@@ -20,9 +20,9 @@ task :build_nutch do
   exec "rm -rf docker/nutch; cd ../../nutch; rm -rf build; rm -rf runtime; ant; cp -R runtime/local ../framework_templates/scraper/docker/nutch"
 end
 
-desc "Build crawl old"
-task :build_crawl_old do
-  exec "rm -rf docker/crawl-old; cd ../../crawl-old; mvn clean install; cp target/crawl-old.jar ../framework_templates/scraper/docker"
+desc "Build scraper"
+task :build_scraper do
+  exec "rm -rf docker/scraper.jar; cd ../../scraper; mvn clean install; cp target/scraper.jar ../framework_templates/scraper/docker"
 end
 
 desc "Run container"
@@ -33,14 +33,13 @@ task :run do
       {
           "_master_ip" => "10.1.0.16",
           "_slave_ip" => "10.1.0.16",
-          "elasticsearch" => {"host" => "10.1.0.16", "port" => "9300", "index_name" => "scraper", "cluster_name" => ""},
-          "scrap" => {"urls" => "http://www.nation.co.ke/news-sitemap.xml", "depth" => "2", "interval" => "1h",
-                      "extract_article" => "false"}
+          "elasticsearch" => {"host" => "10.1.0.16", "port" => "9300", "cluster_name" => ""},
+          "app_id" => "1234", "consul_host" => "10.1.0.16", "consul_port" => "8500"
       })
 
   use_container "scraper"
 
-  dcreate_container "scraper", "/etc/bootstrap.sh", [], "127.0.0.1", "scraper", "8.8.8.8", host_records: [], options: "-p 8080:8080/tcp", recreate: false
+  dcreate_container "scraper", "/etc/bootstrap.sh", [], "127.0.0.1", "scraper", "8.8.8.8", host_records: [], options: "-p 8081:8081/tcp -p 80:80/tcp", recreate: false
 
   create_init_lock
 

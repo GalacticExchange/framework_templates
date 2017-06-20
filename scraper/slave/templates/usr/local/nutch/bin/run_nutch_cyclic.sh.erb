@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-while true
-do
-  /bin/bash /usr/local/nutch/bin/run_nutch.sh
-
-  sleep <%=assert_nnil(@scrap["interval"])%>
-done

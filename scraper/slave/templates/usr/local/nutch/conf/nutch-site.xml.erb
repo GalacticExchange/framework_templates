@@ -1435,7 +1435,7 @@ CAUTION: Set the parser.timeout to -1 or a bigger value than 30, when using this
 
 <property>
   <name>scoring.depth.max</name>
-  <value><%=assert_nnil(@scrap["depth"])%></value>
+  <value>2</value>
   <description>Max depth value from seed allowed by default.
   Can be overridden on a per-seed basis by specifying "_maxdepth_=VALUE"
   as a seed metadata. This plugin adds a "_depth_" metadatum to the pages
@@ -1849,7 +1849,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>elastic.index</name>
-  <value><%= assert_nnil(@elasticsearch["index_name"]) %></value>
+  <value></value>
   <description>Default index to send documents to.</description>
 </property>
 
@@ -2345,7 +2345,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>parser.html.extract.article</name>
-  <value><%=assert_nnil(@scrap["extract_article"])%></value>
+  <value>false</value>
   <description>
     Try to extract article from html
   </description>

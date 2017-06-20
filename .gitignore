@@ -15,4 +15,4 @@ target/
 
 #nutch
 /scraper/docker/nutch/
-/scraper/docker/crawl-old.jar
+/scraper/docker/scraper.jar
