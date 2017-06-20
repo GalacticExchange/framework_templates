@@ -1,11 +1,35 @@
+
+function get_tun_ip (){
+ echo $(/sbin/ifconfig tun0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+}
+
 echo "Waiting for VPN" >> /tmp/INIT_LOG
+
+echo 'VPN WAIT' > /tmp/vpn_wait
 
 while  [ ! "/sbin/ifconfig tun0" ];
 do
+    echo 'vpn_try' >> /tmp/vpn_wait
     sleep 0.1
     echo "waiting for the net..."
 done
 
+tun_ip=$(get_tun_ip)
+
+while [ -z "$tun_ip" ];
+do
+ sleep 0.1
+ echo "CHECK TUN_IP=${tun_ip}" >> /tmp/vpn_wait
+ tun_ip=$(get_tun_ip)
+done
+
+echo "TUN_IP=${tun_ip}" >> /tmp/vpn_wait
+
+while  [ ! "ping -c 1 ${tun_ip}" ];
+do
+  sleep 0.1
+  echo "ping_wait" >> /tmp/vpn_wait
+done
 
 service ssh start
 
