@@ -5,8 +5,9 @@ require_relative "../../vagrant/base/ruby_scripts/common"
 desc "Build container"
 task :build do
  commands = [
+      'docker rm -f data_enchilada; docker rmi -f data_enchilada',
       'cd docker; docker build -t data_enchilada . ',
-      'docker rm -f data_enchilada; docker create --name data_enchilada data_enchilada',
+      'docker create --name data_enchilada data_enchilada',
       'docker cp ../slave/templates/. data_enchilada:/templates/create/.',
       'docker export data_enchilada | gzip > data_enchilada.tar.gz',
   ]
