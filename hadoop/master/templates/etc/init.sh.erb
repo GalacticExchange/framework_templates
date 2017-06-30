@@ -47,7 +47,7 @@ service cassandra start
 <% end %>
 
 <% if @_components.include?('elasticsearch') %>
-echo "Elastic Search" >> /tmp/INIT_LOG
+echo "ElasticSearch" >> /tmp/INIT_LOG
 service elasticsearch start
 <% end %>
 
@@ -65,7 +65,7 @@ hdfs dfsadmin -safemode leave
 rm -rf  /var/lib/hive/metastore/metastore_db/*.lck
 
 <% if @_components.include?('hdfs') && @_components.include?('hive')%>
-echo "hive metastore" >> /tmp/INIT_LOG
+echo "Hive metastore" >> /tmp/INIT_LOG
 service hive-metastore start
 <% end %>
 
@@ -73,7 +73,7 @@ service hive-metastore start
 #service kafka-server start
 export  KAFKA_HEAP_OPTS="-Xmx50M -Xms50M"
 <% if @_components.include?('kafka')%>
-echo "Kafka Start" >> /tmp/INIT_LOG
+echo "Kafka" >> /tmp/INIT_LOG
 /usr/bin/kafka-server-start /etc/kafka/kafka.server.properties &
 <% end %>
 
@@ -125,7 +125,7 @@ service hive-server2 start
 
 
 <% if @_components.include?('kafka')%>
-echo "Schema Registry Start" >> /tmp/INIT_LOG
+echo "Schema Registry" >> /tmp/INIT_LOG
 /usr/bin/schema-registry-start /etc/schema-registry/schema-registry.properties &
 <% end %>
 
@@ -137,8 +137,15 @@ echo "Neo4j" >> /tmp/INIT_LOG
 <% end %>
 
 <% if @_components.include?('kudu')%>
-echo "Kudu Start" >> /tmp/INIT_LOG
+echo "Kudu" >> /tmp/INIT_LOG
 service kudu-master start
+<% end %>
+
+<% if @_components.include?('impala')%>
+echo "Impala" >> /tmp/INIT_LOG
+service impala-state-store start
+service impala-catalog start
+service impala-server start
 <% end %>
 
 

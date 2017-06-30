@@ -70,7 +70,7 @@ chmod 0755 /etc/init.d/elasticsearch
 chmod 0755 /etc/init.d/kibana
 <% if @_components.include?('elasticsearch') %>
 
-echo "elasticsearch" >> /tmp/INIT_LOG
+echo "Elasticsearch" >> /tmp/INIT_LOG
 service elasticsearch start
 
 
