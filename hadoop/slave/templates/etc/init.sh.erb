@@ -97,6 +97,11 @@ echo "Neo4j" >> /tmp/INIT_LOG
 /usr/bin/neo4j start
 <% end %>
 
+<% if @_components.include?('kudu')%>
+echo "Kudu Start" >> /tmp/INIT_LOG
+service kudu-tserver start
+<% end %>
+
 #echo "Nifi template" >> /tmp/INIT_LOG
 #ruby /usr/local/nifi/add_template.rb &
 

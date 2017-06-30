@@ -136,6 +136,11 @@ echo "Neo4j" >> /tmp/INIT_LOG
 /usr/bin/neo4j start
 <% end %>
 
+<% if @_components.include?('kudu')%>
+echo "Kudu Start" >> /tmp/INIT_LOG
+service kudu-master start
+<% end %>
+
 
 #echo "webhcat" >> /tmp/INIT_LOG
 
