@@ -47,6 +47,10 @@ RUN mv kudu-flume-sink-1.3.0.jar /usr/local/flume/lib
 RUN rm my-flume-1.7.0-for-docker_10_05_2017.tar.gz && rm -rf /usr/local/flume/conf/ && rm -rf my-flume-1.7.0-for-docker
 RUN touch /usr/local/flume/logs/flume.log
 RUN chmod 777 /usr/local/flume/logs/flume.log
+RUN mkdir /usr/local/flume/conf
+RUN ADD flume/flume-env.sh /usr/local/flume/conf
+RUN chmod 777 /usr/local/flume/conf/flume-env.sh
+RUN ADD flume/log4j.properties /usr/local/flume/conf
 
 # Ruby
 RUN apt-get update --fix-missing
