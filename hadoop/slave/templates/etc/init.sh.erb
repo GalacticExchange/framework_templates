@@ -65,6 +65,11 @@ echo "Metabase" >> /tmp/INIT_LOG
 /usr/lib/gex/java/bin/java -jar /usr/local/metabase/metabase.jar
 <% end %>
 
+<% if @_components.include?('superset') %>
+echo "Superse" >> /tmp/INIT_LOG
+superset runserver
+<% end %>
+
 
 <% if @_components.include?('cassandra') %>
 echo "Cassandra" >> /tmp/INIT_LOG
