@@ -62,12 +62,12 @@ echo "Nifi" >> /tmp/INIT_LOG
 
 <% if @_components.include?('metabase') %>
 echo "Metabase" >> /tmp/INIT_LOG
-java -jar /usr/local/metabase/metabase.jar
+java -jar /usr/local/metabase/metabase.jar &
 <% end %>
 
 <% if @_components.include?('superset') %>
-echo "Superse" >> /tmp/INIT_LOG
-superset runserver
+echo "Superset" >> /tmp/INIT_LOG
+superset runserver &
 <% end %>
 
 
