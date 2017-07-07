@@ -16,3 +16,6 @@ target/
 #nutch
 /scraper/docker/nutch/
 /scraper/docker/scraper.jar
+
+#graph_ide
+/graph_ide/docker/neo4j-search.jar

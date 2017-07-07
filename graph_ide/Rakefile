@@ -1,0 +1,56 @@
+require_relative "../../vagrant/common/config/config"
+require_relative "../../vagrant/base/ruby_scripts/common"
+
+
+desc "Build container"
+task :build do
+  commands = [
+      'cd docker; docker build -t graph_ide . ',
+      'docker rm -f graph_ide; docker create --name graph_ide graph_ide',
+      'docker cp ../slave/templates/. graph_ide:/templates/create/.',
+      'docker export graph_ide | gzip > graph_ide.tar.gz',
+  ]
+  cmd = commands.join("; ")
+  puts "#{cmd}"
+  exec cmd
+end
+
+
+desc "Build web"
+task :build_web do
+  exec "rm -rf docker/neo4j-search.jar; cd ../../neo4j-search; mvn clean install; cp target/neo4j-search.jar ../framework_templates/graph_ide/docker"
+end
+
+desc "Run container"
+task :run do
+
+  puts `docker import docker/graph_ide.tar.gz graph_ide`
+  init_vars(
+      {
+          "_master_ip" => "10.1.0.16",
+          "_slave_ip" => "10.1.0.16",
+          "neo4j" => {"host" => "10.1.0.16", "port" => "7687"},
+          "app_id" => "12345", "consul_host" => "10.1.0.16", "consul_port" => "8500"
+      })
+
+  use_container "graph_ide"
+
+  dcreate_container "graph_ide", "/etc/bootstrap.sh", [], "127.0.0.1", "graph_ide", "8.8.8.8", host_records: [], options: "-p 80:80/tcp", recreate: false
+
+  create_init_lock
+
+  dstart
+
+  dexec "ping -c  1 8.8.8.8"
+
+  wait_until_running
+
+  get_processor.process_template_trees [Dir.getwd + "/slave/templates"], $container
+
+  remove_init_lock
+
+  assert_drunning
+
+end
+
+

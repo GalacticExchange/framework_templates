@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+service ssh start
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+/usr/lib/jvm/java-8-oracle/bin/java -jar /usr/local/graph_ide/neo4j-search.jar /usr/local/graph_ide/config.json &

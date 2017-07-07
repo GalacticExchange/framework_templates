@@ -1,0 +1,10 @@
+{
+  "appId": "<%= assert_nnil(@app_id) %>",
+  "webServerPort": 80,
+  "consulHost": "<%= assert_nnil(@consul_host) %>",
+  "consulPort": <%= assert_nnil(@consul_port) %>,
+  "neo4jHost": "<%= assert_nnil(@neo4j["host"]) %>",
+  "neo4jPort": <%= assert_nnil(@neo4j["port"]) %>,
+  "neo4jUser": "neo4j",
+  "neo4jPass": "neo4j"
+}
