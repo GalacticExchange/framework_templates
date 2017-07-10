@@ -11,3 +11,18 @@ services({
              'webui' => {name: 'Web UI', protocol: 'http', port: 80},
              'ssh' => {title: 'SSH', name: 'ssh', protocol: 'ssh', port: 22},
          })
+
+app_info = {
+    metrics: {
+        scraper: {
+            memory: 2.0,
+            hdd: 1.0
+        }
+    },
+    dependencies: {
+        components: [:elasticsearch],
+        containers: []
+    }
+}
+
+app_info(app_info)
