@@ -13,5 +13,5 @@ dexec "/bin/bash -c 'chmod 777 /usr/local/nifi/bin/nifi-env.sh'"
 dexec "/home/superset/.bin/superset-init"
 
 # neo4j
-dexec "/bin/bash -c 'curl -H \"Content-Type: application/json\" -X POST -d \"{\"password\":\"password\"}\" -u neo4j:neo4j http://localhost:7474/user/neo4j/password'"
-dexec "/bin/bash -c 'curl -H \"Content-Type: application/json\" -X POST -d \"{\"password\":\"neo4j\"}\" -u neo4j:password http://localhost:7474/user/neo4j/password'"
+dexec "/bin/bash -c 'curl -H \"Content-Type: application/json\" -X POST -d \"{\"password\":\"password\"}\" -u neo4j:neo4j http://localhost:7474/user/neo4j/password >> /tmp/curl1.txt'"
+dexec "/bin/bash -c 'curl -H \"Content-Type: application/json\" -X POST -d \"{\"password\":\"neo4j\"}\" -u neo4j:password http://localhost:7474/user/neo4j/password >> /tmp/curl2.txt'"
