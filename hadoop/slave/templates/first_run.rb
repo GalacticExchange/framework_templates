@@ -16,8 +16,8 @@ if get_value('_components').include?('superset')
   dexec "/home/superset/.bin/superset-init"
 end
 
-if get_value('_components').include?('neo4j')
+#if get_value('_components').include?('neo4j')
   # neo4j
-  dexec "/bin/bash -c 'chmod 777 /etc/neo4j/pass.sh'"
-  dexec "/etc/neo4j/pass.sh'"
-end
+  #dexec "/bin/bash -c 'chmod 777 /etc/neo4j/pass.sh'"
+  #dexec "/etc/neo4j/pass.sh'"
+#end

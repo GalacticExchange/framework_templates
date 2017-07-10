@@ -99,7 +99,8 @@ echo "Spark worker" >> /tmp/INIT_LOG
 /usr/lib/spark/sbin/start-slave.sh &
 <% end %>
 
-
+chmod 0755 /usr/bin/neo4j
+mkdir -p /var/run/neo4j
 <% if @_components.include?('neo4j') %>
 echo "Neo4j" >> /tmp/INIT_LOG
 /usr/bin/neo4j start
