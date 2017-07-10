@@ -23,3 +23,5 @@ app_info = {
         containers: []
     }
 }
+
+app_info(app_info)
