@@ -12,6 +12,8 @@ hdfs_host=<%= @hdfs["host"] %>
 hdfs_port=<%= @hdfs["port"] %>  #8020
 kudu_master_host=<%= @kudu["master"]["host"] %>
 kudu_master_port=<%= @kudu["master"]["port"] %>
+impala_host=<%= @impala["host"] %>
+impala_port=<%= @impala["port"] %>
 
 schemaregistry=http://<%= @_master_ip %>:8081
 hive_metastore_uris=thrift://<%= @_master_ip %>:9083

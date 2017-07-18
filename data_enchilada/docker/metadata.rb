@@ -13,6 +13,9 @@ data = {
     "hdfs.port" => { description: "HDFS port", default_value: "50070", mandatory: 0, editable: 1},
     "kudu.master.host" => { description: "Kudu master host", default_value: "{{kudu.master.host}}", mandatory: 0, editable: 1},
     "kudu.master.port" => { description: "Kudu master port", default_value: "7051", mandatory: 0, editable: 1},
+    "impala.host" => { description: "Impala host", default_value: "{{impala.host}}", mandatory: 0, editable: 1},
+    "impala.port" => { description: "Impala port", default_value: "21000", mandatory: 0, editable: 1},
+
 }
 
 #todo use predefine ports
