@@ -108,6 +108,8 @@ echo "Neo4j" >> /tmp/INIT_LOG
 
 <% if @_components.include?('kudu')%>
 echo "Kudu Start" >> /tmp/INIT_LOG
+# fix of "Error reading clock. Clock considered unsynchronized"
+service ntp restart
 service kudu-tserver start
 <% end %>
 
