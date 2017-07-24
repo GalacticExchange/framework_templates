@@ -138,6 +138,7 @@ echo "Neo4j" >> /tmp/INIT_LOG
 
 <% if @_components.include?('kudu')%>
 echo "Kudu" >> /tmp/INIT_LOG
+service ntp restart
 service kudu-master start
 <% end %>
 
