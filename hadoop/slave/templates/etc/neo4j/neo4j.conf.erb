@@ -78,6 +78,9 @@ dbms.connectors.default_advertised_address=0.0.0.0
 dbms.connector.bolt.enabled=true
 #dbms.connector.bolt.tls_level=OPTIONAL
 #dbms.connector.bolt.listen_address=:7687
+<% if @_cluster_type == 'aws' %>
+dbms.connector.bolt.advertised_address=<%= @_socks_proxy_ip %>:<%= @port_neo4j_bolt %>
+<% end %>
 
 # HTTP Connector. There must be exactly one HTTP connector.
 dbms.connector.http.enabled=true
