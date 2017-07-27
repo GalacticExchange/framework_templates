@@ -57,6 +57,7 @@ echo "Kafka" >> /tmp/INIT_LOG
 chmod 0755 /usr/local/nifi/bin/nifi.sh
 <% if @_components.include?('nifi') %>
 echo "Nifi" >> /tmp/INIT_LOG
+rm -rf /usr/local/nifi/flowfile_repository/*
 /usr/local/nifi/bin/nifi.sh start
 <% end %>
 
