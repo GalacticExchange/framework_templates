@@ -2,6 +2,7 @@
 
 service ssh start
 service supervisor start
+chown -R mysql /var/lib/mysql
 service mysql start
 
 #echo \"export TERM=xterm\" >> /etc/bash.bashrc
