@@ -24,6 +24,7 @@ config_params(data)
 ### services
 services({
              'webui' => {name: 'webui', protocol: 'http', port: 80},
+             'data_collector' => {name: 'data_collector', protocol: 'tcp', port: 24224},
              'ssh' => {title: 'SSH', name: 'ssh', protocol: 'ssh', port: 22},
          })
 
