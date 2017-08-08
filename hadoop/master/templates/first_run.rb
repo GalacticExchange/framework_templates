@@ -1,5 +1,6 @@
 dexec "/bin/bash -c 'echo \"export TERM=xterm\" >> /etc/bash.bashrc'"
-
+dexec "/bin/bash -c \"echo $'\nexport PYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/profile\""
+# source /etc/profile
 dexecs_parallel(
     "bash -c 'cat /tmp/hadoop_rsa_public >>  /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys'",
     "bash -c 'cp -f /tmp/hadoop_rsa /root/.ssh/ && chmod 600 /root/.ssh/hadoop_rsa'",
