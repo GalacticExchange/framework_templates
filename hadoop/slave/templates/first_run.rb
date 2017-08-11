@@ -17,11 +17,11 @@ if get_value('_components').include?('superset')
   dexec "/home/superset/.bin/superset-init"
 end
 
-dexec 'echo 100000 > /proc/sys/kernel/threads-max'
+dexec "/bin/bash -c 'echo 100000 > /proc/sys/kernel/threads-max'"
 
-dexec "echo '*         hard    nofile      500000' >> /etc/security/limits.conf"
-dexec "echo '*         soft    nofile      500000' >> /etc/security/limits.conf"
-dexec "echo 'root      hard    nofile      500000' >> /etc/security/limits.conf"
-dexec "echo 'root      soft    nofile      500000' >> /etc/security/limits.conf"
-dexec "echo '*         soft    nproc       500000' >> /etc/security/limits.conf"
-dexec "echo '*         hard    nproc       500000' >> /etc/security/limits.conf"
+dexec "/bin/bash -c  \"echo '*         hard    nofile      500000' >> /etc/security/limits.conf\""
+dexec "/bin/bash -c  \"echo '*         soft    nofile      500000' >> /etc/security/limits.conf\""
+dexec "/bin/bash -c  \"echo 'root      hard    nofile      500000' >> /etc/security/limits.conf\""
+dexec "/bin/bash -c  \"echo 'root      soft    nofile      500000' >> /etc/security/limits.conf\""
+dexec "/bin/bash -c  \"echo '*         soft    nproc       500000' >> /etc/security/limits.conf\""
+dexec "/bin/bash -c  \"echo '*         hard    nproc       500000' >> /etc/security/limits.conf\""
