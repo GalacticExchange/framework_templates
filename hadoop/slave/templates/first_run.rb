@@ -1,8 +1,7 @@
 dexec "/bin/bash -c 'echo \"export TERM=xterm\" >> /etc/bash.bashrc'"
-#dexec "/bin/bash -c 'echo \"export PYTHONPATH=/home/superset/.superset:$PYTHONPATH\" >> /etc/bash.bashrc'"
-#dexec "/bin/bash -c \"echo $'\nexport PYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/profile\""
-#dexec "/bin/bash -c \"echo $'\nPYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/environment\""
-# source /etc/profile
+dexec "/bin/bash -c 'echo \"export PYTHONPATH=/home/superset/.superset:$PYTHONPATH\" >> /etc/bash.bashrc'"
+dexec "/bin/bash -c \"echo $'\nexport PYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/profile\""
+dexec "/bin/bash -c \"echo $'\nPYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/environment\""
 
 dexec "cp /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml"
 
@@ -15,7 +14,7 @@ if get_value('_components').include?('nifi')
 end
 
 if get_value('_components').include?('superset')
-  dexec "/home/superset/.bin/superset-init"
+  dexec "PYTHONPATH=/home/superset/.superset /home/superset/.bin/superset-init"
 end
 
 dexec "/bin/bash -c 'echo 100000 > /proc/sys/kernel/threads-max'"
