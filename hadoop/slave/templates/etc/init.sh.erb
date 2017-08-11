@@ -68,7 +68,7 @@ java -jar /usr/local/metabase/metabase.jar &
 
 <% if @_components.include?('superset') %>
 echo "Superset" >> /tmp/INIT_LOG
-PYTHONPATH=/home/superset/.superset superset runserver &
+export PYTHONPATH="/home/superset/.superset"; superset runserver &
 <% end %>
 
 

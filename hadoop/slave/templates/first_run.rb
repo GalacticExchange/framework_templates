@@ -14,7 +14,7 @@ if get_value('_components').include?('nifi')
 end
 
 if get_value('_components').include?('superset')
-  dexec "/bin/bash -c 'PYTHONPATH=/home/superset/.superset /home/superset/.bin/superset-init'"
+  dexec "/bin/bash -c 'export PYTHONPATH=\"/home/superset/.superset\"; /home/superset/.bin/superset-init'"
 end
 
 dexec "/bin/bash -c 'echo 100000 > /proc/sys/kernel/threads-max'"
