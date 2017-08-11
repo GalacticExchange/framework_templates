@@ -1,7 +1,7 @@
 dexec "/bin/bash -c 'echo \"export TERM=xterm\" >> /etc/bash.bashrc'"
-dexec "/bin/bash -c 'echo \"export PYTHONPATH=/home/superset/.superset:$PYTHONPATH\" >> /etc/bash.bashrc'"
-dexec "/bin/bash -c \"echo $'\nexport PYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/profile\""
-dexec "/bin/bash -c \"echo $'\nPYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/environment\""
+#dexec "/bin/bash -c 'echo \"export PYTHONPATH=/home/superset/.superset:$PYTHONPATH\" >> /etc/bash.bashrc'"
+#dexec "/bin/bash -c \"echo $'\nexport PYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/profile\""
+#dexec "/bin/bash -c \"echo $'\nPYTHONPATH=/home/superset/.superset:$PYTHONPATH' >> /etc/environment\""
 # source /etc/profile
 
 dexec "cp /etc/hadoop/conf/core-site.xml /etc/impala/conf/core-site.xml"
