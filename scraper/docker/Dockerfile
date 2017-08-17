@@ -6,7 +6,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH /usr/local/flume/bin:$JAVA_HOME/bin:$PATH
 ENV TERM xterm
 
-RUN apt-get update
+RUN apt-get update --fix-missing
 RUN apt-get install -y ssh sudo net-tools wget software-properties-common iputils-ping telnet dnsutils curl nano git openvpn ruby
 
 # Install Java 8

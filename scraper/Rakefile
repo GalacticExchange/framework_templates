@@ -31,15 +31,15 @@ task :run do
   puts `docker import docker/scraper.tar.gz scraper`
   init_vars(
       {
-          "_master_ip" => "10.1.0.16",
-          "_slave_ip" => "10.1.0.16",
-          "elasticsearch" => {"host" => "10.1.0.16", "port" => "9300", "cluster_name" => ""},
-          "app_id" => "1234", "consul_host" => "10.1.0.16", "consul_port" => "8500"
+          "_master_ip" => "10.1.0.11",
+          "_slave_ip" => "10.1.0.11",
+          "elasticsearch" => {"host" => "10.1.0.11", "port" => "9300", "cluster_name" => ""},
+          "app_id" => "1234", "consul_host" => "10.1.0.11", "consul_port" => "8500"
       })
 
   use_container "scraper"
 
-  dcreate_container "scraper", "/etc/bootstrap.sh", [], "127.0.0.1", "scraper", "8.8.8.8", host_records: [], options: "-p 8081:8081/tcp -p 80:80/tcp", recreate: false
+  dcreate_container "scraper", "/etc/bootstrap.sh", [], "127.0.0.1", "scraper", "8.8.8.8", host_records: [], options: "-p 8081:8081/tcp -p 8082:80/tcp", recreate: false
 
   create_init_lock
 
