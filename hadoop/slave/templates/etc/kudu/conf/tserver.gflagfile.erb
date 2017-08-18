@@ -5,4 +5,5 @@
 
 --fs_wal_dir=/var/lib/kudu/tserver
 --fs_data_dirs=/var/lib/kudu/tserver
+--max_clock_sync_error_usec=20000000
 --tserver_master_addrs=<%= assert_nnil(@_hadoop_ipv4) %>:7051
